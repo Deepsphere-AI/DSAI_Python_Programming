@@ -1,0 +1,46 @@
+
+/**************************************************************************************
+  
+  File Name 	:   CSLAB_GENERATOR_EXPRESSIONS_V1
+  Purpose 	:   A Program in Python for Generator Expressions
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   12/13/2018 13:47 hrs
+  Version	:   1.0	
+  Change History: 
+_________________________________________________________________________________
+
+   Who				   When 			        Why
+_________________________________________________________________________________
+
+
+    DP				12/13/2018		  Initital Release 
+
+_________________________________________________________________________________
+
+
+/**************************************************************************************
+
+## Program Description : A Program for Generator Expressions in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+def vAR_CSLAb_my_gen():
+    for vAR_CSLAb_x in range(5):
+        yield vAR_CSLAb_x
+
+vAR_CSLAb_gen_exp = (vAR_CSLAb_x ** 2 for vAR_CSLAb_x in range(10) if vAR_CSLAb_x % 2 == 0) 
+
+for vAR_CSLAb_x in vAR_CSLAb_gen_exp:
+    
+    print(vAR_CSLAb_x)
+
+/**************************************************************************************
+Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production ready code. We have no liability on this particular code under any circumstances; users should use this code on their own risk. 
+
+All software, hardware and othr products that are referenced in these materials belong to the respective vendor who developed or who owns this product.
+
+/**************************************************************************************
+  

@@ -1,0 +1,47 @@
+
+/**************************************************************************************************
+  
+  File Name 	:   CSLAB_STATIC_METHOD_V1
+  Purpose 	:   A Program in Python for Static Method
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   12/13/2018 11:38 hrs
+  Version	:   1.0	
+  Change History: 
+___________________________________________________________________________________________________
+
+   Who				   When 			        Why
+___________________________________________________________________________________________________
+
+
+    DP				12/13/2018		           Initital Release 
+
+___________________________________________________________________________________________________
+
+
+/**************************************************************************************************
+ 
+## Program Description : A Program for Static Method in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+class vAR_CSLAB_Mathematics:
+
+    def vAR_CSLAB_addNumbers(x, y):
+        
+        return x + y
+
+# create addNumbers static method
+
+vAR_CSLAB_Mathematics.addNumbers = staticmethod(Mathematics.addNumbers)
+
+print('The sum is:', vAR_CSLAB_Mathematics.addNumbers(5, 10))
+   
+/**************************************************************************************
+Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production ready code. We have no liability on this particular code under any circumstances; users should use this code on their own risk. 
+
+All software, hardware and othr products that are referenced in these materials belong to the respective vendor who developed or who owns this product.
+
+/**************************************************************************************

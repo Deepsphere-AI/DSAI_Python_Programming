@@ -1,0 +1,72 @@
+
+/**************************************************************************************
+  
+  File Name 	:   CSLAB_REGULAR_EXPRESSIONS
+  Purpose 	:   A Program in Python for Regular Expressions
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   12/13/2018 10:29 hrs
+  Version	:   1.0	
+  Change History: 
+_________________________________________________________________________________
+
+   Who				   When 			        Why
+_________________________________________________________________________________
+
+
+    DP				12/13/2018		           Initital Release 
+
+_________________________________________________________________________________
+
+
+/**************************************************************************************
+  
+## Program Description : A Program for Regular Expressions in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import re
+
+vAR_CSLAB_pattern = re.compile(r"\[(on|off)\]") # Slight optimization
+
+print(re.search(vAR_CSLAB_pattern, "Mono: Playback 65 [75%] [-16.50dB] [on]"))
+
+# Returns a Match object!
+
+print(re.search(vAR_CSLAB_pattern, "Nada...:-("))
+
+# Doesn't return anything.
+
+# End Example
+
+# Exercise: make a regular expression that will match an email
+
+def vAR_CSLAB_test_email(your_pattern):
+    
+    vAR_CSLAB_pattern = re.compile(your_pattern)
+    
+    vAR_CSLAB_emails = ["john@example.com", "python-list@python.org", "wha.t.`1an?ug{}ly@email.com"]
+    
+    for email in vAR_CSLAB_emails:
+    
+        if not re.match(vAR_CSLAB_pattern, email):
+            print("You failed to match %s" % (email))
+        
+        elif not your_pattern:
+            print("Forgot to enter a pattern!")
+        
+        else:
+            print("Pass")
+
+vAR_CSLAB_pattern = r"" # Your pattern here!
+
+#test_email(vAR_CSLAB_pattern)
+   
+/**************************************************************************************
+Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production ready code. We have no liability on this particular code under any circumstances; users should use this code on their own risk. 
+
+All software, hardware and othr products that are referenced in these materials belong to the respective vendor who developed or who owns this product.
+
+/************************************************************************************

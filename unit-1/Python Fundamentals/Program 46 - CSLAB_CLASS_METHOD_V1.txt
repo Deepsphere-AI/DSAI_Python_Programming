@@ -1,0 +1,50 @@
+
+/**************************************************************************************************
+  
+  File Name 	:   CSLAB_CLASS_METHOD_V1
+  Purpose 	:   A Program in Python for Class Method
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   12/13/2018 11:04 hrs
+  Version	:   1.0	
+  Change History: 
+___________________________________________________________________________________________________
+
+   Who				   When 			        Why
+___________________________________________________________________________________________________
+
+
+    DP				 12/13/2018		           Initital Release 
+
+___________________________________________________________________________________________________
+
+
+/**************************************************************************************************
+ 
+## Program Description : A Program for Class Method in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+class vAR_CSLAB_Person:
+    
+    vAR_CSLAB_age = 25
+
+    def vAR_CSLAB_printAge(cls):
+        
+        print('The age is:', cls.age)
+
+# create printAge class method
+
+vAR_CSLAB_Person.printAge = classmethod(Person.printAge)
+
+Person.printAge()
+                    
+   
+/**************************************************************************************
+Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production ready code. We have no liability on this particular code under any circumstances; users should use this code on their own risk. 
+
+All software, hardware and othr products that are referenced in these materials belong to the respective vendor who developed or who owns this product.
+
+/**************************************************************************************

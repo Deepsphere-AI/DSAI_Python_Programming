@@ -1,0 +1,50 @@
+
+/**************************************************************************************
+  
+  File Name 	:   CSLAB_CLOSURE_V1
+  Purpose 	:   A Program in Python for Closures
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   12/13/2018 11:12 hrs
+  Version	:   1.0	
+  Change History: 
+_________________________________________________________________________________
+
+   Who				   When 			        Why
+_________________________________________________________________________________
+
+
+    DP				12/13/2018		  Initital Release 
+
+_________________________________________________________________________________
+
+
+/**************************************************************************************
+
+## Program Description : A Program for Closures in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+def vAR_CSLAB_outer2(vAR_CSLAB_a):
+
+    def vAR_CSLAB_inner2(vAR_CSLAB_b):
+
+        return vAR_CSLAB_a + vAR_CSLAB_b
+
+    return vAR_CSLAB_inner2
+
+vAR_CSLAB_add1 = vAR_CSLAB_outer2(1)
+
+vAR_CSLAB_add1
+
+vAR_CSLAB_add1(4)
+
+/**************************************************************************************
+Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production ready code. We have no liability on this particular code under any circumstances; users should use this code on their own risk. 
+
+All software, hardware and othr products that are referenced in these materials belong to the respective vendor who developed or who owns this product.
+
+/**************************************************************************************
+  

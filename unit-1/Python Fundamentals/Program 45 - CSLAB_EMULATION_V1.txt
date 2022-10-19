@@ -1,0 +1,61 @@
+
+/**************************************************************************************************
+  
+  File Name 	:   CSLAB_EMULATION_V1
+  Purpose 	:   A Program in Python for Emulation
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   12/13/2018 10:28 hrs
+  Version	:   1.0	
+  Change History: 
+___________________________________________________________________________________________________
+
+   Who				   When 			        Why
+___________________________________________________________________________________________________
+
+
+    DP				12/13/2018		           Initital Release 
+
+___________________________________________________________________________________________________
+
+
+/**************************************************************************************************
+ 
+## Program Description : A Program for Emulations in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import subprocess
+import re
+
+while True:
+    # prevents lots of python error output
+    try:
+        vAR_CSLAB_s = raw_input('> ')
+    except:
+        break
+
+    # check if you should exit
+    if vAR_CSLAB_s.strip().lower() == 'exit':
+        break
+
+    # try to run command
+    try:
+        vAR_CSLAB_cmd = subprocess.Popen(re.split(r'\vAR_CSLAB_s+', vAR_CSLAB_s), stdout=subprocess.PIPE)
+        vAR_CSLAB_cmd_out = cmd.stdout.read()
+
+        # Process output
+        print (vAR_CSLAB_cmd_out)
+
+    except OSError:
+        print ('Invalid command') 
+   
+/**************************************************************************************
+Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production ready code. We have no liability on this particular code under any circumstances; users should use this code on their own risk. 
+
+All software, hardware and othr products that are referenced in these materials belong to the respective vendor who developed or who owns this product.
+
+/**************************************************************************************
+  

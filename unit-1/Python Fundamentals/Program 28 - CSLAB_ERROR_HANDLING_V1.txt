@@ -1,0 +1,50 @@
+
+/**************************************************************************************
+  
+  File Name 	:   CSLAB_ERROR_HANDLING_V1
+  Purpose 	:   A Program in Python for Error Handling
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   12/13/2018 13:00 hrs
+  Version	:   1.0	
+  Change History: 
+_________________________________________________________________________________
+
+   Who				   When 			        Why
+_________________________________________________________________________________
+
+
+    DP				12/13/2018		  Initital Release 
+
+_________________________________________________________________________________
+
+
+/**************************************************************************************
+ 
+## Program Description : A Program for Error Handling in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+vAR_CSLAB_Total_Marks = int(input("Enter Total Marks Scored: "))
+
+vAR_CSLAB_Num_of_Sections = int(input("Enter Num of Sections: "))
+
+vAR_CSLAB_Average = 0
+
+try:
+    vAR_CSLAB_Average = int(vAR_CSLAB_Total_Marks/vAR_CSLAB_Num_of_Sections)
+except ZeroDivisionError:
+
+    print("Error:There has to be atleast 1 or more than 1 sections.")
+    
+print("Average marks scored per section is: ", vAR_CSLAB_Average)
+
+/**************************************************************************************
+Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production ready code. We have no liability on this particular code under any circumstances; users should use this code on their own risk. 
+
+All software, hardware and othr products that are referenced in these materials belong to the respective vendor who developed or who owns this product.
+
+/**************************************************************************************
+  
