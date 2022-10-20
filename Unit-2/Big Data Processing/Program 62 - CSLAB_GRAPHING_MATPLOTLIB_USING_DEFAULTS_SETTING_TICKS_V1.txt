@@ -1,0 +1,69 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_GRAPHING_MATPLOTLIB_USING_DEFAULTS_SETTING_TICKS_V1
+  Purpose 	:   A Program in Python for Using Defaults & Setting Ticks in matplotlib
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 10:25 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+   
+## Program Description : Program for Using Defaults & Setting Ticks in matplotlib in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from pylab import *
+
+import numpy as vAR_np
+
+vAR_CSLAB_X = vAR_np.linspace(-vAR_np.pi, vAR_np.pi, 256,endpoint=True)
+
+vAR_CSLAB_C,vAR_CSLAB_S = vAR_np.cos(vAR_CSLAB_X), vAR_np.sin(vAR_CSLAB_X)
+
+plot(vAR_CSLAB_X,vAR_CSLAB_C)
+ 
+plot(vAR_CSLAB_X,vAR_CSLAB_S)
+
+xlim(-4.0,4.0)
+
+ylim(-1.0,1.0)
+
+xlim(vAR_CSLAB_X.min()*1.1, vAR_CSLAB_X.max()*1.1)
+
+ylim(vAR_CSLAB_C.min()*1.1, vAR_CSLAB_C.max()*1.1)
+
+vAR_CSLAB_xmin,vAR_CSLAB_xmax = vAR_CSLAB_X.min(), vAR_CSLAB_X.max()
+
+vAR_CSLAB_dx = (vAR_CSLAB_xmax - vAR_CSLAB_xmin) * 0.2
+
+xlim(vAR_CSLAB_xmin - vAR_CSLAB_dx, vAR_CSLAB_xmax + vAR_CSLAB_dx)
+
+xticks( [-vAR_np.pi, -vAR_np.pi/2, 0, vAR_np.pi/2, vAR_np.pi])
+
+yticks([-1, 0, +1])
+
+show()    
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

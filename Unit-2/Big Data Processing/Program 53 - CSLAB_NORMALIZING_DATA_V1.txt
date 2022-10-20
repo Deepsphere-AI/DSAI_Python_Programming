@@ -1,0 +1,62 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NORMALIZING_DATA_V1
+  Purpose 	:   A Program in Python for Normalizing Data
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 10:42 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Normalizing Data in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+# Normalize the data attributes for the Iris dataset.
+
+from sklearn.datasets import load_iris
+
+from sklearn import preprocessing
+
+# load the iris dataset
+
+vAR_CSLAB_iris = load_iris()
+
+print(vAR_CSLAB_iris.data.shape)
+
+# separate the data from the target attributes
+
+vAR_CSLAB_CSLAB_X = vAR_CSLAB_iris.data
+
+vAR_CSLAB_CSLAB_Y = vAR_CSLAB_iris.target
+
+# normalize the data attributes
+
+vAR_CSLAB_normalized_CSLAB_X = preprocessing.normalize(vAR_CSLAB_CSLAB_X)
+
+vAR_CSLAB_normalized_CSLAB_X
+
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

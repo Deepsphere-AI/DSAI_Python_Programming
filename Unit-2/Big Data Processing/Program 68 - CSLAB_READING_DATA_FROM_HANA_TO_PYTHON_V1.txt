@@ -1,0 +1,55 @@
+
+/**************************************************************************************
+  
+  File Name 	:   CSLAB_READING_DATA_FROM_HANA_TO_PYTHON
+  Purpose 	:   A Program in Python for Reading Data from SAP HANA Database
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 17:00 hrs
+  Version	:   1.0	
+  Change History: 
+_________________________________________________________________________________
+
+   Who				   When 			        Why
+_________________________________________________________________________________
+
+
+    DP				14/12/2018		  Initital Release 
+
+_________________________________________________________________________________
+
+
+/**************************************************************************************
+ 
+## Program Description : Program for Reading Data from SAP HANA Database in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+#!/usr/bin/python
+ 
+# -*- coding: utf-8 -*-
+
+import pypyodbc as pyodbc 
+
+#vAR_CSLAB_CONN = pyodbc.connect('DSN=DS;UID=DURGA;PWD=Delhi123')
+
+#vAR_CSLAB_CURSOR = vAR_CSLAB_CONN.cursor()
+
+#vAR_CSLAB_STMNT = 'SELECT * FROM DURGA.TICKETS'
+
+#vAR_CSLAB_CURSOR.execute(vAR_CSLAB_STMNT)
+
+#vAR_CSLAB_RESULT = vAR_CSLAB_CURSOR.fetchall()
+
+#print (CSLAB_RESULT)
+
+   
+/**************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production ready code. We have no liability on this particular code under any circumstances; users should use this code on their own risk. 
+
+All software, hardware and othr products that are referenced in these materials belong to the respective vendor who developed or who owns this product.
+
+/**************************************************************************************
+  
