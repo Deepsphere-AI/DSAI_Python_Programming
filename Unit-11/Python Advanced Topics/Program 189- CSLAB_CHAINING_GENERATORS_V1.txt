@@ -1,0 +1,68 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_CHAINING_GENERATORS_V1
+  Purpose 	:   A Program in Python for Chaining Two Generators
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   18/12/2018 12:14 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				18/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Chaining Two Generators in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import itertools
+
+def vAR_CSLAB_g():
+    print('--start--')
+    for i in itertools.count():
+        print('--yielding %i--' % i)
+        try:
+            vAR_CSLAB_ans = yield i
+        except GeneratorExit:
+            print('--closing--')
+            raise
+        except Exception as e:
+            print('--yield raised %r--' % e)
+        else:
+            print('--yield returned %s--' % vAR_CSLAB_ans)
+
+vAR_CSLAB_it = vAR_CSLAB_g()
+
+next(vAR_CSLAB_it)
+
+vAR_CSLAB_it.send(11)
+
+#subgen = some_other_generator()
+
+#for v in subgen:
+    #yield v
+
+CSLAB_it = vAR_CSLAB_g()
+
+next(CSLAB_it)
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

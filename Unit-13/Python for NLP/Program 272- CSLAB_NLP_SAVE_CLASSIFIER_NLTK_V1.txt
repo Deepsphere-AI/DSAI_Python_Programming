@@ -1,0 +1,62 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NLP_SAVE_CLASSIFIER_NLTK_V1
+  Purpose 	:   A Program in Python using NLP for Saving Classifier
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   27/12/2018 16:34 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				27/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Saving Classifier using NLP in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import nltk
+
+import pickle
+
+nltk.usage(nltk.classify.ClassifierI)
+
+vAR_CSLAB_train = [(dict(a=1,b=1,c=1), 'y'),(dict(a=1,b=1,c=1), 'x'),(dict(a=1,b=1,c=0), 'y'),(dict(a=0,b=1,c=1), 'x'),(dict(a=0,b=1,c=1), 'y'),(dict(a=0,b=0,c=1), 'y'),(dict(a=0,b=1,c=0), 'x'),(dict(a=0,b=0,c=0), 'x'),(dict(a=0,b=1,c=1), 'y')]
+
+vAR_CSLAB_test = [(dict(a=1,b=0,c=1)), (dict(a=1,b=0,c=0)), (dict(a=0,b=1,c=1)), (dict(a=0,b=1,c=0))]
+
+vAR_CSLAB_classifier = nltk.classify.NaiveBayesClassifier.train(vAR_CSLAB_train)
+
+sorted(vAR_CSLAB_classifier.labels())
+
+vAR_CSLAB_classifier.classify_many(vAR_CSLAB_test)
+
+for pdist in vAR_CSLAB_classifier.prob_classify_many(vAR_CSLAB_test):
+    print('%.4f %.4f' % (pdist.prob('x'), pdist.prob('y')))
+
+vAR_CSLAB_save_classifier = open("naivebayes.pickle","wb")
+
+pickle.dump(vAR_CSLAB_classifier, vAR_CSLAB_save_classifier)
+
+vAR_CSLAB_save_classifier.close()
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

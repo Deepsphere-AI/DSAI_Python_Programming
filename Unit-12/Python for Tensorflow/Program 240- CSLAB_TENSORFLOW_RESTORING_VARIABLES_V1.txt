@@ -1,0 +1,63 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_TENSORFLOW_RESTORING_VARIABLES_V1
+  Purpose 	:   A Program in Python Tensorflow for Restoring Variables
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   24/12/2018 10:53 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Restoring Variables using Tensorflow in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+import tensorflow as vAR_tf
+
+vAR_tf.reset_default_graph()
+
+vAR_CSLAB_v1 = vAR_tf.get_variable("v1", shape=[3], initializer=tf.zeros_initializer)
+vAR_CSLAB_v2 = vAR_tf.get_variable("v2", shape=[5], initializer=tf.zeros_initializer)
+
+vAR_CSLAB_inc_v1 = vAR_CSLAB_v1.assign(vAR_CSLAB_v1+1)
+vAR_CSLAB_dec_v2 = vAR_CSLAB_v2.assign(vAR_CSLAB_v2-1)
+
+vAR_CSLAB_init_op = vAR_tf.global_variables_initializer()
+
+vAR_CSLAB_saver = vAR_tf.train.Saver({"vAR_CSLAB_v2":vAR_CSLAB_v2})
+
+vAR_tf.reset_default_graph()
+
+# Create some variables.
+vAR_CSLAB_v1 = vAR_tf.get_variable("v1", shape=[3])
+vAR_CSLAB_v2 = vAR_tf.get_variable("v2", shape=[5])
+
+vAR_CSLAB_saver = vAR_tf.train.Saver({"vAR_CSLAB_v2":vAR_CSLAB_v2})
+
+with vAR_tf.Session() as vAR_CSLAB_sess:
+    vAR_CSLAB_saver.restore(vAR_CSLAB_sess,"C:/Python_Programs/model.ckpt")
+    print ("Model restored")
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

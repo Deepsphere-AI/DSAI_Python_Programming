@@ -1,0 +1,127 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_GENERALIZED_LINEAR_MODELS_V1
+  Purpose 	:   A Program in Python for Generalized Linear Models using statsmodels Package
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 13:44 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Generalized Linear Models using statsmodels Package in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+import pandas as vAR_pd
+
+import matplotlib.pyplot as vAR_plt
+
+from statsmodels.discrete.discrete_model import Logit
+
+import os
+
+vAR_INI_File_Path = os.environ.get('PYTHON_TUTORIAL')
+
+import pandas as vAR_pd
+
+import configparser
+
+import pandas as vAR_pd
+
+vAR_Config = configparser.ConfigParser(allow_no_value=True)
+
+vAR_Config.read(vAR_INI_File_Path)
+
+vAR_CSLAB_Data_URL1 = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_70_DATA_URL1'] 
+
+vAR_CSLAB_Data_URL1 = vAR_CSLAB_Data_URL1
+
+vAR_CSLAB_data_tr = vAR_pd.read_csv(vAR_CSLAB_Data_URL1)
+
+vAR_CSLAB_Data_URL2 = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_70_DATA_URL2'] 
+
+vAR_CSLAB_Data_URL2 = vAR_CSLAB_Data_URL2
+
+vAR_CSLAB_data_te = vAR_pd.read_csv(vAR_CSLAB_Data_URL2)
+
+vAR_CSLAB_data = vAR_pd.concat((vAR_CSLAB_data_tr, vAR_CSLAB_data_te), axis=0)
+
+vAR_CSLAB_endog = vAR_np.asarray([int(x.lower() == "yes") for x in vAR_CSLAB_data["type"]])
+
+vAR_CSLAB_xnames = ["npreg", "glu", "bp", "skin", "bmi", "ped", "age"]
+
+vAR_CSLAB_exog = vAR_np.asarray(vAR_CSLAB_data[vAR_CSLAB_xnames])
+
+vAR_CSLAB_exog = vAR_np.concatenate((vAR_np.ones((vAR_CSLAB_exog.shape[0],1)), vAR_CSLAB_exog), axis=1)
+
+vAR_CSLAB_x = [vAR_np.corrcoef(vAR_CSLAB_endog, vAR_CSLAB_x)[0,1] for vAR_CSLAB_x in vAR_CSLAB_exog[:,1:].T]
+
+vAR_CSLAB_x = vAR_pd.Series(vAR_CSLAB_x, index=xnames)
+
+print(vAR_CSLAB_x)
+
+vAR_CSLAB_n = vAR_CSLAB_data.shape[0]
+
+vAR_CSLAB_scores = vAR_np.zeros(vAR_CSLAB_n, dtype=vAR_np.float64)
+
+for k in range(vAR_CSLAB_n):
+    
+    vAR_CSLAB_ii = range(vAR_CSLAB_n)
+    #ii.pop(k)
+    
+    vAR_CSLAB_mod = Logit(vAR_CSLAB_endog[vAR_CSLAB_ii], exog[vAR_CSLAB_ii,:])
+    
+    vAR_CSLAB_rslt = mod.fit(disp=False)
+    
+    vAR_CSLAB_scores[k] = rslt.predict(vAR_CSLAB_exog[k,:])
+
+vAR_CSLAB_uscores = vAR_np.unique(vAR_CSLAB_scores)
+
+vAR_CSLAB_n1 = vAR_np.sum(vAR_CSLAB_endog)
+
+vAR_CSLAB_Sens = vAR_np.zeros_like(vAR_CSLAB_uscores)
+
+vAR_CSLAB_Spec = vAR_np.zeros_like(vAR_CSLAB_uscores)
+
+for j,u in enumerate(vAR_CSLAB_uscores):
+    
+    vAR_CSLAB_Sens[j] = vAR_np.sum((vAR_CSLAB_scores >= u) * vAR_CSLAB_endog) / float(vAR_CSLAB_n1)
+    
+vAR_CSLAB_Spec[j] = vAR_np.sum((vAR_CSLAB_scores <= u) * (1-vAR_CSLAB_endog)) / float(vAR_CSLAB_n - vAR_CSLAB_n1)
+
+vAR_plt.plot(1 - vAR_CSLAB_Spec, vAR_CSLAB_Sens, '-')
+
+vAR_plt.plot([0,1], [0,1], '-', color='grey')
+
+vAR_plt.xlabel("1 - Specificity", size=17)
+
+vAR_plt.ylabel("Sensitivity", size=17)
+
+vAR_plt.show()
+
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

@@ -1,0 +1,197 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_SVM_MODEL_SPECIES_DISTRIBUTION_V1
+  Purpose 	:   A Program in Python for Species Distribution Model Using SCIKIT LEARN
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   for Species Distribution Model 19:58 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Species Distribution Model in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from __future__ import print_function
+
+from time import time
+
+import numpy as vAR_np
+
+import matplotlib.pyplot as vAR_plt
+
+from sklearn.datasets.base import Bunch
+
+from sklearn.datasets import fetch_species_distributions
+
+from sklearn.datasets.species_distributions import construct_grids
+
+from sklearn import svm, metrics
+
+try:
+    from mpl_toolkits.basemap import Basemap
+    basemap = True
+
+except ImportError:
+    basemap = False
+
+print(__doc__)
+
+def create_species_bunch(species_name, train, test, coverages, xgrid, ygrid):
+    vAR_CSLAB_bunch = Bunch(name=' '.join(species_name.split("_")[:2]))
+    vAR_CSLAB_species_name = species_name.encode('ascii')
+    vAR_CSLAB_points = dict(test=test, train=train)
+
+    for label, pts in vAR_CSLAB_points.items():
+        # choose points associated with the desired species
+        pts = pts[pts['species'] == vAR_CSLAB_species_name]
+        vAR_CSLAB_bunch['pts_%s' % label] = pts
+
+        # determine coverage values for each of the training & testing points
+        ix = vAR_np.searchsorted(xgrid, pts['dd long'])
+        iy = vAR_np.searchsorted(ygrid, pts['dd lat'])
+        vAR_CSLAB_bunch['cov_%s' % label] = coverages[:, -iy, ix].T
+
+    return vAR_CSLAB_bunch
+
+def plot_species_distribution(species=("bradypus_variegatus_0",
+                                       "microryzomys_minutus_0")):
+    if len(species) > 2:
+        print("Note: when more than two species are provided,"
+              " only the first two will be used")
+
+    vAR_CSLAB_t0 = time()
+
+    # Load the compressed data
+    vAR_CSLAB_data = fetch_species_distributions()
+
+    # Set up the data grid
+    xgrid, ygrid = construct_grids(vAR_CSLAB_data)
+
+    # The grid in x,y coordinates
+    X, Y = vAR_np.meshgrid(xgrid, ygrid[::-1])
+
+    # create a bunch for each species
+    vAR_CSLAB_BV_bunch = create_species_bunch(species[0],
+                                    vAR_CSLAB_data.train, vAR_CSLAB_data.test,
+                                    vAR_CSLAB_data.coverages, xgrid, ygrid)
+    vAR_CSLAB_MM_bunch = create_species_bunch(species[1],
+                                    vAR_CSLAB_data.train, vAR_CSLAB_data.test,
+                                    vAR_CSLAB_data.coverages, xgrid, ygrid)
+
+    # background points (grid coordinates) for evaluation
+    vAR_np.random.seed(13)
+    background_points = vAR_np.c_[vAR_np.random.randint(low=0, high=vAR_CSLAB_data.Ny,
+                                                size=10000),
+                              vAR_np.random.randint(low=0, high=vAR_CSLAB_data.Nx,
+                                                size=10000)].T
+
+    # We'll make use of the fact that coverages[6] has measurements at all
+    # land points.  This will help us decide between land and water.
+    vAR_CSLAB_land_reference = vAR_CSLAB_data.coverages[6]
+
+    # Fit, predict, and plot for each species.
+    for i, species in enumerate([vAR_CSLAB_BV_bunch, vAR_CSLAB_MM_bunch]):
+        print("_" * 80)
+        print("Modeling distribution of species '%s'" % species.name)
+
+        # Standardize features
+        vAR_CSLAB_mean = species.cov_train.mean(axis=0)
+        vAR_CSLAB_std = species.cov_train.std(axis=0)
+        vAR_CSLAB_train_cover_std = (species.cov_train - vAR_CSLAB_mean) / vAR_CSLAB_std
+
+        # Fit OneClassSVM
+        print(" - fit OneClassSVM ... ", end='')
+        vAR_CSLAB_clf = svm.OneClassSVM(nu=0.1, kernel="rbf", gamma=0.5)
+        vAR_CSLAB_clf.fit(vAR_CSLAB_train_cover_std)
+        print("done.")
+
+        # Plot map of South America
+        vAR_plt.subplot(1, 2, i + 1)
+        if basemap:
+            print(" - plot coastlines using basemap")
+            vAR_CSLAB_m = Basemap(projection='cyl', llcrnrlat=Y.min(),
+                        urcrnrlat=Y.max(), llcrnrlon=X.min(),
+                        urcrnrlon=X.max(), resolution='c')
+            vAR_CSLAB_m.drawcoastlines()
+            vAR_CSLAB_m.drawcountries()
+        else:
+            print(" - plot coastlines from coverage")
+            vAR_plt.contour(X, Y, vAR_CSLAB_land_reference,
+                        levels=[-9999], colors="k",
+                        linestyles="solid")
+            vAR_plt.xticks([])
+            vAR_plt.yticks([])
+
+        print(" - predict species distribution")
+
+        # Predict species distribution using the training data
+        vAR_CSLAB_Z = vAR_np.ones((vAR_CSLAB_data.Ny, vAR_CSLAB_data.Nx), dtype=vAR_np.float64)
+
+        # We'll predict only for the land points.
+        idx = vAR_np.where(vAR_CSLAB_land_reference > -9999)
+        vAR_CSLAB_coverages_land = vAR_CSLAB_data.coverages[:, idx[0], idx[1]].T
+
+        vAR_CSLAB_pred = vAR_CSLAB_clf.decision_function((vAR_CSLAB_coverages_land - vAR_CSLAB_mean) / vAR_CSLAB_std)[:, 0]
+        vAR_CSLAB_Z *= vAR_CSLAB_pred.min()
+        vAR_CSLAB_Z[idx[0], idx[1]] = vAR_CSLAB_pred
+
+        vAR_CSLAB_levels = vAR_np.linspace(vAR_CSLAB_Z.min(), vAR_CSLAB_Z.max(), 25)
+        vAR_CSLAB_Z[vAR_CSLAB_land_reference == -9999] = -9999
+
+        # plot contours of the prediction
+        vAR_plt.contourf(X, Y, vAR_CSLAB_Z, levels=vAR_CSLAB_levels, cmap=vAR_plt.cm.Reds)
+        vAR_plt.colorbar(format='%.2f')
+
+        # scatter training/testing points
+        vAR_plt.scatter(species.pts_train['dd long'], species.pts_train['dd lat'],
+                    s=2 ** 2, c='black',
+                    marker='^', label='train')
+        vAR_plt.scatter(species.pts_test['dd long'], species.pts_test['dd lat'],
+                    s=2 ** 2, c='black',
+                    marker='x', label='test')
+        vAR_plt.legend()
+        vAR_plt.title(species.name)
+        vAR_plt.axis('equal')
+
+        # Compute AUC with regards to background points
+        vAR_CSLAB_pred_background = vAR_CSLAB_Z[background_points[0], background_points[1]]
+        vAR_CSLAB_pred_test = vAR_CSLAB_clf.decision_function((species.cov_test - vAR_CSLAB_mean)
+                                          / vAR_CSLAB_std)[:, 0]
+        vAR_CSLAB_scores = vAR_np.r_[vAR_CSLAB_pred_test, vAR_CSLAB_pred_background]
+        vAR_CSLAB_y = vAR_np.r_[vAR_np.ones(vAR_CSLAB_pred_test.shape), vAR_np.zeros(vAR_CSLAB_pred_background.shape)]
+        #fpr, tpr, thresholds = metrics.roc_curve(y, vAR_CSLAB_scores)
+        #roc_auc = metrics.auc(fpr, tpr)
+        #plt.text(-35, -70, "AUC: %.3f" % roc_auc, ha="right")
+        #print("\n Area under the ROC curve : %f" % roc_auc)
+
+    print("\ntime elapsed: %.2fs" % (time() - vAR_CSLAB_t0))
+
+
+plot_species_distribution()
+
+plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

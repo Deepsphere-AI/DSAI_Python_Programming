@@ -1,0 +1,65 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_GRAPHING_MATPLOTLIB_REGULAR_PLOT_V1
+  Purpose 	:   A Program in Python for Regular Plot in matplotlib
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 12:41 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+   
+## Program Description : Program for Regular Plot in matplotlib in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from pylab import *
+
+import numpy as vAR_np
+
+vAR_CSLAB_n=100
+
+vAR_CSLAB_X = vAR_np.linspace(-vAR_np.pi,vAR_np.pi,vAR_CSLAB_n,endpoint=True)
+
+vAR_CSLAB_Y = vAR_np.sin(2*vAR_CSLAB_X)
+
+axes([0.025,0.025,0.95,0.95])
+
+plot (vAR_CSLAB_X, vAR_CSLAB_Y+1, color='blue', alpha=1.00)
+  
+fill_between(vAR_CSLAB_X, 1, vAR_CSLAB_Y+1, color='blue', alpha=.25)
+
+plot (vAR_CSLAB_X, vAR_CSLAB_Y-1, color='blue', alpha=1.00)
+
+fill_between(vAR_CSLAB_X, -1, vAR_CSLAB_Y-1, (vAR_CSLAB_Y-1) > -1, color='blue', alpha=.25)
+ 
+fill_between(vAR_CSLAB_X, -1, vAR_CSLAB_Y-1, (vAR_CSLAB_Y-1) < -1, color='red',  alpha=.25)
+
+xlim(-vAR_np.pi,vAR_np.pi), xticks([])
+
+ylim(-2.5,2.5), yticks([])
+
+show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

@@ -1,0 +1,57 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DECORATORS_AS_CLASSES_V1
+  Purpose 	:   A Program in Python for Decorators as Implemented Classes
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   18/12/2018 12:41 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				18/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Decorators Implemented as Classes in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+class vAR_decorator_class(object):
+  def __init__(self, arg):
+      # this method is called in the decorator expression
+      print("in decorator init, %s" % arg)
+      self.arg = arg
+
+  def __call__(self, function):
+      # this method is called to do the job
+      print("in decorator call, %s" % self.arg)
+      return function
+
+vAR_deco_instance = vAR_decorator_class('foo')
+
+#@deco_instance
+
+def vAR_function(*args, **kwargs):
+  print("in function, %s %s" % (args, kwargs))
+
+vAR_function(20,30)
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

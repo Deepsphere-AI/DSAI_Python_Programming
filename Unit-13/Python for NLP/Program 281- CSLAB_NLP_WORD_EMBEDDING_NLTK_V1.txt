@@ -1,0 +1,46 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NLP_WORD_EMBEDDING_NLTK_V1
+  Purpose 	:   A Program in Python using NLP for Word Embedding
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   27/12/2018 20:14 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				27/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Word Embedding using NLP in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from gensim.models import Word2Vec
+
+vAR_CSLAB_sentences = [['data', 'science'], ['vidhya', 'science', 'data', 'analytics'],['machine', 'learning'], ['deep', 'learning']]
+
+# train the model on your corpus  
+vAR_CSLAB_model = Word2Vec(vAR_CSLAB_sentences, min_count = 1)
+
+print(vAR_CSLAB_model.similarity('data', 'science'))
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

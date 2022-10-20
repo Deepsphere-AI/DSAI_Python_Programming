@@ -1,0 +1,102 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DEEP_LEARNING_KERAS_MNIST_CLASSIFICATION
+  Purpose 	:   A Program in Python for MNIST Number Classification using Keras Library in Deep Learning
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   07/01/2019 10:04 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				07/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program in Python for MNIST Number Classification using Keras Library in Deep Learning
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import keras
+from keras.datasets import mnist
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Flatten
+from keras.layers import Conv2D, MaxPooling2D
+from keras import backend as K
+
+vAR_CSLAB_batch_size = 128
+vAR_CSLAB_num_classes = 10
+vAR_CSLAB_epochs = 1
+
+# input image dimensions
+vAR_CSLAB_img_rows, vAR_CSLAB_img_cols = 28, 28
+
+# the data, split between train and test sets
+(vAR_CSLAB_x_train, vAR_CSLAB_y_train), (vAR_CSLAB_x_test, vAR_CSLAB_y_test) = mnist.load_data()
+
+if K.image_data_format() == 'channels_first':
+    vAR_CSLAB_x_train = vAR_CSLAB_x_train.reshape(vAR_CSLAB_x_train.shape[0], 1, vAR_CSLAB_img_rows, vAR_CSLAB_img_cols)
+    vAR_CSLAB_x_test = vAR_CSLAB_x_test.reshape(vAR_CSLAB_x_test.shape[0], 1, vAR_CSLAB_img_rows, vAR_CSLAB_img_cols)
+    vAR_CSLAB_input_shape = (1, vAR_CSLAB_img_rows, vAR_CSLAB_img_cols)
+else:
+    vAR_CSLAB_x_train = vAR_CSLAB_x_train.reshape(vAR_CSLAB_x_train.shape[0], vAR_CSLAB_img_rows, vAR_CSLAB_img_cols, 1)
+    vAR_CSLAB_x_test = vAR_CSLAB_x_test.reshape(vAR_CSLAB_x_test.shape[0], vAR_CSLAB_img_rows, vAR_CSLAB_img_cols, 1)
+    vAR_CSLAB_input_shape = (vAR_CSLAB_img_rows, vAR_CSLAB_img_cols, 1)
+
+vAR_CSLAB_x_train = vAR_CSLAB_x_train.astype('float32')
+vAR_CSLAB_x_test = vAR_CSLAB_x_test.astype('float32')
+vAR_CSLAB_x_train /= 255
+vAR_CSLAB_x_test /= 255
+print('vAR_CSLAB_x_train shape:', vAR_CSLAB_x_train.shape)
+print(vAR_CSLAB_x_train.shape[0], 'train samples')
+print(vAR_CSLAB_x_test.shape[0], 'test samples')
+
+# convert class vectors to binary class matrices
+vAR_CSLAB_y_train = keras.utils.to_categorical(vAR_CSLAB_y_train, vAR_CSLAB_num_classes)
+vAR_CSLAB_y_test = keras.utils.to_categorical(vAR_CSLAB_y_test, vAR_CSLAB_num_classes)
+
+vAR_CSLAB_model = Sequential()
+vAR_CSLAB_model.add(Conv2D(32, kernel_size=(3, 3),
+                 activation='relu',
+                 input_shape=vAR_CSLAB_input_shape))
+vAR_CSLAB_model.add(Conv2D(64, (3, 3), activation='relu'))
+vAR_CSLAB_model.add(MaxPooling2D(pool_size=(2, 2)))
+vAR_CSLAB_model.add(Dropout(0.25))
+vAR_CSLAB_model.add(Flatten())
+vAR_CSLAB_model.add(Dense(128, activation='relu'))
+vAR_CSLAB_model.add(Dropout(0.5))
+vAR_CSLAB_model.add(Dense(vAR_CSLAB_num_classes, activation='softmax'))
+
+vAR_CSLAB_model.compile(loss=keras.losses.categorical_crossentropy,
+              optimizer=keras.optimizers.Adadelta(),
+              metrics=['accuracy'])
+
+vAR_CSLAB_model.fit(vAR_CSLAB_x_train, vAR_CSLAB_y_train,
+          batch_size=vAR_CSLAB_batch_size,
+          epochs=vAR_CSLAB_epochs,
+          verbose=1,
+          validation_data=(vAR_CSLAB_x_test, vAR_CSLAB_y_test))
+
+vAR_CSLAB_score = vAR_CSLAB_model.evaluate(vAR_CSLAB_x_test, vAR_CSLAB_y_test, verbose=0)
+print('Test loss:', vAR_CSLAB_score[0])
+print('Test accuracy:', vAR_CSLAB_score[1])
+
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

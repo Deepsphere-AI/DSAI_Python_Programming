@@ -1,0 +1,49 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_TENSORFLOW_SESSION_V1
+  Purpose 	:   A Program in Python Tensorflow for Sessions
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   21/12/2018 11:28 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Sessions using Tensorflow in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+import tensorflow as vAR_tf
+
+vAR_CSLAB_C = vAR_tf.constant([[1.0, 2.0], [3.0, 4.0]])
+
+vAR_CSLAB_D = vAR_tf.constant([[1.0, 1.0], [0.0, 1.0]])
+
+vAR_CSLAB_sess = vAR_tf.Session()
+
+vAR_CSLAB_E = vAR_tf.matmul(vAR_CSLAB_C, vAR_CSLAB_D)
+
+print(vAR_CSLAB_sess.run(vAR_CSLAB_E))
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

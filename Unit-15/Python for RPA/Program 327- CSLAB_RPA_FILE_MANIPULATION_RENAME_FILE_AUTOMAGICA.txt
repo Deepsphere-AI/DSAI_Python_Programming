@@ -1,0 +1,67 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_RPA_FILE_MANIPULATION_RENAME_FILE_AUTOMAGICA
+  Purpose 	:   A Program in Python for Renaming File using Automagica
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   02/01/2019 12:23 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				02/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Renaming File using Automagica in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from automagica import *
+
+import os
+
+vAR_INI_File_Path = os.environ.get('PYTHON_TUTORIAL')
+
+import pandas as vAR_pd
+
+import configparser
+
+import pandas as vAR_pd
+
+vAR_Config = configparser.ConfigParser(allow_no_value=True)
+
+vAR_Config.read(vAR_INI_File_Path)
+
+vAR_CSLAB_A = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_327_A']
+
+vAR_CSLAB_B = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_327_B']
+
+vAR_CSLAB_C = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_327_C']
+
+RenameFile(vAR_CSLAB_A, "New_A.pdf")
+
+RenameFile(vAR_CSLAB_A, "New_B.pdf")
+
+RenameFile(vAR_CSLAB_A, "New_C.pdf")
+
+print("Renamed Files Sucessfully")
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

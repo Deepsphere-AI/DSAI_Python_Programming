@@ -1,0 +1,120 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DBSCAN_CLUSTERING_ALGORITHM_SCIKIT_LEARN_V1
+  Purpose 	:   A Program in Python for DBSCAN Clustering Algorithm Using SCIKIT LEARN
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 16:05 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for DBSCAN Clustering Algorithm in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+from sklearn.cluster import DBSCAN
+
+from sklearn import metrics
+
+from sklearn.datasets.samples_generator import make_blobs
+
+from sklearn.preprocessing import StandardScaler
+
+# Generate sample data
+
+vAR_CSLAB_centers = [[1, 1], [-1, -1], [1, -1]]
+
+vAR_CSLAB_X, vAR_CSLAB_labels_true = make_blobs(n_samples=750, centers=vAR_CSLAB_centers, cluster_std=0.4,
+                            random_state=0)
+
+vAR_CSLAB_X = StandardScaler().fit_transform(vAR_CSLAB_X)
+
+# Compute DBSCAN
+
+vAR_CSLAB_db = DBSCAN(eps=0.3, min_samples=10).fit(vAR_CSLAB_X)
+
+vAR_CSLAB_core_samples_mask = vAR_np.zeros_like(vAR_CSLAB_db.labels_, dtype=bool)
+
+vAR_CSLAB_core_samples_mask[vAR_CSLAB_db.core_sample_indices_] = True
+
+vAR_CSLAB_labels = vAR_CSLAB_db.labels_
+
+# Number of clusters in labels, ignoring noise if present.
+
+vAR_CSLAB_n_clusters_ = len(set(vAR_CSLAB_labels)) - (1 if -1 in vAR_CSLAB_labels else 0)
+
+print('Estimated number of clusters: %d' % vAR_CSLAB_n_clusters_)
+
+print("Homogeneity: %0.3f" % metrics.homogeneity_score(labels_true, vAR_CSLAB_labels))
+
+print("Completeness: %0.3f" % metrics.completeness_score(labels_true, vAR_CSLAB_labels))
+
+print("V-measure: %0.3f" % metrics.v_measure_score(labels_true, vAR_CSLAB_labels))
+
+print("Adjusted Rand Index: %0.3f"
+      % metrics.adjusted_rand_score(labels_true, vAR_CSLAB_labels))
+
+print("Adjusted Mutual Information: %0.3f"
+      % metrics.adjusted_mutual_info_score(labels_true, vAR_CSLAB_labels))
+
+print("Silhouette Coefficient: %0.3f"
+      % metrics.silhouette_score(vAR_CSLAB_X, vAR_CSLAB_labels))
+
+# Plot result
+
+import matplotlib.pyplot as vAR_plt
+
+# Black removed and is used for noise instead.
+
+vAR_CSLAB_unique_labels = set(vAR_CSLAB_labels)
+
+vAR_CSLAB_colors = vAR_plt.cm.Spectral(vAR_np.linspace(0, 1, len(vAR_CSLAB_unique_labels)))
+
+for k, col in zip(vAR_CSLAB_unique_labels, vAR_CSLAB_colors):
+
+    if k == -1:
+
+        vAR_CSLAB_col = 'k'
+
+vAR_CSLAB_class_member_mask = (vAR_CSLAB_labels == vAR_CSLAB_k)
+
+vAR_CSLAB_xy = vAR_CSLAB_X[vAR_CSLAB_class_member_mask & vAR_CSLAB_core_samples_mask]
+
+vAR_plt.plot(xy[:, 0], xy[:, 1], 'o', markerfacecolor=col,
+             markeredgecolor='k', markersize=14)
+
+vAR_CSLAB_xy = vAR_CSLAB_X[vAR_CSLAB_class_member_mask & ~vAR_CSLAB_core_samples_mask]
+
+vAR_plt.plot(vAR_CSLAB_xy[:, 0], vAR_CSLAB_xy[:, 1], 'o', markerfacecolor=col,
+             markeredgecolor='k', markersize=6)
+
+vAR_plt.title('Estimated number of clusters: %d' % vAR_CSLAB_n_clusters_)
+
+vAR_plt.show()
+
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

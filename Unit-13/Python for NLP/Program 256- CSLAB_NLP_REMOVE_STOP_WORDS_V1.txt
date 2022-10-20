@@ -1,0 +1,71 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NLP_REMOVE_STOP_WORDS_V1
+  Purpose 	:   A Program in Python using NLP for Removing Stop Words
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   27/12/2018 10:12 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				27/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Removing Stop Words using NLP in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from bs4 import BeautifulSoup
+ 
+import urllib.request
+ 
+import nltk
+ 
+from nltk.corpus import stopwords
+ 
+vAR_CSLAB_response = urllib.request.urlopen('http://php.net/')
+ 
+vAR_CSLAB_html = vAR_CSLAB_response.read()
+ 
+vAR_CSLAB_soup = BeautifulSoup(vAR_CSLAB_html,"html5lib")
+ 
+vAR_CSLAB_text = vAR_CSLAB_soup.get_text(strip=True)
+ 
+vAR_CSLAB_tokens = [t for t in vAR_CSLAB_text.split()]
+ 
+vAR_CSLAB_clean_tokens = vAR_CSLAB_tokens[:]
+ 
+vAR_CSLAB_sr = stopwords.words('english')
+ 
+for token in vAR_CSLAB_tokens:
+ 
+    if token in stopwords.words('english'):
+ 
+        vAR_CSLAB_clean_tokens.remove(token)
+ 
+vAR_CSLAB_freq = nltk.FreqDist(vAR_CSLAB_clean_tokens)
+ 
+for key,val in vAR_CSLAB_freq.items():
+ 
+    print (str(key) + ':' + str(val))
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

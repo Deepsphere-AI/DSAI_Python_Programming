@@ -1,0 +1,47 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_SCIENTIFIC_ANALYSIS_ARRAYS_CONCATENATING_NUMPY_V1
+  Purpose 	:   A Program in Python for Concatenating Arrays using Numpy
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 12:14 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Concatenating Arrays using Numpy in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+vAR_CSLAB_X = vAR_np.array([11,22])
+
+vAR_CSLAB_Y = vAR_np.array([18,7,6])
+
+vAR_CSLAB_Z = vAR_np.array([1,3,5])
+
+vAR_np.concatenate((vAR_CSLAB_X,vAR_CSLAB_Y,vAR_CSLAB_Z))
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

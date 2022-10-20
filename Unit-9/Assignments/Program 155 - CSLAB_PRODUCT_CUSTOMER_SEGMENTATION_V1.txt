@@ -1,0 +1,77 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_PRODUCT_CUSTOMER_SEGMENTATION_V1
+  Purpose 	:   A Program in Python For Product Customer Segmentation Analysis
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 21:52 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program For Product Customer Segmentation Analysis in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from mpl_toolkits.mplot3d import Axes3D
+
+import matplotlib
+
+import numpy as vAR_np
+
+from matplotlib import cm
+
+from matplotlib import pyplot as vAR_plt
+
+vAR_CSLAB_step = 0.04
+
+vAR_CSLAB_maxval = 1.0
+
+vAR_CSLAB_fig = vAR_plt.figure()
+
+vAR_CSLAB_ax = vAR_CSLAB_fig.add_subplot(111, projection='3d')
+
+# create supporting points in polar coordinates
+
+vAR_CSLAB_r = vAR_np.linspace(0, 1.25, 50)
+
+vAR_CSLAB_p = vAR_np.linspace(0, 2*vAR_np.pi, 50)
+
+vAR_CSLAB_R, vAR_CSLAB_P = vAR_np.meshgrid(vAR_CSLAB_r, vAR_CSLAB_p)
+
+# transform them to cartesian system
+
+vAR_CSLAB_X, vAR_CSLAB_Y = vAR_CSLAB_R*vAR_np.cos(vAR_CSLAB_P), vAR_CSLAB_R*vAR_np.sin(vAR_CSLAB_P)
+
+vAR_CSLAB_Z = ((vAR_CSLAB_R**2 - 1)**2)
+
+vAR_CSLAB_ax.plot_surface(vAR_CSLAB_X, vAR_CSLAB_Y, vAR_CSLAB_Z, rstride=1, cstride=1, cmap=cm.YlGnBu_r)
+
+vAR_CSLAB_ax.set_zlim3d(0, 1)
+
+vAR_CSLAB_ax.set_zlabel(r'$V(\phi)$')
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

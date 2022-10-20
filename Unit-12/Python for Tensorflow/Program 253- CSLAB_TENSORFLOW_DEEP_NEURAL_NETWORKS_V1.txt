@@ -1,0 +1,74 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_TENSORFLOW_DEEP_NEURAL_NETWORKS_V1
+  Purpose 	:   A Program in Python Tensorflow for Deep Neural Networks
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   26/12/2018 14:58 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Deep Neural Networks using Tensorflow in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+import tensorflow as vAR_tf
+from sklearn import datasets
+from tensorflow.python.framework import ops
+ops.reset_default_graph()
+
+vAR_CSLAB_iris = datasets.load_iris()
+
+vAR_CSLAB_sl= vAR_tf.feature_column.numeric_column("sl")
+vAR_CSLAB_sw = vAR_tf.feature_column.numeric_column("sw")
+vAR_CSLAB_pl = vAR_tf.feature_column.numeric_column("pl")
+
+vAR_CSLAB_estimator = vAR_tf.estimator.DNNRegressor(feature_columns = [vAR_CSLAB_sl,vAR_CSLAB_sw,vAR_CSLAB_pl],hidden_units = [5])
+
+def vAR_CSLAB_input_fn( vAR_CSLAB_num_epochs, vAR_CSLAB_shuffle):
+    
+    vAR_CSLAB_x = {'sl':vAR_CSLAB_iris.data.T[0],'sw':vAR_CSLAB_iris.data.T[1],'pl':vAR_CSLAB_iris.data.T[2]}
+    
+    vAR_CSLAB_labels = vAR_CSLAB_iris.data.T[3]
+    return vAR_tf.estimator.inputs.numpy_input_fn(vAR_CSLAB_x,y=vAR_CSLAB_labels,batch_size=100,num_epochs=vAR_CSLAB_num_epochs,shuffle=vAR_CSLAB_shuffle)
+
+vAR_CSLAB_estimator.train(input_fn=vAR_CSLAB_input_fn(vAR_CSLAB_num_epochs=None, vAR_CSLAB_shuffle=True), steps=100)
+
+vAR_CSLAB_df_data = vAR_CSLAB_iris.data.T[:3]
+
+vAR_CSLAB_estimator.predict
+
+def vAR_CSLAB_input_fn_pred( vAR_CSLAB_num_epochs, vAR_CSLAB_shuffle):
+    
+    vAR_CSLAB_x = {'sl':vAR_CSLAB_iris.data.T[0][:5],'sw':vAR_CSLAB_iris.data.T[1][:5],'pl':vAR_CSLAB_iris.data.T[2][:5]}
+    
+    vAR_CSLAB_labels = None
+    return vAR_tf.estimator.inputs.numpy_input_fn(vAR_CSLAB_x,y=vAR_CSLAB_labels,batch_size=100,num_epochs=vAR_CSLAB_num_epochs,shuffle=vAR_CSLAB_shuffle)
+
+vAR_CSLAB_pred = vAR_CSLAB_estimator.predict(input_fn=vAR_CSLAB_input_fn_pred)
+
+print(vAR_CSLAB_pred)
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

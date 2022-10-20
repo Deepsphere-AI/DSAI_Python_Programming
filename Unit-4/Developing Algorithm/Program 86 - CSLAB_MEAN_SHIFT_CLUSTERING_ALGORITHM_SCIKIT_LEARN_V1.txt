@@ -1,0 +1,91 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_MEAN_SHIFT_CLUSTERING_ALGORITHM_SCIKIT_LEARN_V1
+  Purpose 	:   A Program in Python for Mean Shift Clustering Algorithm Using SCIKIT LEARN
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 14:41 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Mean Shift Clustering Algorithm in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+from sklearn.cluster import MeanShift, estimate_bandwidth
+from sklearn.datasets.samples_generator import make_blobs
+
+vAR_CSLAB_centers = [[1, 1], [-1, -1], [1, -1]]
+vAR_CSLAB_X, _ = make_blobs(n_samples=10000, centers=vAR_CSLAB_centers, cluster_std=0.6)
+
+vAR_CSLAB_bandwidth = estimate_bandwidth(vAR_CSLAB_X, quantile=0.2, n_samples=500)
+
+vAR_CSLAB_ms = MeanShift(bandwidth=vAR_CSLAB_bandwidth, bin_seeding=True)
+
+vAR_CSLAB_ms.fit(vAR_CSLAB_X)
+
+vAR_CSLAB_labels = vAR_CSLAB_ms.labels_
+
+vAR_CSLAB_cluster_centers = vAR_CSLAB_ms.cluster_centers_
+
+vAR_CSLAB_labels_unique = vAR_np.unique(vAR_CSLAB_labels)
+
+vAR_CSLAB_n_clusters_ = len(vAR_CSLAB_labels_unique)
+
+print("number of estimated clusters : %d" % vAR_CSLAB_n_clusters_)
+
+import matplotlib.pyplot as vAR_plt
+
+from itertools import cycle
+
+vAR_plt.figure(1)
+
+vAR_plt.clf()
+
+vAR_CSLAB_colors = cycle('bgrcmykbgrcmykbgrcmykbgrcmyk')
+
+vAR_CSLAB_k = 3
+    
+vAR_CSLAB_my_members = vAR_CSLAB_labels == vAR_CSLAB_k
+
+for vAR_CSLAB_k, col in zip(range(vAR_CSLAB_n_clusters_), vAR_CSLAB_colors):
+    
+    vAR_CSLAB_my_members = vAR_CSLAB_labels == vAR_CSLAB_k
+    
+    vAR_CSLAB_cluster_center = vAR_CSLAB_cluster_centers
+    
+    vAR_plt.plot(vAR_CSLAB_X[vAR_CSLAB_my_members, 0], vAR_CSLAB_X[vAR_CSLAB_my_members, 1], col + '.')
+    
+    vAR_plt.plot(vAR_CSLAB_cluster_center[0], vAR_CSLAB_cluster_center[1], 'o', markerfacecolor=col,
+             markeredgecolor='k', markersize=14)
+
+vAR_plt.title('Estimated number of clusters: %d' % vAR_CSLAB_n_clusters_)
+
+vAR_plt.show()
+
+
+ 
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

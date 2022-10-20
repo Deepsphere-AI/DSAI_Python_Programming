@@ -1,0 +1,49 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NDARRAY_SLICING_WITH_INTEGERS_V1
+  Purpose 	:   A Program in Python for Slicing With Integers in ndarray
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   18/12/2018 17:18 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				18/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Slicing With Integers in ndarray in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+vAR_CSLAB_X = vAR_np.array([1, 2, 3, 4, 5, 6], dtype=vAR_np.int32)
+
+vAR_CSLAB_y = vAR_CSLAB_X[::-1]
+
+vAR_CSLAB_y.strides
+
+vAR_CSLAB_y = vAR_CSLAB_X[2:]
+
+vAR_CSLAB_y
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

@@ -1,0 +1,69 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_PATIENT_BED_OCCUPANCY_V1
+  Purpose 	:   A Program in Python For Patient Bed Occupancy
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 22:21 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program For Patient Bed Occupancy in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from mpl_toolkits.mplot3d import Axes3D
+
+from matplotlib import cm
+
+import matplotlib.pyplot as vAR_plt
+
+import numpy as vAR_np
+
+vAR_CSLAB_n_angles = 36
+
+vAR_CSLAB_n_radii = 8
+
+vAR_CSLAB_radii = vAR_np.linspace(0.125, 1.0, vAR_CSLAB_n_radii)
+
+vAR_CSLAB_angles = vAR_np.linspace(0, 2*vAR_np.pi, vAR_CSLAB_n_angles, endpoint=False)
+
+vAR_CSLAB_angles = vAR_np.repeat(vAR_CSLAB_angles[..., vAR_np.newaxis], vAR_CSLAB_n_radii, axis=1)
+
+vAR_CSLAB_x = vAR_np.append(0, (vAR_CSLAB_radii*vAR_np.cos(vAR_CSLAB_angles)).flatten())
+
+vAR_CSLAB_y = vAR_np.append(0, (vAR_CSLAB_radii*vAR_np.sin(vAR_CSLAB_angles)).flatten())
+
+vAR_CSLAB_z = vAR_np.sin(-vAR_CSLAB_x*vAR_CSLAB_y)
+
+vAR_CSLAB_fig = vAR_plt.figure()
+
+vAR_CSLAB_ax = vAR_CSLAB_fig.gca(projection='3d')
+
+vAR_CSLAB_ax.plot_trisurf(vAR_CSLAB_x, vAR_CSLAB_y, vAR_CSLAB_z, cmap=cm.jet, linewidth=0.2)
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

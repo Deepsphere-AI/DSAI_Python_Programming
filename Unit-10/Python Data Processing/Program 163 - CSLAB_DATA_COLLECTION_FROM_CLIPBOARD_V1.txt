@@ -1,0 +1,58 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DATA_COLLECTION_FROM_CLIPBOARD_V1
+  Purpose 	:   A Program in Python for Collecting Data from Clipboard
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   17/12/2018 10:08 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				17/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Collecting Data from Clipboard in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import pandas as vAR_pd
+
+import os
+
+vAR_INI_File_Path = os.environ.get('PYTHON_TUTORIAL')
+
+import pandas as vAR_pd
+
+import configparser
+
+import matplotlib.pyplot as vAR_plt
+
+vAR_Config = configparser.ConfigParser(allow_no_value=True)
+
+vAR_Config.read(vAR_INI_File_Path)
+
+vAR_CSLAB_DC_TEXT = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_163_DATA_COLLECTION_TEXT']
+
+vAR_CSLAB_DC_TEXT = vAR_pd.read_csv(vAR_CSLAB_DC_TEXT)
+
+vAR_CSLAB_DC_TEXT.head()
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

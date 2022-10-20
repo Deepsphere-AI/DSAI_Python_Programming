@@ -1,0 +1,105 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_AFFINITY_PROPOGATION_CLUSTERING_ALGORITHM_SCIKIT_LEARN_V1
+  Purpose 	:   A Program in Python for Affinity Propogation Clustering Algorithm Using SCIKIT LEARN
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 14:41 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Affinity Propogation Clustering Algorithm in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from sklearn.cluster import AffinityPropagation
+
+from sklearn import metrics
+
+from sklearn.datasets.samples_generator import make_blobs
+
+vAR_CSLAB_centers = [[1, 1], [-1, -1], [1, -1]]
+
+vAR_CSLAB_X, vAR_CSLAB_labels_true = make_blobs(n_samples=300, centers=vAR_CSLAB_centers, cluster_std=0.5,
+                            random_state=0)
+ 
+vAR_CSLAB_af = AffinityPropagation(preference=-50).fit(vAR_CSLAB_X)
+
+vAR_CSLAB_cluster_centers_indices = vAR_CSLAB_af.cluster_centers_indices_
+
+vAR_CSLAB_labels = vAR_CSLAB_af.labels_
+
+vAR_CSLAB_n_clusters_ = len(vAR_CSLAB_cluster_centers_indices)
+
+print('Estimated number of clusters: %d' % vAR_CSLAB_n_clusters_)
+
+print("Homogeneity: %0.3f" % metrics.homogeneity_score(labels_true, vAR_CSLAB_labels))
+
+print("Completeness: %0.3f" % metrics.completeness_score(labels_true, vAR_CSLAB_labels))
+
+print("V-measure: %0.3f" % metrics.v_measure_score(labels_true, vAR_CSLAB_labels))
+
+print("Adjusted Rand Index: %0.3f"
+      % metrics.adjusted_rand_score(labels_true, vAR_CSLAB_labels))
+
+print("Adjusted Mutual Information: %0.3f"
+      % metrics.adjusted_mutual_info_score(labels_true, vAR_CSLAB_labels))
+
+print("Silhouette Coefficient: %0.3f"
+      % metrics.silhouette_score(vAR_CSLAB_X, vAR_CSLAB_labels, metric='sqeuclidean'))
+
+# Plot result
+
+import matplotlib.pyplot as vAR_plt
+
+from itertools import cycle
+
+vAR_plt.close('all')
+
+vAR_plt.figure(1)
+
+vAR_plt.clf()
+
+vAR_colors = cycle('bgrcmykbgrcmykbgrcmykbgrcmyk')
+
+for vAR_CSLAB_k, col in zip(range(vAR_CSLAB_n_clusters_), vAR_CSLAB_colors):
+    
+    vAR_CSLAB_class_members = vAR_CSLAB_labels == vAR_CSLAB_k
+    
+    vAR_CSLAB_cluster_center = vAR_CSLAB_X[vAR_CSLAB_cluster_centers_indices[vAR_CSLAB_k]]
+    
+    vAR_plt.plot(vAR_CSLAB_X[vAR_CSLAB_class_members, 0], vAR_CSLAB_X[vAR_CSLAB_class_members, 1], col + '.')
+    
+    vAR_plt.plot(vAR_CSLAB_cluster_center[0], vAR_CSLAB_cluster_center[1], 'o', markerfacecolor=col,
+             markeredgecolor='k', markersize=14)
+    
+    for x in vAR_CSLAB_X[vAR_CSLAB_class_members]:
+        vAR_plt.plot([vAR_CSLAB_cluster_center[0], vAR_CSLAB_x[0]], [vAR_CSLAB_cluster_center[1], vAR_CSLAB_x[1]], col)
+
+vAR_plt.title('Estimated number of clusters: %d' % vAR_CSLAB_n_clusters_)
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

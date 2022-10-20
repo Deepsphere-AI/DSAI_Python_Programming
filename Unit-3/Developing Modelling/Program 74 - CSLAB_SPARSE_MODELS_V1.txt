@@ -1,0 +1,174 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_SPARSE_MODELS_V1
+  Purpose 	:   A Program in Python Sparse Models
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 18:19 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Sparse Models in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import warnings
+
+import matplotlib.pyplot as vAR_plt
+
+import numpy as vAR_np
+
+from scipy import linalg
+
+from sklearn.linear_model import (RandomizedLasso, lasso_stability_path,
+                                  LassoLarsCV)
+
+from sklearn.feature_selection import f_regression
+
+from sklearn.preprocessing import StandardScaler
+
+from sklearn.metrics import auc, precision_recall_curve
+
+from sklearn.ensemble import ExtraTreesRegressor
+
+from sklearn.utils.extmath import pinvh
+
+#from sklearn.utils import ConvergenceWarning
+
+def mutual_incoherence(X_relevant, X_irelevant):
+    
+    vAR_CSLAB_projector = vAR_np.dot(vAR_np.dot(X_irelevant.T, X_relevant),
+                       pinvh(vAR_np.dot(X_relevant.T, X_relevant)))
+    return vAR_np.max(vAR_np.abs(vAR_CSLAB_projector).sum(axis=1))
+
+
+for conditioning in (1, 1e-4):
+  
+    vAR_CSLAB_n_features = 501
+    
+    vAR_CSLAB_n_relevant_features = 3
+    
+    vAR_CSLAB_noise_level = .2
+    
+    vAR_CSLAB_coef_min = .2
+    
+    vAR_CSLAB_n_samples = 25
+    
+    vAR_CSLAB_block_size = n_relevant_features
+
+    vAR_CSLAB_rng = vAR_np.random.RandomState(42)
+
+    vAR_CSLAB_coef = vAR_np.zeros(vAR_CSLAB_n_features)
+    
+    vAR_CSLAB_coef[:vAR_CSLAB_n_relevant_features] = vAR_CSLAB_coef_min + vAR_CSLAB_rng.rand(vAR_CSLAB_n_relevant_features)
+
+    vAR_CSLAB_corr = vAR_np.zeros((vAR_CSLAB_n_features, vAR_CSLAB_n_features))
+    
+    for i in range(0, vAR_CSLAB_n_features, vAR_CSLAB_block_size):
+
+        vAR_CSLAB_corr[i:i + vAR_CSLAB_block_size, i:i + vAR_CSLAB_block_size] = 1 - conditioning
+    
+    vAR_CSLAB_corr.flat[::vAR_CSLAB_n_features + 1] = 1
+    
+    vAR_CSLAB_corr = linalg.cholesky(vAR_CSLAB_corr)
+
+    vAR_CSLAB_X = vAR_CSLAB_rng.normal(size=(vAR_CSLAB_n_samples, vAR_CSLAB_n_features))
+    
+    vAR_CSLAB_X = vAR_np.dot(vAR_CSLAB_X, vAR_CSLAB_corr)
+    
+    # Keep [Wainwright2006] (26c) constant
+    
+    vAR_CSLAB_X[:vAR_CSLAB_n_relevant_features] /= vAR_np.abs(
+        linalg.svdvals(vAR_CSLAB_X[:vAR_CSLAB_n_relevant_features])).max()
+    
+    vAR_CSLAB_X = StandardScaler().fit_transform(vAR_CSLAB_X.copy())
+
+    # The output variable
+    vAR_CSLAB_y = vAR_np.dot(vAR_CSLAB_X, vAR_CSLAB_coef)
+    
+    vAR_CSLAB_y /= vAR_np.std(vAR_CSLAB_y)
+    
+    vAR_CSLAB_y += vAR_CSLAB_noise_level * vAR_CSLAB_rng.normal(size=vAR_CSLAB_n_samples)
+    
+    vAR_CSLAB_mi = mutual_incoherence(vAR_CSLAB_X[:, :vAR_CSLAB_n_relevant_features],
+                            vAR_CSLAB_X[:, vAR_CSLAB_n_relevant_features:])
+
+    vAR_CSLAB_alpha_grid, vAR_CSLAB_scores_path = lasso_stability_path(vAR_CSLAB_X, vAR_CSLAB_y, random_state=42,
+                                                   eps=0.05)
+
+    vAR_plt.figure()
+    
+    vAR_CSLAB_hg = vAR_plt.plot(vAR_CSLAB_alpha_grid[1:] ** .333, vAR_CSLAB_scores_path[vAR_CSLAB_coef != 0].T[1:], 'r')
+    
+    vAR_CSLAB_hb = vAR_plt.plot(vAR_CSLAB_alpha_grid[1:] ** .333, vAR_CSLAB_scores_path[vAR_CSLAB_coef == 0].T[1:], 'k')
+    
+    vAR_CSLAB_ymin, vAR_CSLAB_ymax = vAR_plt.ylim()
+    
+    vAR_plt.xlabel(r'$(\alpha / \alpha_{max})^{1/3}$')
+    
+    vAR_plt.ylabel('Stability score: proportion of times selected')
+    
+    vAR_plt.title('Stability Scores Path - Mutual incoherence: %.1f' % mi)
+    
+    vAR_plt.axis('tight')
+    
+    vAR_plt.legend((vAR_CSLAB_hg[0], vAR_CSLAB_hb[0]), ('relevant features', 'irrelevant features'),
+               loc='best')
+    
+    vAR_CSLAB_lars_cv = LassoLarsCV(cv=6).fit(vAR_CSLAB_X, vAR_CSLAB_y)
+
+    vAR_CSLAB_alphas = vAR_np.linspace(vAR_CSLAB_lars_cv.alphas_[0], .1 * vAR_CSLAB_lars_cv.alphas_[0], 6)
+    
+    vAR_CSLAB_clf = RandomizedLasso(alpha=alphas, random_state=42).fit(vAR_CSLAB_X, vAR_CSLAB_y)
+    
+    vAR_CSLAB_trees = ExtraTreesRegressor(100).fit(vAR_CSLAB_X, vAR_CSLAB_y)
+    
+    # Compare with F-score
+    vAR_CSLAB_F, _ = f_regression(vAR_CSLAB_X, vAR_CSLAB_y)
+
+    vAR_plt.figure()
+    
+    for vAR_CSLAB_name, vAR_CSLAB_score in [('F-test', vAR_CSLAB_F),
+                        ('Stability selection', vAR_CSLAB_clf.scores_),
+                        ('Lasso coefs', vAR_np.abs(vAR_CSLAB_lars_cv.coef_)),
+                        ('Trees', vAR_CSLAB_trees.feature_importances_),
+                        ]:
+        vAR_CSLAB_precision, vAR_CSLAB_recall, vAR_CSLAB_thresholds = precision_recall_curve(coef != 0,
+                                                               vAR_CSLAB_score)
+        vAR_plt.semilogy(vAR_np.maximum(vAR_CSLAB_score / vAR_np.max(vAR_CSLAB_score), 1e-4),
+                     label="%s. AUC: %.3f" % (vAR_CSLAB_name, auc(vAR_CSLAB_recall, vAR_CSLAB_precision)))
+
+    vAR_plt.plot(vAR_np.where(coef != 0)[0], [2e-4] * vAR_CSLAB_n_relevant_features, 'mo',
+             label="Ground truth")
+    vAR_plt.xlabel("Features")
+    vAR_plt.ylabel("Score")
+    vAR_plt.xlim(0, 100)
+    vAR_plt.legend(loc='best')
+    vAR_plt.title('Feature selection scores - Mutual incoherence: %.1f'
+              % mi)
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

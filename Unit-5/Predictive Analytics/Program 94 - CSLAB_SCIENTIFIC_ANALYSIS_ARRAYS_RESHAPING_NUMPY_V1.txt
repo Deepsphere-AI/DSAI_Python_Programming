@@ -1,0 +1,47 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_SCIENTIFIC_ANALYSIS_ARRAYS_RESHAPING_NUMPY_V1
+  Purpose 	:   A Program in Python for Reshaping Arrays using Numpy
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 11:47 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Reshaping Arrays using Numpy in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+vAR_CSLAB_X = vAR_np.array([[[0, 1],[2,3],[4,5],[6,7]],[[8,9],[10,11],[12,13],[14,15]],[[16,17],[18,19],[20,21],[22,23]]])
+
+vAR_CSLAB_X.flatten()
+
+vAR_CSLAB_X
+
+vAR_CSLAB_X.ravel()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

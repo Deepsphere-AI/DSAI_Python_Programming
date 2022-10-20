@@ -1,0 +1,108 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_PRODUCT_MARKET_BASKET_ANALYSIS_V1
+  Purpose 	:   A Program in Python For Product Basket Analysis
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 22:47 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program For Product Basket Analysis in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+import matplotlib.pyplot as vAR_plt
+
+from mpl_toolkits.mplot3d import Axes3D
+
+import matplotlib.tri as vAR_mtri
+
+# u, v are parameterisation variables
+
+vAR_CSLAB_u = (vAR_np.linspace(0, 2.0 * vAR_np.pi, endpoint=True, num=50) * vAR_np.ones((10, 1))).flatten()
+
+vAR_CSLAB_v = vAR_np.repeat(vAR_np.linspace(-0.5, 0.5, endpoint=True, num=10), repeats=50).flatten()
+
+vAR_CSLAB_x = (1 + 0.5 * vAR_CSLAB_v * vAR_np.cos(vAR_CSLAB_u / 2.0)) * vAR_np.cos(vAR_CSLAB_u)
+
+vAR_CSLAB_y = (1 + 0.5 * vAR_CSLAB_v * vAR_np.cos(vAR_CSLAB_u / 2.0)) * vAR_np.sin(vAR_CSLAB_u)
+
+vAR_CSLAB_z = 0.5 * vAR_CSLAB_v * vAR_np.sin(vAR_CSLAB_u / 2.0)
+
+# Triangulate parameter space to determine the triangles
+
+vAR_CSLAB_tri = vAR_mtri.Triangulation(vAR_CSLAB_u, vAR_CSLAB_v)
+
+vAR_CSLAB_fig = vAR_plt.figure()
+
+vAR_CSLAB_ax = vAR_CSLAB_fig.add_subplot(1, 1, 1, projection='3d')
+
+vAR_CSLAB_ax.plot_trisurf(vAR_CSLAB_x, vAR_CSLAB_y, vAR_CSLAB_z, triangles=vAR_CSLAB_tri.triangles, cmap=vAR_plt.cm.Spectral)
+
+vAR_CSLAB_ax.set_zlim(-1, 1)
+
+vAR_CSLAB_n_angles = 36
+
+vAR_CSLAB_n_radii = 8
+
+vAR_CSLAB_min_radius = 0.25
+
+vAR_CSLAB_radii = vAR_np.linspace(vAR_CSLAB_min_radius, 0.95, vAR_CSLAB_n_radii)
+
+vAR_CSLAB_angles = vAR_np.linspace(0, 2*vAR_np.pi, vAR_CSLAB_n_angles, endpoint=False)
+
+vAR_CSLAB_angles = vAR_np.repeat(vAR_CSLAB_angles[..., vAR_np.newaxis], vAR_CSLAB_n_radii, axis=1)
+
+vAR_CSLAB_angles[:, 1::2] += vAR_np.pi/vAR_CSLAB_n_angles
+
+vAR_CSLAB_x = (vAR_CSLAB_radii*vAR_np.cos(vAR_CSLAB_angles)).flatten()
+
+vAR_CSLAB_y = (vAR_CSLAB_radii*vAR_np.sin(vAR_CSLAB_angles)).flatten()
+
+vAR_CSLAB_z = (vAR_np.cos(vAR_CSLAB_radii)*vAR_np.cos(vAR_CSLAB_angles*3.0)).flatten()
+
+vAR_CSLAB_triang = vAR_mtri.Triangulation(vAR_CSLAB_x, vAR_CSLAB_y)
+
+vAR_CSLAB_xmid = vAR_CSLAB_x[vAR_CSLAB_triang.triangles].mean(axis=1)
+
+vAR_CSLAB_ymid = vAR_CSLAB_y[vAR_CSLAB_triang.triangles].mean(axis=1)
+
+vAR_CSLAB_mask = vAR_np.where(vAR_CSLAB_xmid*vAR_CSLAB_xmid + vAR_CSLAB_ymid*vAR_CSLAB_ymid < vAR_CSLAB_min_radius*vAR_CSLAB_min_radius, 1, 0)
+
+vAR_CSLAB_triang.set_mask(vAR_CSLAB_mask)
+
+vAR_CSLAB_fig = vAR_plt.figure()
+
+vAR_CSLAB_ax = vAR_CSLAB_fig.add_subplot(1, 1, 1, projection='3d')
+
+vAR_CSLAB_ax.plot_trisurf(vAR_CSLAB_triang, vAR_CSLAB_z, cmap=vAR_plt.cm.CMRmap)
+
+vAR_plt.show()
+
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

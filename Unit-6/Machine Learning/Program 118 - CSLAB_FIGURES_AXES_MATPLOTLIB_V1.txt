@@ -1,0 +1,61 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_FIGURES_AXES_MATPLOTLIB_V1
+  Purpose 	:   A Program in Python for Figures & Axes using Matplotlib Package
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 11:54 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Figures & Axes using Matplotlib Package in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+import matplotlib.pyplot as vAR_plt
+
+def f(t):
+    
+    return vAR_np.exp(-t) * vAR_np.cos(2*vAR_np.pi*t)
+
+vAR_CSLAB_t1 = vAR_np.arange(0.0, 5.0, 0.1)
+
+vAR_CSLAB_t2 = vAR_np.arange(0.0, 5.0, 0.02)
+
+vAR_plt.figure(1)
+
+vAR_plt.subplot(211)
+
+vAR_plt.plot(vAR_CSLAB_t1, f(vAR_CSLAB_t1), 'bo', vAR_CSLAB_t2, f(vAR_CSLAB_t2), 'k')
+
+vAR_plt.subplot(212)
+
+vAR_plt.plot(vAR_CSLAB_t2, vAR_np.cos(2*vAR_np.pi*vAR_CSLAB_t2), 'r--')
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

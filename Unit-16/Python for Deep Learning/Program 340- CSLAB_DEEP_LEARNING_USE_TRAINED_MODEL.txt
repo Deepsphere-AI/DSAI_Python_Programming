@@ -1,0 +1,110 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DEEP_LEARNING_USE_TRAINED_MODEL
+  Purpose 	:   A Program in Python for Using a Trained Model using Deep Learning
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   03/01/2019 14:21 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				03/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Using a Trained Model using Deep Learning in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
+from tensorflow.keras.layers import Conv2D, MaxPooling2D
+from tensorflow.keras.callbacks import TensorBoard
+import pickle
+import time
+
+vAR_CSLAB_pickle_in = open("vAR_CSLAB_X.pickle","rb")
+vAR_CSLAB_X = pickle.load(vAR_CSLAB_pickle_in)
+
+vAR_CSLAB_pickle_in = open("vAR_CSLAB_y.pickle","rb")
+vAR_CSLAB_y = pickle.load(vAR_CSLAB_pickle_in)
+
+vAR_CSLAB_X = vAR_CSLAB_X/255.0
+
+vAR_CSLAB_dense_layers = [0, 1, 2]
+
+vAR_CSLAB_layer_sizes = [32, 64, 128]
+
+vAR_CSLAB_conv_layers = [1, 2, 3]
+
+for dense_layer in vAR_CSLAB_dense_layers:
+    for layer_size in vAR_CSLAB_layer_sizes:
+        for conv_layer in vAR_CSLAB_conv_layers:
+            vAR_CSLAB_NAME = "{}-conv-{}-nodes-{}-dense-{}".format(conv_layer, layer_size, dense_layer, int(time.time()))
+            
+            vAR_CSLAB_model = Sequential()
+
+            vAR_CSLAB_model.add(Conv2D(layer_size, (3, 3), input_shape=vAR_CSLAB_X.shape[1:]))
+            vAR_CSLAB_model.add(Activation('relu'))
+            vAR_CSLAB_model.add(MaxPooling2D(pool_size=(2, 2)))
+
+            for l in range(conv_layer-1): 
+                
+                vAR_CSLAB_model.add(Conv2D(layer_size, (3, 3)))
+                vAR_CSLAB_model.add(Activation('relu'))
+                vAR_CSLAB_model.add(MaxPooling2D(pool_size=(2, 2)))
+
+        vAR_CSLAB_model.add(Flatten())  # this converts our 3D feature maps to 1D feature vectors
+        
+        for _ in range(dense_layer):
+            
+            vAR_CSLAB_model.add(Dense(layer_size))
+            vAR_CSLAB_model.add(Activation('relu'))
+
+            vAR_CSLAB_model.add(Dense(1))
+            vAR_CSLAB_model.add(Activation('sigmoid'))
+
+            vAR_CSLAB_NAME = "Cats-vs-dogs-64x2-CNN"
+
+            import os
+
+            vAR_INI_File_Path = os.environ.get('PYTHON_TUTORIAL')
+
+            import pandas as vAR_pd
+
+            import configparser
+
+            vAR_Config = configparser.ConfigParser(allow_no_value=True)
+
+            vAR_Config.read(vAR_INI_File_Path)
+
+            vAR_CSLAB_TENSORBOARD = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_338_TENSORBOARD_LOG']
+
+            vAR_CSLAB_tensorboard = TensorBoard(log_dir=vAR_CSLAB_TENSORBOARD.format(vAR_CSLAB_NAME))
+            
+            vAR_CSLAB_model.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
+
+            vAR_CSLAB_model.fit(vAR_CSLAB_X, vAR_CSLAB_y,batch_size=32,epochs=10,validation_split=0.3,callbacks=[vAR_CSLAB_tensorboard])
+            
+vAR_model.save('64x3-CNN.model')
+
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

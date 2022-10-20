@@ -1,0 +1,81 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DEEP_LEARNING_PARTITIONED_EMBEDDINGS
+  Purpose 	:   A Program in Python for Partitioned Embeddings in Deep Learning
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   08/01/2019 14:37 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				08/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program in Python for Partitioned Embeddings in Deep Learning
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+# Explores a partitioned embedding.
+from __future__ import print_function
+import numpy as vAR_np
+import tensorflow as vAR_tf
+
+vAR_CSLAB_vocab_size = 20
+vAR_CSLAB_npartitions = 4
+vAR_CSLAB_vocab_per_partition = vAR_CSLAB_vocab_size // vAR_CSLAB_npartitions
+vAR_CSLAB_embedding_dim = 3
+vAR_CSLAB_batch_size = 16
+
+vAR_CSLAB_dataset = vAR_tf.placeholder(vAR_tf.int32, shape=[vAR_CSLAB_batch_size])
+
+vAR_CSLAB_embeddings = []
+for _ in range(vAR_CSLAB_npartitions):
+    vAR_CSLAB_embeddings.append(vAR_tf.Variable(vAR_tf.random_uniform(
+        [vAR_CSLAB_vocab_per_partition, vAR_CSLAB_embedding_dim], -1.0, 1.0)))
+
+vAR_CSLAB_embed_out = vAR_tf.nn.embedding_lookup(vAR_CSLAB_embeddings,
+                                   vAR_CSLAB_dataset,
+                                   partition_strategy='div',
+                                   validate_indices=True)
+
+with vAR_tf.Session() as vAR_CSLAB_sess:
+    vAR_tf.initialize_all_variables().run()
+
+    print('dataset shape:', vAR_CSLAB_dataset.get_shape())
+    print('embeddings shapes:',
+        ["{0}: {1}".format(i, vAR_CSLAB_embeddings[i].get_shape())
+         for i in range(vAR_CSLAB_npartitions)])
+    print('embed_out shape:', vAR_CSLAB_embed_out.get_shape())
+
+    vAR_CSLAB_indata = vAR_np.random.randint(0, vAR_CSLAB_vocab_size, size=(vAR_CSLAB_batch_size,))
+    print('indata:', vAR_CSLAB_indata)
+    vAR_CSLAB_emb = [0] * vAR_CSLAB_npartitions
+    vAR_CSLAB_emb[0], vAR_CSLAB_emb[1], vAR_CSLAB_emb[2], vAR_CSLAB_emb[3], vAR_CSLAB_embed_out = vAR_CSLAB_sess.run(
+        fetches=[vAR_CSLAB_embeddings[0], vAR_CSLAB_embeddings[1], vAR_CSLAB_embeddings[2], vAR_CSLAB_embeddings[3],
+                 vAR_CSLAB_embed_out],
+        feed_dict={vAR_CSLAB_dataset: vAR_CSLAB_indata})
+    for i in range(vAR_CSLAB_npartitions):
+        print('embeddings[{0}]\n'.format(i), vAR_CSLAB_emb[i])
+    print('embed_out:\n', vAR_CSLAB_embed_out)
+    
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+                             

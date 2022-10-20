@@ -1,0 +1,93 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_ISOTONIC_REGRESSION_SCIKIT_LEARN_V1
+  Purpose 	:   A Program in Python for Isotonic Regression Using SCIKIT LEARN
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 15:51 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Isotonic Regression  in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+import matplotlib.pyplot as vAR_plt
+
+from matplotlib.collections import LineCollection
+
+from sklearn.linear_model import LinearRegression
+
+from sklearn.isotonic import IsotonicRegression
+
+from sklearn.utils import check_random_state
+
+vAR_CSLAB_n = 100
+
+vAR_CSLAB_x = vAR_np.arange(n)
+
+vAR_CSLAB_rs = check_random_state(0)
+
+vAR_CSLAB_y = vAR_CSLAB_rs.randint(-50, 50, size=(n,)) + 50. * vAR_np.log(1 + vAR_np.arange(n))
+
+# Fit IsotonicRegression and LinearRegression models
+
+vAR_CSLAB_ir = IsotonicRegression()
+
+vAR_CSLAB_y_ = vAR_CSLAB_ir.fit_transform(vAR_CSLAB_x, vAR_CSLAB_y)
+
+vAR_CSLAB_lr = LinearRegression()
+
+vAR_CSLAB_lr.fit(vAR_CSLAB_x[:, vAR_np.newaxis], vAR_CSLAB_y)  # x needs to be 2d for LinearRegression
+
+# plot result
+
+vAR_CSLAB_segments = [[[i, vAR_CSLAB_y[i]], [i, vAR_CSLAB_y_[i]]] for i in range(vAR_CSLAB_n)]
+
+vAR_CSLAB_lc = LineCollection(vAR_CSLAB_segments, zorder=0)
+
+vAR_CSLAB_lc.set_array(vAR_np.ones(len(vAR_CSLAB_y)))
+  
+vAR_CSLAB_lc.set_linewidths(0.5 * vAR_np.ones(vAR_CSLAB_n))
+
+vAR_CSLAB_fig = vAR_plt.figure()
+
+vAR_plt.plot(vAR_CSLAB_x, vAR_CSLAB_y, 'r.', markersize=12)
+
+vAR_plt.plot(vAR_CSLAB_x, vAR_CSLAB_y_, 'g.-', markersize=12)
+
+vAR_plt.plot(x, lr.predict(x[:, np.newaxis]), 'b-')
+
+vAR_plt.gca().add_collection(vAR_CSLAB_lc)
+
+vAR_plt.legend(('Data', 'Isotonic Fit', 'Linear Fit'), loc='lower right')
+
+vAR_plt.title('Isotonic regression')
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

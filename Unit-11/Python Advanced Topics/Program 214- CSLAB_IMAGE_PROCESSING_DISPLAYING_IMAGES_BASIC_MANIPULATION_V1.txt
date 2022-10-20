@@ -1,0 +1,61 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_IMAGE_PROCESSING_DISPLAYING_IMAGES_BASIC_MANIPULATION_V1
+  Purpose 	:   A Program in Python for Basic Manipulation in Image Processing
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   19/12/2018 11:25 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Basic Manipulation in Image Processing in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from scipy import misc
+
+import numpy as vAR_np
+
+vAR_CSLAB_face = misc.face(gray=True)
+
+vAR_CSLAB_face[0, 40]
+
+vAR_CSLAB_face[10:13, 20:23]
+
+vAR_CSLAB_face[100:120] = 255
+
+vAR_lx, vAR_ly = vAR_CSLAB_face.shape
+
+vAR_X, vAR_Y = vAR_np.ogrid[0:vAR_lx, 0:vAR_ly]
+
+vAR_CSLAB_mask = (vAR_X - vAR_lx / 2) ** 2 + (vAR_Y - vAR_ly / 2) ** 2 > vAR_lx * vAR_ly / 4
+
+vAR_CSLAB_face[vAR_CSLAB_mask] = 0
+
+vAR_CSLAB_face[range(400), range(400)] = 255
+
+vAR_plt.imshow(vAR_CSLAB_face) 
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

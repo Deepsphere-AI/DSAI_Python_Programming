@@ -1,0 +1,5 @@
+Asset No,Asset Type,Asset Location,Lease Start Date,Lease End Date,Age in Years,No of Repairs,Casualities,Asset Depreciation Amount$,Useful Life in Years,Casuality Amount$,Planned Charges$
+Asset 208,Building,CA,40455,44055,18,4,0,10324,19,0,427650
+Asset 874,Building,LA,41416,43647,16,3,4,15481,22,125325,549862
+Asset 301,Vehicle,LA,40312,44381,22,8,1,12785,25,47555,673554
+Asset 432,Equipment,UT,40320,44553,28,4,2,87626,30,90446,804152

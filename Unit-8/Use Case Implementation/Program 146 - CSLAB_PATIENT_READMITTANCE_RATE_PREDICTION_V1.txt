@@ -1,0 +1,55 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_PATIENT_READMITTANCE_RATE_PREDICTION_V1
+  Purpose 	:   A Program in Python For Predicting Patient Readmittacnce Usecase
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 18:58 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program For Predicting Patient Readmittacnce Usecase in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from mpl_toolkits.mplot3d import axes3d
+
+import matplotlib.pyplot as vAR_plt
+  
+from matplotlib import cm
+
+vAR_CSLAB_fig = vAR_plt.figure()
+
+vAR_CSLAB_ax = vAR_CSLAB_fig.gca(projection='3d')
+
+vAR_CSLAB_X, vAR_CSLAB_Y, vAR_CSLAB_Z = axes3d.get_test_data(0.05)
+
+vAR_CSLAB_cset = vAR_CSLAB_ax.contour(vAR_CSLAB_X, vAR_CSLAB_Y, vAR_CSLAB_Z, extend3d=True, cmap=cm.coolwarm)
+
+vAR_CSLAB_ax.clabel(vAR_CSLAB_cset, fontsize=9, inline=1)
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

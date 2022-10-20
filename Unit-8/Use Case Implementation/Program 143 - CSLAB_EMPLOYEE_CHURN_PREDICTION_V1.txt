@@ -1,0 +1,77 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_EMPLOYEE_CHURN_PREDICTION_V1
+  Purpose 	:   A Program in Python For Predicting Employee Churn Rate Usecase
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 17:43 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program For Predicting Employee Churn Rate Usecase in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+import matplotlib.pyplot as vAR_plt
+
+vAR_np.random.seed(0)
+
+def layers(vAR_CSLAB_n, vAR_CSLAB_m):
+
+    def bump(vAR_CSLAB_a):
+        
+        vAR_CSLAB_x = 1 / (.1 + vAR_np.random.random())
+        
+        vAR_CSLAB_y = 2 * vAR_np.random.random() - .5
+        
+        vAR_CSLAB_z = 10 / (.1 + vAR_np.random.random())
+        
+        for i in range(vAR_CSLAB_m):
+            
+            vAR_CSLAB_w = (i / float(vAR_CSLAB_m) - vAR_CSLAB_y) * vAR_CSLAB_z
+            
+            vAR_CSLAB_a[i] += vAR_CSLAB_x * vAR_np.exp(-vAR_CSLAB_w * vAR_CSLAB_w)
+            
+    vAR_CSLAB_a = vAR_np.zeros((vAR_CSLAB_m, vAR_CSLAB_n))
+    
+    for i in range(vAR_CSLAB_n):
+        
+        for j in range(5):
+            
+            bump(vAR_CSLAB_a[:, i])
+            
+    return vAR_CSLAB_a
+
+vAR_CSLAB_d = layers(3, 100)
+
+vAR_plt.subplots()
+
+vAR_plt.stackplot(range(100), vAR_CSLAB_d.T, baseline='wiggle')
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

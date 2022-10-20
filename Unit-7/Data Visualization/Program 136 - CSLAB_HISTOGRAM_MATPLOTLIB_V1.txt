@@ -1,0 +1,63 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_HISTOGRAM_MATPLOTLIB_V1
+  Purpose 	:   A Program in Python for Histogram using Matplotlib Package
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 12:32 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Histogram using Matplotlib in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+import matplotlib.pyplot as vAR_plt
+
+vAR_CSLAB_mu, vAR_CSLAB_sigma = 100, 15
+
+vAR_CSLAB_X = vAR_CSLAB_mu + vAR_CSLAB_sigma * vAR_np.random.randn(10000)
+
+# the histogram of the data
+
+vAR_CSLAB_n, vAR_CSLAB_bins, vAR_CSLAB_patches = vAR_plt.hist(vAR_CSLAB_X, 50, normed=1, facecolor='g', alpha=0.75)
+
+vAR_plt.xlabel('Smarts')
+
+vAR_plt.ylabel('Probability')
+
+vAR_plt.title('Histogram of IQ')
+
+vAR_plt.text(60, .025, r'$\mu=100,\ \sigma=15$')
+
+vAR_plt.axis([40, 160, 0, 0.03])
+
+vAR_plt.grid(True)
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

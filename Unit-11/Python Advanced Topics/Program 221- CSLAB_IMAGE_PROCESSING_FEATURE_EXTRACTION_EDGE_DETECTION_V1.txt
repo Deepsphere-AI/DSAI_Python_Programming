@@ -1,0 +1,57 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_IMAGE_PROCESSING_FEATURE_EXTRACTION_EDGE_DETECTION_V1
+  Purpose 	:   A Program in Python for Image Processing - Edge Detection
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   19/12/2018 14:22 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Image Processing - Edge Detection in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from scipy import misc
+
+import numpy as  vAR_np
+
+import numpy as  vAR_np
+
+from scipy import ndimage
+
+import matplotlib.pyplot as vAR_plt
+
+vAR_CSLAB_im = vAR_np.zeros((256, 256))
+
+vAR_CSLAB_im[64:-64, 64:-64] = 1
+
+CSLAB_im = ndimage.rotate(vAR_CSLAB_im, 15, mode='constant')
+
+CSLAB_im = ndimage.gaussian_filter(CSLAB_im, 8)
+
+vAR_plt.imshow(CSLAB_im)
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

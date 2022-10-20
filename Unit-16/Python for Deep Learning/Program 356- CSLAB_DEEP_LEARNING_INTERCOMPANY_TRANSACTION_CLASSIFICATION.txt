@@ -1,0 +1,333 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DEEP_LEARNING_INTERCOMPANY_TRANSACTION_CLASSIFICATION
+  Purpose 	:   A Program in Python for Intercompany Transaction Classification in Deep Learning
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   08/01/2019 9:56 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				08/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program in Python for Intercompany Transaction Classification in Deep Learning
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+# coding=utf-8
+
+# Step 0 - Read Data from .INI File for Hardcoded Values
+
+#import sys
+#print('Arguments:', len(sys.argv))
+#vAR_Fetched_Data_INI_File_Path = sys.argv[1]
+#print(vAR_Fetched_Data_INI_File_Path)
+
+import configparser
+vAR_Config = configparser.ConfigParser(allow_no_value=True)
+
+import os
+
+vAR_INI_File_Path = os.environ.get('PYTHON_TUTORIAL')
+
+import pandas as vAR_pd
+
+import configparser
+
+import pandas as vAR_pd
+
+vAR_Config = configparser.ConfigParser(allow_no_value=True)
+
+vAR_Config.read(vAR_INI_File_Path)
+
+vAR_CSLAB_INI_File = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_356_INI_FILE']  
+
+vAR_Config.read(vAR_CSLAB_INI_File)
+
+vAR_Data = vAR_Config.sections()
+
+vAR_Config.sections()
+
+vAR_Fetched_Data_Source = vAR_Config['Data Source']['DATA_SOURCE1']
+#print(vAR_Fetched_Data_Source)
+
+vAR_Fetched_Data_Source_Connection_String = vAR_Config['Data Source Connection String']['SAP_CONNECTION_STRING']
+#print(vAR_Fetched_Data_Source_Connection_String)
+
+vAR_Fetched_Data_Source_Path_Input_Data = vAR_Config['Data Source Path']['INPUT_DATA_PATH']
+#print(vAR_Fetched_Data_Source_Path_Input_Data)
+
+vAR_Fetched_Data_Source_Path_Train_Data = vAR_Config['Data Source Path']['TRAIN_DATA_PATH']
+#print(vAR_Fetched_Data_Source_Path_Train_Data)
+
+vAR_Fetched_Data_Source_Path_Test_Data = vAR_Config['Data Source Path']['Test_DATA_PATH']
+#print(vAR_Fetched_Data_Source_Path_Test_Data)
+
+vAR_Fetched_Data_Train_Features1 = vAR_Config['Train Features - Problem 1']['FEATURE1']
+#print(vAR_Fetched_Data_Train_Features1)
+
+vAR_Fetched_Data_Train_Features2 = vAR_Config['Train Features - Problem 1']['FEATURE2']
+#print(vAR_Fetched_Data_Train_Features2)
+
+vAR_Fetched_Data_Train_Features3 = vAR_Config['Train Features - Problem 1']['FEATURE3']
+#print(vAR_Fetched_Data_Train_Features3)
+
+vAR_Fetched_Data_Train_Features4 = vAR_Config['Train Features - Problem 1']['FEATURE4']
+#print(vAR_Fetched_Data_Train_Features4)
+
+vAR_Fetched_Data_Train_All_Features = vAR_Config['Train Features - Problem 1']['ALL_FEATURES_TRAIN']
+#print(vAR_Fetched_Data_Train_All_Features)
+
+vAR_Fetched_Data_Train_Label = vAR_Config['Train Label - Problem 1']['LABEL']
+#print(vAR_Fetched_Data_Train_Label)
+
+vAR_Fetched_Data_Test_Features1 = vAR_Config['Test Features - Problem 1']['FEATURE1']
+#print(vAR_Fetched_Data_Test_Features1)
+
+vAR_Fetched_Data_Test_Features2 = vAR_Config['Test Features - Problem 1']['FEATURE2']
+#print(vAR_Fetched_Data_Test_Features2)
+
+vAR_Fetched_Data_Test_Features3 = vAR_Config['Test Features - Problem 1']['FEATURE3']
+#print(vAR_Fetched_Data_Test_Features3)
+
+vAR_Fetched_Data_Test_Features4 = vAR_Config['Test Features - Problem 1']['FEATURE4']
+#print(vAR_Fetched_Data_Test_Features4)
+
+vAR_Fetched_Data_Test_All_Features = vAR_Config['Test Features - Problem 1']['ALL_FEATURES_TEST']
+#print(vAR_Fetched_Data_Test_All_Features)
+
+vAR_Fetched_Data_Model_Path = vAR_Config['Model Ouput Path']['MODEL_OUTPUT_PATH']
+#print(vAR_Fetched_Data_Model_Path)
+
+vAR_Fetched_Data_Best_Fit_File_Example_1 = vAR_Config['Model Fitting']['BEST_FIT_FILE_EXAMPLE_1']
+#print(vAR_Fetched_Data_Best_Fit_File_Example_1)
+
+vAR_Fetched_Data_Best_Fit_File_Example_2 = vAR_Config['Model Fitting']['BEST_FIT_FILE_EXAMPLE_2']
+#print(vAR_Fetched_Data_Best_Fit_File_Example_2)
+
+vAR_Fetched_Data_Best_Fit_File_Example_3 = vAR_Config['Model Fitting']['BEST_FIT_FILE_EXAMPLE_3']
+#print(vAR_Fetched_Data_Best_Fit_File_Example_3)
+
+vAR_Fetched_Data_Best_Fit_Image_Example_1 = vAR_Config['Model Fitting']['BEST_FIT_IMAGE_EXAMPLE_1']
+#print(vAR_Fetched_Data_Best_Fit_Image_Example_1)
+
+vAR_Fetched_Data_Best_Fit_Image_Example_2 = vAR_Config['Model Fitting']['BEST_FIT_IMAGE_EXAMPLE_2']
+#print(vAR_Fetched_Data_Best_Fit_Image_Example_2)
+
+vAR_Fetched_Data_Best_Fit_Image_Example_3 = vAR_Config['Model Fitting']['BEST_FIT_IMAGE_EXAMPLE_3']
+#print(vAR_Fetched_Data_Best_Fit_Image_Example_3)
+
+vAR_Fetched_Data_Under_Fit_File_Example_1 = vAR_Config['Model Fitting']['UNDER_FIT_FILE_EXAMPLE_1']
+#print(vAR_Fetched_Data_Under_Fit_File_Example_1)
+
+vAR_Fetched_Data_Under_Fit_File_Example_2 = vAR_Config['Model Fitting']['UNDER_FIT_FILE_EXAMPLE_2']
+#print(vAR_Fetched_Data_Under_Fit_File_Example_2)
+
+vAR_Fetched_Data_Under_Fit_File_Example_3 = vAR_Config['Model Fitting']['UNDER_FIT_FILE_EXAMPLE_3']
+#print(vAR_Fetched_Data_Under_Fit_File_Example_3)
+
+vAR_Fetched_Data_Under_Fit_Image_Example_1 = vAR_Config['Model Fitting']['UNDER_FIT_IMAGE_EXAMPLE_1']
+#print(vAR_Fetched_Data_Under_Fit_Image_Example_1)
+
+vAR_Fetched_Data_Under_Fit_Image_Example_2 = vAR_Config['Model Fitting']['UNDER_FIT_IMAGE_EXAMPLE_2']
+#print(vAR_Fetched_Data_Under_Fit_Image_Example_2)
+
+vAR_Fetched_Data_Under_Fit_Image_Example_3 = vAR_Config['Model Fitting']['UNDER_FIT_IMAGE_EXAMPLE_3']
+#print(vAR_Fetched_Data_Under_Fit_Image_Example_3)
+
+vAR_Fetched_Data_Over_Fit_File_Example_1 = vAR_Config['Model Fitting']['OVER_FIT_FILE_EXAMPLE_1']
+#print(vAR_Fetched_Data_Over_Fit_File_Example_1)
+
+vAR_Fetched_Data_Over_Fit_File_Example_2 = vAR_Config['Model Fitting']['OVER_FIT_FILE_EXAMPLE_2']
+#print(vAR_Fetched_Data_Over_Fit_File_Example_2)
+
+vAR_Fetched_Data_Over_Fit_File_Example_3 = vAR_Config['Model Fitting']['OVER_FIT_FILE_EXAMPLE_3']
+#print(vAR_Fetched_Data_Over_Fit_File_Example_3)
+
+vAR_Fetched_Data_Over_Fit_Image_Example_1 = vAR_Config['Model Fitting']['OvER_FIT_IMAGE_EXAMPLE_1']
+#print(vAR_Fetched_Data_Over_Fit_Image_Example_1)
+
+vAR_Fetched_Data_Over_Fit_Image_Example_2 = vAR_Config['Model Fitting']['OvER_FIT_IMAGE_EXAMPLE_2']
+#print(vAR_Fetched_Data_Over_Fit_Image_Example_2)
+
+vAR_Fetched_Data_Over_Fit_Image_Example_3 = vAR_Config['Model Fitting']['OVER_FIT_IMAGE_EXAMPLE_3']
+#print(vAR_Fetched_Data_Over_Fit_Image_Example_3)
+
+vAR_Fetched_Data_Cross_Validation_Image_Example_1 = vAR_Config['Model_Validation_Tuning']['CROSS_VALIDATION_IMAGE_EXAMPLE_1']
+#print(vAR_Fetched_Data_Cross_Validation_Image_Example_1)
+
+vAR_Fetched_Data_Cross_Validation_Image_Example_2 = vAR_Config['Model_Validation_Tuning']['CROSS_VALIDATION_IMAGE_EXAMPLE_2']
+#print(vAR_Fetched_Data_Cross_Validation_Image_Example_2)
+
+vAR_Fetched_Data_Cross_Validation_Image_Example_3 = vAR_Config['Model_Validation_Tuning']['CROSS_VALIDATION_IMAGE_EXAMPLE_3']
+#print(vAR_Fetched_Data_Cross_Validation_Image_Example_3)
+
+vAR_Fetched_Data_Before_Hyperparameter_Tuning_Image = vAR_Config['Model_Validation_Tuning']['BEFORE_HYPERPARAMETER_TUNING_IMAGE']
+#print(vAR_Fetched_Data_Before_Hyperparameter_Tuning_Image)
+
+vAR_Fetched_Data_After_Hyperparameter_Tuning_Image = vAR_Config['Model_Validation_Tuning']['AFTER_HYPERPARAMETER_TUNING_IMAGE']
+#print(vAR_Fetched_Data_After_Hyperparameter_Tuning_Image)
+
+vAR_Fetched_Data_Model_Fitting_Best_Fit_Test = vAR_Config['Model Fitting']['BEST_FIT_TEST_REQUIRED']
+#print(vAR_Fetched_Data_Model_Fitting_Best_Fit_Test)
+
+vAR_Fetched_Data_Model_Fitting_Under_Fit_Test = vAR_Config['Model Fitting']['UNDER_FIT_TEST_REQUIRED']
+#print(vAR_Fetched_Data_Model_Fitting_Under_Fit_Test)
+
+vAR_Fetched_Data_Model_Fitting_Over_Fit_Test = vAR_Config['Model Fitting']['OVER_FIT_TEST_REQUIRED']
+#print(vAR_Fetched_Data_Model_Fitting_Over_Fit_Test)
+
+vAR_Fetched_Data_Cross_Validation_Required = vAR_Config['Model_Validation_Tuning']['CROSS_VALIDATION_REQUIRED']
+#print(vAR_Fetched_Data_Cross_Validation_Required)
+
+vAR_Fetched_Data_Hyperparameter_Tuning_Required = vAR_Config['Model_Validation_Tuning']['HYPERPARAMETERS_TUNING_REQUIRED']
+#print(vAR_Fetched_Data_Hyperparameter_Tuning_Required)
+
+# coding=utf-8
+
+# Step 1 - Import the Required Libraries
+
+#Our Model Implementation needs the Following Libraries:
+
+import pandas as vAR_pd
+from sklearn.preprocessing import LabelEncoder
+#import numpy as np
+from keras.models import Sequential
+from keras.layers import Dense, Dropout
+from keras.optimizers import Adam
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
+
+# Step 2 - Import Training Data
+
+#Next step after importing all libraries is getting the Training data imported. 
+
+#We are importing the Clustering data stored in our local system with the use of Pandas library.
+
+vAR_df = vAR_pd.read_excel(vAR_Fetched_Data_Source_Path_Input_Data)
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
+
+# Step 3 – Convert Categorical Data into Numerical Values using Label Encoder 
+
+# Next Step of the Implementation is Convertion of Categorical Data into Numerical Values & Feature/Label Selection.
+
+vAR_le = LabelEncoder()
+vAR_Transaction_Type_Conversion = vAR_le.fit_transform(vAR_df.iloc[:,7])
+vAR_Transaction_Type_Conversion_df = vAR_pd.DataFrame(vAR_Transaction_Type_Conversion,columns={'Transaction_Type_Converted'})
+vAR_Data_Category_Conversion = vAR_le.fit_transform(vAR_df.iloc[:,9])
+vAR_Data_Category_Conversion_df = vAR_pd.DataFrame(vAR_Data_Category_Conversion,columns={'Data_Category_Converted'})
+
+# Attached the Converted Numerical Data to the main dataframe
+
+vAR_df1 = vAR_df.merge(vAR_Transaction_Type_Conversion_df,left_index=True, right_index=True)
+vAR_df2 = vAR_df1.merge(vAR_Data_Category_Conversion_df,left_index=True, right_index=True)
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
+
+# Step 4 – Train the Model
+
+# Training the data means Making the model to Learn, understand & recognize the Pattern in the data.
+
+vAR_Features_train = vAR_pd.read_excel(vAR_Fetched_Data_Train_All_Features)
+vAR_Label_train = vAR_df.iloc[:,12]
+
+vAR_model = Sequential()
+
+vAR_model.add(Dense(4, input_shape=(4,), activation='relu',name='Input_Layer'))
+vAR_model.add(Dense(10, activation='relu',name='Hidden_Layer'))
+vAR_model.add(Dropout(0.5)) # Adding Dropout Prevents Overfitting
+vAR_model.add(Dense(1, activation='softmax', name='Output_Layer'))
+
+# Adam optimizer with learning rate of 0.005
+vAR_optimizer = Adam(lr=0.005)
+vAR_model.compile(vAR_optimizer, loss='binary_crossentropy', metrics=['accuracy'])
+
+# Train the model
+vAR_model.fit(vAR_Features_train, vAR_Label_train, verbose=1, batch_size=5, epochs=200)
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
+
+# Step 5 – Review Learning Algorithm
+
+# We Review the Algorithm as to see how it has learned from the Features we Provided
+
+vAR_model.predict(vAR_Features_train)
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
+
+# Step 6 - Import Test Data
+
+# Importing the Test Data is to check how the data used on the Model Performs
+
+vAR_df3 = vAR_pd.read_excel(vAR_Fetched_Data_Source_Path_Test_Data)
+vAR_Transaction_Type_Conversion_test = vAR_le.fit_transform(vAR_df3.iloc[:,3])
+vAR_Transaction_Type_Conversion_test_df = vAR_pd.DataFrame(vAR_Transaction_Type_Conversion_test,columns={'Transaction_Type_Converted'})
+vAR_Data_Category_Conversion_test = vAR_le.fit_transform(vAR_df.iloc[:,4])
+vAR_Data_Category_Conversion_test_df = vAR_pd.DataFrame(vAR_Data_Category_Conversion_test,columns={'Data_Category_Converted'})
+vAR_df4 = vAR_df3.merge(vAR_Transaction_Type_Conversion_test_df,left_index=True, right_index=True)
+vAR_df5 = vAR_df4.merge(vAR_Data_Category_Conversion_test_df,left_index=True, right_index=True)
+
+vAR_Features_test = vAR_pd.read_excel(vAR_Fetched_Data_Test_All_Features)
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
+
+# Step 7 – Running Model on Test Data
+
+# Running the Model on Test Data is to use the imported test data to Prodict our Outcome
+
+vAR_Labels_Pred = vAR_model.predict(vAR_Features_test)
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
+
+# Step 8 – Review Model Outcome
+
+# We check the Output of Model i.e the Prediction it has made on the test data
+
+vAR_Labels_Pred = vAR_pd.DataFrame(vAR_Labels_Pred,columns={'Predicted_Inter_Transaction_Type'})
+#vAR_Features_test = vAR_Features_test.sort()
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
+
+# Step 9 - Write Model Outcome to File
+
+# Write the Model Output to an excel file for analysis.
+
+vAR_df6 = vAR_pd.read_excel(vAR_Fetched_Data_Source_Path_Test_Data)
+vAR_df7 = vAR_df6.merge(vAR_Labels_Pred,left_index=True, right_index=True)
+vAR_df8 = vAR_df7.to_excel(vAR_Fetched_Data_Model_Path, engine='xlsxwriter')
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
+
+# Step 10 - To open and view the file outcome
+
+#Open the Written File &amp; Check the Outcome as Shown. Execute to View the data
+
+vAR_df9 = vAR_pd.read_excel(vAR_Fetched_Data_Model_Path)
+vAR_df9     
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
+
+
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

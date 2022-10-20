@@ -1,0 +1,57 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NLP_GET_SYNONYMS_NLTK_V1
+  Purpose 	:   A Program in Python using NLP for Getting Synonyms from Wordnet
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   27/12/2018 11:08 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				27/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Getting Synonyms from Wordnet using NLP in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from nltk.corpus import wordnet
+ 
+vAR_CSLAB_syn = wordnet.synsets("NLP")
+ 
+print(vAR_CSLAB_syn[0].definition())
+ 
+vAR_CSLAB_syn = wordnet.synsets("Python")
+ 
+print(vAR_CSLAB_syn[0].definition())
+
+vAR_CSLAB_synonyms = []
+ 
+for vAR_CSLAB_syn in wordnet.synsets('Computer'):
+ 
+    for vAR_CSLAB_lemma in vAR_CSLAB_syn.lemmas():
+ 
+        vAR_CSLAB_synonyms.append(vAR_CSLAB_lemma.name())
+ 
+print(vAR_CSLAB_synonyms)
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

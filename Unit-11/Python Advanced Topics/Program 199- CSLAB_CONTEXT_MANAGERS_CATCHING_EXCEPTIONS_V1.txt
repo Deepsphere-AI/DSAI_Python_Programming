@@ -1,0 +1,52 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_CONTEXT_MANAGERS_CATCHING_EXCEPTIONS_V1
+  Purpose 	:   A Program in Python for Catching Exceptions inside Context Managers
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   18/12/2018 15:47 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				18/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Catching Exceptions inside Context Managers in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+class vAR_assert_raises(object):
+    # based on pytest and unittest.TestCase
+    def __init__(self, type):
+        self.type = type
+    
+    def __enter__(self):
+        pass
+    
+    def __exit__(self, type, value, traceback):
+        if type is None:
+            raise AssertionError('exception expected')
+        if issubclass(type, self.type):
+            return True # swallow the expected exception
+        raise AssertionError('wrong exception type')
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

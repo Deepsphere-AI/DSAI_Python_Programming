@@ -1,0 +1,97 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_FERTILITY_TRENDS_V1
+  Purpose 	:   A Program in Python for Fertility Trends using statsmodels Package
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 15:54 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Fertility Trends using statsmodels Package in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import pandas as vAR_pd
+
+import numpy as vAR_np
+
+import matplotlib.pyplot as vAR_plt
+
+from statsmodels.sandbox.tools.tools_pca import pcasvd
+
+import os
+
+vAR_INI_File_Path = os.environ.get('PYTHON_TUTORIAL')
+
+import pandas as vAR_pd
+
+import configparser
+
+import pandas as vAR_pd
+
+vAR_Config = configparser.ConfigParser(allow_no_value=True)
+
+vAR_Config.read(vAR_INI_File_Path)
+
+vAR_CSLAB_Fertility = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_72_FERTILITY_DATA']
+
+vAR_CSLAB_Fertility = vAR_CSLAB_Fertility
+
+vAR_CSLAB_Fertility
+
+vAR_CSLAB_Fertility = vAR_pd.read_csv(vAR_CSLAB_Fertility, skiprows=3)
+
+#print (vAR_CSLAB_Fertility.head())
+
+for tok in ["IFC", "developing", "income", "European", "HIPC", "classified", 
+    
+  "Least", "Other", "small states", "cone", "world", "baltics"]:
+    
+    vAR_CSLAB_ii = [i for i in vAR_CSLAB_Fertility.index if tok.lower() in vAR_CSLAB_Fertility.loc[i, "Country Name"].lower()]
+
+vAR_CSLAB_years = range(1960, 2012)
+
+vAR_CSLAB_years_str = ["%.0f" % y for y in vAR_CSLAB_years]
+
+vAR_CSLAB_mat = vAR_CSLAB_Fertility.loc[:, ["Country Name",] + vAR_CSLAB_years_str].dropna()
+
+vAR_CSLAB_countries = vAR_CSLAB_mat["Country Name"].tolist()
+
+vAR_CSLAB_mat = vAR_np.asarray(vAR_CSLAB_mat.loc[:, vAR_CSLAB_years_str])
+
+vAR_CSLAB_mn = vAR_CSLAB_mat.mean(0)
+
+vAR_plt.plot(vAR_CSLAB_years, vAR_CSLAB_mn, '-', lw=4)
+
+vAR_plt.grid(True)
+
+vAR_plt.xlabel("Year", size=17)
+
+vAR_plt.ylabel("Global mean fertility rate", size=17)
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

@@ -1,0 +1,71 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DEEP_LEARNING_INTRODUCTION
+  Purpose 	:   A Program in Python for Introduction to Deep Learning
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   03/01/2019 9:55 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				02/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Introduction to Deep Learning in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import tensorflow as vAR_tf  # deep learning library. Tensors are just multi-dimensional arrays
+
+vAR_CSLAB_mnist = vAR_tf.keras.datasets.mnist  # mnist is a dataset of 28x28 images of handwritten digits and their labels
+
+(vAR_CSLAB_x_train, vAR_CSLAB_y_train),(vAR_CSLAB_x_test, vAR_CSLAB_y_test) = mnist.load_data()  # unpacks images to x_train/x_test and labels to y_train/y_test
+
+vAR_CSLAB_x_train = vAR_tf.keras.utils.normalize(vAR_CSLAB_x_train, axis=1)  # scales data between 0 and 1
+
+vAR_CSLAB_x_test = vAR_tf.keras.utils.normalize(vAR_CSLAB_x_test, axis=1)  # scales data between 0 and 1
+
+vAR_CSLAB_model = vAR_tf.keras.models.Sequential()  # a basic feed-forward model
+
+vAR_CSLAB_model.add(vAR_tf.keras.layers.Flatten())  # takes our 28x28 and makes it 1x784
+
+vAR_CSLAB_model.add(vAR_tf.keras.layers.Dense(128, activation=tf.nn.relu))  # a simple fully-connected layer, 128 units, relu activation
+
+vAR_CSLAB_model.add(vAR_tf.keras.layers.Dense(128, activation=tf.nn.relu))  # a simple fully-connected layer, 128 units, relu activation
+
+vAR_CSLAB_model.add(vAR_tf.keras.layers.Dense(10, activation=tf.nn.softmax))  # our output layer. 10 units for 10 classes. Softmax for probability distribution
+
+vAR_CSLAB_model.compile(optimizer='adam',  # Good default optimizer to start with
+              loss='sparse_categorical_crossentropy',  # how will we calculate our "error." Neural network aims to minimize loss.
+              metrics=['accuracy'])  # what to track
+
+vAR_CSLAB_model.fit(vAR_CSLAB_x_train, vAR_CSLAB_y_train, epochs=3)  # train the model
+
+vAR_CSLAB_val_loss, vAR_CSLAB_val_acc = vAR_CSLAB_model.evaluate(vAR_CSLAB_x_test, vAR_CSLAB_y_test)  # evaluate the out of sample data with model
+
+print(vAR_CSLAB_val_loss)  # model's loss (error)
+
+print(vAR_CSLAB_val_acc)  # model's accuracy
+
+vAR_CSLAB_model.save('epic_num_reader.model')
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

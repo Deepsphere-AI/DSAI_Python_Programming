@@ -1,0 +1,67 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_GRAPHING_MATPLOTLIB_CONTOUR_PLOT_V1
+  Purpose 	:   A Program in Python for Contour Plot in matplotlib
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 16:09 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+   
+## Program Description : Program for Contour Plot in matplotlib in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from pylab import *
+
+import numpy as vAR_np
+
+def f(vAR_CSLAB_x,vAR_CSLAB_y):
+    
+    return (1-vAR_CSLAB_x/2+vAR_CSLAB_x**5+vAR_CSLAB_y**3)*vAR_np.exp(-vAR_CSLAB_x**2-vAR_CSLAB_y**2)
+
+    vAR_CSLAB_n = 256
+
+    vAR_CSLAB_x = vAR_np.linspace(-3,3,vAR_CSLAB_n)
+
+    vAR_CSLAB_y = vAR_np.linspace(-3,3,vAR_CSLAB_n)
+
+    vAR_CSLAB_X,vAR_CSLAB_Y = vAR_np.meshgrid(vAR_CSLAB_x,vAR_CSLAB_y)
+
+    axes([0.025,0.025,0.95,0.95])
+
+    contourf(vAR_CSLAB_X, vAR_CSLAB_Y, f(vAR_CSLAB_X,vAR_CSLAB_Y), 8, alpha=.75, cmap=cm.hot)
+  
+    vAR_CSLAB_C = contour(vAR_CSLAB_X, vAR_CSLAB_Y, f(vAR_CSLAB_X,vAR_CSLAB_Y), 8, colors='black', linewidth=.5)
+
+    clabel(vAR_CSLAB_C, inline=1, fontsize=10)
+
+    xticks([]), yticks([])
+
+    show()
+    
+f(4,5)    
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

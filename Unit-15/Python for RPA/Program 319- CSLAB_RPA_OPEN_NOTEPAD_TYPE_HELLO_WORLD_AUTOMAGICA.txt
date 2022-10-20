@@ -1,0 +1,51 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_RPA_OPEN_NOTEPAD_TYPE_HELLO_WORLD_AUTOMAGICA
+  Purpose 	:   A Program in Python for Typing Hello World Automatically using Automagica
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   02/01/2019 10:13 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				02/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Typing Hello World Automatically using Automagica in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from automagica import *
+
+PressHotkey('win','r')
+
+Wait(seconds=1)
+
+Type(text='notepad', interval_seconds=0)
+
+PressKey('enter')
+
+Wait(seconds=2)
+
+Type(text='Hello world!', interval_seconds=0.15)
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

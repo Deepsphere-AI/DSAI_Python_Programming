@@ -1,0 +1,101 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DEEP_LEARNING_LINEAR_REGRESSION_V1
+  Purpose 	:   A Program in Python for Linear Regression - Deep Learning
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   07/01/2019 10:52 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				07/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Linear Regression - Deep Learning in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+import numpy as vAR_np 
+import tensorflow as vAR_tf 
+import matplotlib.pyplot as vAR_plt
+vAR_np.random.seed(101) 
+vAR_tf.set_random_seed(101)
+
+# Genrating random linear data 
+# There will be 50 data points ranging from 0 to 50 
+vAR_CSLAB_x = vAR_np.linspace(0, 50, 50) 
+vAR_CSLAB_y = vAR_np.linspace(0, 50, 50) 
+  
+# Adding noise to the random linear data 
+vAR_CSLAB_x += vAR_np.random.uniform(-4, 4, 50) 
+vAR_CSLAB_y += vAR_np.random.uniform(-4, 4, 50) 
+  
+vAR_CSLAB_n = len(vAR_CSLAB_x) # Number of data points
+
+vAR_CSLAB_X = vAR_tf.placeholder("float") 
+vAR_CSLAB_Y = vAR_tf.placeholder("float")
+
+vAR_CSLAB_W = vAR_tf.Variable(vAR_np.random.randn(), name = "W") 
+vAR_CSLAB_b = vAR_tf.Variable(vAR_np.random.randn(), name = "b")
+
+vAR_CSLAB_learning_rate = 0.01
+vAR_CSLAB_training_epochs = 1000
+
+# Hypothesis 
+vAR_CSLAB_y_pred = vAR_tf.add(vAR_tf.multiply(vAR_CSLAB_X, vAR_CSLAB_W), vAR_CSLAB_b) 
+  
+# MeanvAR_ Squared Error Cost Function 
+vAR_CSLAB_cost = vAR_tf.reduce_sum(vAR_tf.pow(vAR_CSLAB_y_pred-vAR_CSLAB_Y, 2)) / (2 * vAR_CSLAB_n) 
+  
+# Gradient Descent Optimizer 
+vAR_CSLAB_optimizer = vAR_tf.train.GradientDescentOptimizer(vAR_CSLAB_learning_rate).minimize(vAR_CSLAB_cost) 
+  
+# Global Variables Initializer 
+vAR_CSLAB_init = vAR_tf.global_variables_initializer() 
+
+# Starting the Tensorflow Session 
+with vAR_tf.Session() as sess: 
+      
+    # Initializing the Variables 
+    sess.run(vAR_CSLAB_init) 
+      
+    # Iterating through all the epochs 
+    for epoch in range(vAR_CSLAB_training_epochs): 
+          
+        # Feeding each data point into the optimizer using Feed Dictionary 
+        for (_x, _y) in zip(vAR_CSLAB_x, vAR_CSLAB_y): 
+            sess.run(vAR_CSLAB_optimizer, feed_dict = {vAR_CSLAB_X : _x, vAR_CSLAB_Y : _y}) 
+          
+        # Displaying the result after every 50 epochs 
+        if (epoch + 1) % 50 == 0: 
+            # Calculating the cost a every epoch 
+            vAR_CSLAB_c = sess.run(vAR_CSLAB_cost, feed_dict = {vAR_CSLAB_X : vAR_CSLAB_x, vAR_CSLAB_Y : vAR_CSLAB_y}) 
+            print("Epoch", (epoch + 1), ": vAR_CSLAB_cost =", vAR_CSLAB_c, "W =", sess.run(vAR_CSLAB_W), "b =", sess.run(vAR_CSLAB_b)) 
+      
+    # Storing necessary values to be used outside the Session 
+    vAR_CSLAB_training_cost = sess.run(vAR_CSLAB_cost, feed_dict ={vAR_CSLAB_X: vAR_CSLAB_x, vAR_CSLAB_Y: vAR_CSLAB_y}) 
+    vAR_CSLAB_weight = sess.run(vAR_CSLAB_W) 
+    vAR_CSLAB_bias = sess.run(vAR_CSLAB_b) 
+    
+    
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

@@ -1,0 +1,64 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NUERAL_NETWORKS_SCIKIT-LEARN_V1
+  Purpose 	:   A Program in Python for Nueral Networks using SCIKIT-LEARN
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 15:52 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+  
+## Program Description : Program for Nueral Networks in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from sklearn.neural_network import MLPClassifier
+
+vAR_CSLAB_X = [[0., 0.], [1., 1.]]
+
+vAR_CSLAB_y = [0, 1]
+
+vAR_CSLAB_clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
+                     hidden_layer_sizes=(5, 2), random_state=1)
+
+vAR_CSLAB_clf.fit(vAR_CSLAB_X, vAR_CSLAB_y)
+
+vAR_CSLAB_clf.predict([[2., 2.], [-1., -2.]])
+
+vAR_CSLAB_clf.predict_proba([[2., 2.], [1., 2.]])  
+
+vAR_CSLAB_X = [[0., 0.], [1., 1.]]
+
+vAR_CSLAB_y = [[0, 1], [1, 1]]
+
+vAR_CSLAB_clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
+                     hidden_layer_sizes=(15,), random_state=1)
+
+vAR_CSLAB_clf.fit(vAR_CSLAB_X, vAR_CSLAB_y)
+
+vAR_CSLAB_clf.predict([[1., 2.]])
+        
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

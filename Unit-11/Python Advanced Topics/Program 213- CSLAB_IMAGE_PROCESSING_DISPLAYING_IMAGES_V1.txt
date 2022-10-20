@@ -1,0 +1,51 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_IMAGE_PROCESSING_DISPLAYING_IMAGES_V1
+  Purpose 	:   A Program in Python for Displaying Images
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   19/12/2018 11:25 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Displaying Images in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from scipy import misc
+
+vAR_CSLAB_f = misc.face(gray=True)
+
+import matplotlib.pyplot as vAR_plt
+
+vAR_plt.imshow(vAR_CSLAB_f, cmap=vAR_plt.cm.gray) 
+
+vAR_plt.imshow(vAR_CSLAB_f, cmap=vAR_plt.cm.gray, vmin=30, vmax=200)  
+
+vAR_plt.axis('off')
+
+vAR_plt.contour(vAR_CSLAB_f, [50, 200]) 
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

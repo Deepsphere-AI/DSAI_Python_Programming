@@ -1,0 +1,60 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_INVENTORY_DEMAND_FORECASTING_V1
+  Purpose 	:   A Program in Python For Inventory Demand Forecasting Usecase
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 16:55 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program For Inventory Demand Forecasting Usecase in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import matplotlib.pyplot as vAR_plt
+
+import numpy as vAR_np
+
+vAR_CSLAB_t1 = vAR_np.arange(0.0, 2.0, 0.1)
+
+vAR_CSLAB_t2 = vAR_np.arange(0.0, 2.0, 0.01)
+
+vAR_CSLAB_l1, = vAR_plt.plot(vAR_CSLAB_t2, vAR_np.exp(-vAR_CSLAB_t2))
+
+vAR_CSLAB_l2, vAR_CSLAB_l3 = vAR_plt.plot(vAR_CSLAB_t2, vAR_np.sin(2 * vAR_np.pi * vAR_CSLAB_t2), '--go', vAR_CSLAB_t1, vAR_np.log(1 + vAR_CSLAB_t1), '.')
+
+vAR_CSLAB_l4, = vAR_plt.plot(vAR_CSLAB_t2, vAR_np.exp(-vAR_CSLAB_t2) * vAR_np.sin(2 * vAR_np.pi * vAR_CSLAB_t2), 'rs-.')
+
+vAR_plt.legend((vAR_CSLAB_l2, vAR_CSLAB_l4), ('Actual Demand', 'Forecated Demand'), loc='upper right', shadow=True)
+
+vAR_plt.xlabel('time')
+
+vAR_plt.ylabel('Demand %')
+
+vAR_plt.show()
+
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

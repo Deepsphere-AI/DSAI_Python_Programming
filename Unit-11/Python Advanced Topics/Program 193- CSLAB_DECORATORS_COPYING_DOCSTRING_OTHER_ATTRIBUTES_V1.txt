@@ -1,0 +1,58 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DECORATORS_COPYING_DOCSTRING_OTHER_ATTRIBUTES_V1
+  Purpose 	:   A Program for Copying the docstring and other attributes of the original function using Decorators in Python
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   18/12/2018 12:55 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				18/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Copying the docstring and other attributes of the original function in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import functools
+def vAR_replacing_decorator_with_args(arg):
+  print("defining the decorator")
+  def vAR_decorator(function):
+      print("doing decoration, %r" % arg)
+      def vAR_wrapper(*args, **kwargs):
+          print("inside wrapper, %r %r" % (args, kwargs))
+          return function(*args, **kwargs)
+      return functools.update_wrapper(_wrapper, function)
+  return vAR_decorator
+
+#@replacing_decorator_with_args("abc")
+def vAR_function():
+    "extensive documentation"
+    print("inside function")
+    return 14
+
+vAR_replacing_decorator_with_args(20)
+
+vAR_function()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

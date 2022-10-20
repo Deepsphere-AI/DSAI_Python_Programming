@@ -1,0 +1,75 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DEEP_LEARNING_MULTI_CLASS_SUPPORT_VECTOR_MACHINE_V1
+  Purpose 	:   A Program in Python for Multiclass Support Vector Machine - Deep Learning
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   07/01/2019 14:37 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				07/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Multiclass Support Vector Machine - Deep Learning in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+
+vAR_CSLAB_iris = datasets.load_iris()
+vAR_CSLAB_x_vals = vAR_np.array([[x[0], x[3]] for x in vAR_CSLAB_iris.data])
+vAR_CSLAB_y_vals1 = vAR_np.array([1 if y==0 else -1 for y in vAR_CSLAB_iris.target])
+vAR_CSLAB_y_vals2 = vAR_np.array([1 if y==1 else -1 for y in vAR_CSLAB_iris.target])
+vAR_CSLAB_y_vals3 = vAR_np.array([1 if y==2 else -1 for y in vAR_CSLAB_iris.target])
+vAR_CSLAB_y_vals = vAR_np.array([vAR_CSLAB_y_vals1, vAR_CSLAB_y_vals2, vAR_CSLAB_y_vals3])
+vAR_CSLAB_class1_x = [x[0] for i,x in enumerate(vAR_CSLAB_x_vals) if vAR_CSLAB_iris.target[i]==0]
+vAR_CSLAB_class1_y = [x[1] for i,x in enumerate(vAR_CSLAB_x_vals) if vAR_CSLAB_iris.target[i]==0]
+vAR_CSLAB_class2_x = [x[0] for i,x in enumerate(vAR_CSLAB_x_vals) if vAR_CSLAB_iris.target[i]==1]
+vAR_CSLAB_class2_y = [x[1] for i,x in enumerate(vAR_CSLAB_x_vals) if vAR_CSLAB_iris.target[i]==1]
+vAR_CSLAB_class3_x = [x[0] for i,x in enumerate(vAR_CSLAB_x_vals) if vAR_CSLAB_iris.target[i]==2]
+vAR_CSLAB_class3_y = [x[1] for i,x in enumerate(vAR_CSLAB_x_vals) if vAR_CSLAB_iris.target[i]==2]
+
+vAR_CSLAB_vAR_CSLAB_batch_size = 50
+
+vAR_CSLAB_x_data = vAR_tf.placeholder(shape=[None, 2], dtype=vAR_tf.float32)
+vAR_CSLAB_y_target = vAR_tf.placeholder(shape=[3, None], dtype=vAR_tf.float32)
+vAR_CSLAB_prediction_grid = vAR_tf.placeholder(shape=[None, 2], dtype=vAR_tf.float32)
+
+vAR_CSLAB_b = vAR_tf.Variable(vAR_tf.random_normal(shape=[3,vAR_CSLAB_batch_size]))
+
+vAR_CSLAB_gamma = vAR_tf.constant(-10.0)
+vAR_CSLAB_dist = vAR_tf.reduce_sum(vAR_tf.square(vAR_CSLAB_x_data), 1)
+vAR_CSLAB_dist = vAR_tf.reshape(vAR_CSLAB_dist, [-1,1])
+vAR_CSLAB_sq_dists = vAR_tf.add(vAR_tf.subtract(vAR_CSLAB_dist, vAR_tf.multiply(2., vAR_tf.matmul(vAR_CSLAB_x_data, vAR_tf.transpose(vAR_CSLAB_x_data)))), vAR_tf.transpose(vAR_CSLAB_dist))
+vAR_CSLAB_my_kernel = vAR_tf.exp(vAR_tf.multiply(vAR_CSLAB_gamma, vAR_tf.abs(vAR_CSLAB_sq_dists)))
+
+def vAR_CSLAB_reshape_matmul(mat):
+    vAR_CSLAB_v1 = vAR_tf.expand_dims(mat, 1)
+    vAR_CSLAB_v2 = vAR_tf.reshape(vAR_CSLAB_v1, [3, vAR_CSLAB_batch_size, 1])
+    return(vAR_tf.batch_matmul(vAR_CSLAB_v2, vAR_CSLAB_v1))
+
+vAR_CSLAB_model_output = vAR_tf.matmul(vAR_CSLAB_b, vAR_CSLAB_my_kernel)
+vAR_CSLAB_first_term = vAR_tf.reduce_sum(vAR_CSLAB_b)
+vAR_CSLAB_b_vec_cross = vAR_tf.matmul(vAR_tf.transpose(vAR_CSLAB_b), vAR_CSLAB_b)
+
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

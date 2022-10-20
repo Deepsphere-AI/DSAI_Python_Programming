@@ -1,0 +1,87 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DEEP_LEARNING_KERAS_MNIST_MLP_CLASSIFICATION
+  Purpose 	:   A Program in Python for Multi layer Perceptron using Keras Library in Deep Learning
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   07/01/2019 18:27 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				07/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program in Python for Multi layer Perceptron using Keras Library in Deep Learning
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from __future__ import print_function
+
+import keras
+from keras.datasets import mnist
+from keras.models import Sequential
+from keras.layers import Dense, Dropout
+from keras.optimizers import RMSprop
+
+vAR_CSLAB_batch_size = 128
+vAR_CSLAB_num_classes = 10
+vAR_CSLAB_epochs = 1
+
+# the data, split between train and test sets
+(vAR_CSLAB_x_train, vAR_CSLAB_y_train), (vAR_CSLAB_x_test, vAR_CSLAB_y_test) = mnist.load_data()
+
+vAR_CSLAB_x_train = vAR_CSLAB_x_train.reshape(60000, 784)
+vAR_CSLAB_x_test = vAR_CSLAB_x_test.reshape(10000, 784)
+vAR_CSLAB_x_train = vAR_CSLAB_x_train.astype('float32')
+vAR_CSLAB_x_test = vAR_CSLAB_x_test.astype('float32')
+vAR_CSLAB_x_train /= 255
+vAR_CSLAB_x_test /= 255
+print(vAR_CSLAB_x_train.shape[0], 'train samples')
+print(vAR_CSLAB_x_test.shape[0], 'test samples')
+
+# convert class vectors to binary class matrices
+vAR_CSLAB_y_train = keras.utils.to_categorical(vAR_CSLAB_y_train, vAR_CSLAB_num_classes)
+vAR_CSLAB_y_test = keras.utils.to_categorical(vAR_CSLAB_y_test, vAR_CSLAB_num_classes)
+
+vAR_CSLAB_model = Sequential()
+vAR_CSLAB_model.add(Dense(512, activation='relu', input_shape=(784,)))
+vAR_CSLAB_model.add(Dropout(0.2))
+vAR_CSLAB_model.add(Dense(512, activation='relu'))
+vAR_CSLAB_model.add(Dropout(0.2))
+vAR_CSLAB_model.add(Dense(vAR_CSLAB_num_classes, activation='softmax'))
+
+vAR_CSLAB_model.summary()
+
+vAR_CSLAB_model.compile(loss='categorical_crossentropy',
+              optimizer=RMSprop(),
+              metrics=['accuracy'])
+
+vAR_CSLAB_history = vAR_CSLAB_model.fit(vAR_CSLAB_x_train, vAR_CSLAB_y_train,
+                    batch_size=vAR_CSLAB_batch_size,
+                    epochs=vAR_CSLAB_epochs,
+                    verbose=1,
+                    validation_data=(vAR_CSLAB_x_test, vAR_CSLAB_y_test))
+vAR_CSLAB_score = vAR_CSLAB_model.evaluate(vAR_CSLAB_x_test, vAR_CSLAB_y_test, verbose=0)
+print('Test loss:', vAR_CSLAB_score[0])
+print('Test accuracy:', vAR_CSLAB_score[1])
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

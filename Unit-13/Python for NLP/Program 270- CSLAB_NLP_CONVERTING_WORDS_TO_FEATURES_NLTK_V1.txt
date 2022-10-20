@@ -1,0 +1,66 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NLP_CONVERTING_WORDS_TO_FEATURES_NLTK_V1
+  Purpose 	:   A Program in Python using NLP for Converting Words to Features
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   27/12/2018 15:38 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				27/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Converting Words to Features using NLP in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import nltk
+import random
+from nltk.corpus import movie_reviews
+
+vAR_CSLAB_documents = [(list(movie_reviews.words(fileid)), category)
+             for category in movie_reviews.categories()
+             for fileid in movie_reviews.fileids(category)]
+
+random.shuffle(vAR_CSLAB_documents)
+
+vAR_CSLAB_all_words = []
+
+for w in movie_reviews.words():
+    vAR_CSLAB_all_words.append(w.lower())
+
+vAR_CSLAB_all_words = nltk.FreqDist(vAR_CSLAB_all_words)
+
+vAR_CSLAB_word_features = list(vAR_CSLAB_all_words.keys())[:3000]
+
+def vAR_CSLAB_find_features(vAR_CSLAB_document):
+    vAR_CSLAB_words = set(vAR_CSLAB_document)
+    vAR_CSLAB_features = {}
+    for w in vAR_CSLAB_word_features:
+        vAR_CSLAB_features[w] = (w in vAR_CSLAB_words)
+
+    return vAR_CSLAB_features
+
+print((vAR_CSLAB_find_features(movie_reviews.words('neg/cv000_29416.txt'))))
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

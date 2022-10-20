@@ -1,0 +1,47 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_TENSORFLOW_HELLO_WORLD_V1
+  Purpose 	:   A Program in Python Tensorflow for Basic Hello World
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   21/12/2018 9:38 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Basic Hello World using Tensorflow in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+import tensorflow as tf
+
+vAR_CSLAB_hello = tf.constant('Hello, TensorFlow!')
+
+# Start tf session
+VAR_CSLAB_sess = tf.Session()
+
+# Run the operation of initializing the constant
+print(VAR_CSLAB_sess.run(vAR_CSLAB_hello))
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

@@ -1,0 +1,97 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DEEP_LEARNNG_KMEANS_CLUSTERING_V1
+  Purpose 	:   A Program in Python for Kmeans Clustering - Deep Learning
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   07/01/2019 12:23 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				07/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Kmeans Clustering - Deep Learning in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+import tensorflow as vAR_tf
+import numpy as vAR_np
+
+vAR_CSLAB_seed = 700
+
+def vAR_CSLAB_create_samples(vAR_CSLAB_n_clusters, vAR_CSLAB_n_samples_per_cluster, vAR_CSLAB_n_features, vAR_CSLAB_embiggen_factor, vAR_CSLAB_seed):
+    vAR_np.random.seed(vAR_CSLAB_seed)
+    vAR_CSLAB_slices = []
+    vAR_CSLAB_centroids = []
+        
+    # Create samples for each cluster
+    for i in range(vAR_CSLAB_n_clusters):
+        vAR_CSLAB_samples = vAR_tf.random_normal((vAR_CSLAB_n_samples_per_cluster, vAR_CSLAB_n_features),
+                                   mean=0.0, stddev=5.0, dtype=vAR_tf.float32, seed=vAR_CSLAB_seed, name="cluster_{}".format(i))
+        
+        vAR_CSLAB_current_centroid = (vAR_np.random.random((1, vAR_CSLAB_n_features)) * vAR_CSLAB_embiggen_factor) - (vAR_CSLAB_embiggen_factor/2)
+        
+        vAR_CSLAB_centroids.append(vAR_CSLAB_current_centroid)
+        
+        vAR_CSLAB_samples += vAR_CSLAB_current_centroid
+        
+        vAR_CSLAB_slices.append(vAR_CSLAB_samples)
+        
+    # Create a big "samples" dataset
+    vAR_CSLAB_samples = vAR_tf.concat(vAR_CSLAB_slices, 0, name='samples')
+    vAR_CSLAB_centroids = vAR_tf.concat(vAR_CSLAB_centroids, 0, name='centroids')
+    return vAR_CSLAB_centroids, vAR_CSLAB_samples
+
+import matplotlib.pyplot as vAR_plt
+%matplotlib inline
+
+def vAR_CSLAB_plot_clusters(vAR_CSLAB_all_samples, vAR_CSLAB_centroids, vAR_CSLAB_n_samples_per_cluster):
+     
+    #Plot out the different clusters
+     #Choose a different colour for each cluster
+    vAR_CSLAB_colour = vAR_plt.cm.rainbow(vAR_np.linspace(0,1,len(vAR_CSLAB_centroids)))
+    for i, vAR_CSLAB_centroid in enumerate(vAR_CSLAB_centroids):
+        vAR_CSLAB_samples = vAR_CSLAB_all_samples[i*vAR_CSLAB_n_samples_per_cluster:(i+1)*vAR_CSLAB_n_samples_per_cluster]
+        vAR_plt.scatter(vAR_CSLAB_samples[:,0], vAR_CSLAB_samples[:,1], c=vAR_CSLAB_colour[i])
+         #Grab just the samples fpr the given cluster and plot them out with a new colour
+         #Also plot centroid
+        vAR_plt.plot(vAR_CSLAB_centroid[0], vAR_CSLAB_centroid[1], markersize=35, marker="x", color='k', mew=10)
+        vAR_plt.plot(vAR_CSLAB_centroid[0], vAR_CSLAB_centroid[1], markersize=30, marker="x", color='m', mew=5)
+    vAR_plt.show()
+    
+vAR_CSLAB_n_features = 2
+vAR_CSLAB_n_clusters = 3
+vAR_CSLAB_n_samples_per_cluster = 500
+vAR_CSLAB_vAR_CSLAB_seed = 700
+vAR_CSLAB_embiggen_factor = 70
+
+vAR_CSLAB_centroids, vAR_CSLAB_samples = vAR_CSLAB_create_samples(vAR_CSLAB_n_clusters, vAR_CSLAB_n_samples_per_cluster, vAR_CSLAB_n_features, vAR_CSLAB_embiggen_factor, vAR_CSLAB_seed)
+
+vAR_CSLAB_model = vAR_tf.global_variables_initializer()
+with vAR_tf.Session() as session:
+    vAR_CSLAB_sample_values = session.run(vAR_CSLAB_samples)
+    vAR_CSLAB_centroid_values = session.run(vAR_CSLAB_centroids)
+    
+    vAR_CSLAB_plot_clusters(vAR_CSLAB_sample_values, vAR_CSLAB_centroid_values, vAR_CSLAB_n_samples_per_cluster)
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

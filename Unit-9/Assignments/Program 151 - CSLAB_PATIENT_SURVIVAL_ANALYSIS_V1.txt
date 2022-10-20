@@ -1,0 +1,69 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_PATIENT_SURVIVAL_ANALYSIS_V1
+  Purpose 	:   A Program in Python For Patient Survival Analysis
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 20:31 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program For Patient Survival Analysis in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as np
+
+from mpl_toolkits.mplot3d import Axes3D
+
+import matplotlib.pyplot as vAR_plt
+
+VAR_CSLAB_n = 50
+
+VAR_CSLAB_vmin = 10
+
+VAR_CSLAB_vmax = 50
+
+def randrange(VAR_CSLAB_n, VAR_CSLAB_vmin, VAR_CSLAB_vmax):
+    
+    return (VAR_CSLAB_vmax - VAR_CSLAB_vmin)*vAR_np.random.rand(VAR_CSLAB_n) + VAR_CSLAB_vmin
+
+VAR_CSLAB_fig = vAR_plt.figure()
+
+VAR_CSLAB_ax = VAR_CSLAB_fig.add_subplot(111, projection='3d')
+
+for VAR_CSLAB_c, VAR_CSLAB_m, VAR_CSLAB_zl, VAR_CSLAB_zh in [('r', 'o', -50, -25), ('b', '^', -30, -5)]:
+    
+    VAR_CSLAB_xs = randrange(VAR_CSLAB_n, 23, 32)
+    
+    VAR_CSLAB_ys = randrange(VAR_CSLAB_n, 0, 100)
+    
+    VAR_CSLAB_zs = randrange(VAR_CSLAB_n, VAR_CSLAB_zl, VAR_CSLAB_zh)
+    
+    VAR_CSLAB_ax.scatter(VAR_CSLAB_xs, VAR_CSLAB_ys, VAR_CSLAB_zs, c=VAR_CSLAB_c, marker=VAR_CSLAB_m)
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

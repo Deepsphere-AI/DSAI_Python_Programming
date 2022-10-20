@@ -1,0 +1,70 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_COMPUTER_VISION_FINDING_CONTOURS_OPENCV
+  Purpose 	:   A Program in Python using Computer Vision for Finding Contours
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   28/12/2018 11:22 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				28/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Finding Contours using Opencv in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import cv2
+
+vAR_CSLAB_cam = cv2.VideoCapture(0)
+
+vAR_CSLAB_lower_yellow = (18, 100, 210)
+
+vAR_CSLAB_upper_yellow = (40, 160, 245)
+
+while vAR_CSLAB_cam.isOpened():
+    vAR_CSLAB_ret, vAR_CSLAB_frame = vAR_CSLAB_cam.read()
+    
+    vAR_CSLAB_frame = cv2.cvtColor(vAR_CSLAB_frame, cv2.COLOR_BGR2HSV)
+    
+    vAR_CSLAB_mask = cv2.inRange(vAR_CSLAB_frame, vAR_CSLAB_lower_yellow, vAR_CSLAB_upper_yellow)
+    
+    _, contours, _ = cv2.findContours(vAR_CSLAB_mask, cv2.RETR_EXTERNAL,
+                                      cv2.CHAIN_APPROX_SIMPLE)
+    if len(contours) > 0:
+        
+        vAR_CSLAB_tennis_ball = max(contours, key=cv2.contourArea)
+        
+        vAR_CSLAB_x, vAR_CSLAB_y, vAR_CSLAB_w, vAR_CSLAB_h = cv2.boundingRect(vAR_CSLAB_tennis_ball)
+        
+        cv2.rectangle(vAR_CSLAB_frame, (vAR_CSLAB_x, vAR_CSLAB_y), (vAR_CSLAB_x+vAR_CSLAB_w, vAR_CSLAB_y+vAR_CSLAB_h), (0, 255, 0), thickness=3)
+        
+    cv2.imshow("frame", vAR_CSLAB_frame)
+    
+    vAR_CSLAB_key = cv2.waitKey(1) & 0xff
+    
+    if vAR_CSLAB_key == 27:
+        
+        break
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

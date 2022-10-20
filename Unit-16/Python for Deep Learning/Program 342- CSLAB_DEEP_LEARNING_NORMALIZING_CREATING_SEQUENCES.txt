@@ -1,0 +1,96 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DEEP_LEARNING_NORMALIZING_CREATING_SEQUENCES
+  Purpose 	:   A Program in Python for Normalizing & Creating Sequences using Deep Learning
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   04/01/2019 16:24 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				04/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Normalizing & Creating Sequences using Deep Learning in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import pandas as vAR_pd
+
+import os
+
+vAR_INI_File_Path = os.environ.get('PYTHON_TUTORIAL')
+
+import pandas as vAR_pd
+
+import configparser
+
+vAR_Config = configparser.ConfigParser(allow_no_value=True)
+
+vAR_Config.read(vAR_INI_File_Path)
+
+vAR_CSLAB_CREATE_SEQUENCES = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_342_CREATE_SEQUENCES']
+
+vAR_CSLAB_df = vAR_pd.read_csv(vAR_CSLAB_CREATE_SEQUENCES, names=['time', 'low', 'high', 'open', 'close', 'volume'])
+
+print(vAR_CSLAB_df.head())
+
+vAR_CSLAB_main_df = vAR_pd.DataFrame() # begin empty
+
+ratios = ["BTC-USD", "LTC-USD", "BCH-USD", "ETH-USD"]  # the 4 ratios we want to consider
+for ratio in ratios:  # begin iteration
+    print(ratio)
+    vAR_CSLAB_dataset = "C:/Python_Programs/crypto_data/BTC-USD.csv"  # get the full path to the file.
+    vAR_CSLAB_df = vAR_pd.read_csv(vAR_CSLAB_dataset, names=['time', 'low', 'high', 'open', 'close', 'volume'])  # read in specific file
+
+    # rename volume and close to include the ticker so we can still which close/volume is which:
+    vAR_CSLAB_df.rename(columns={"close": f"{ratio}_close", "volume": f"{ratio}_volume"}, inplace=True)
+
+    vAR_CSLAB_df.set_index("time", inplace=True)  # set time as index so we can join them on this shared time
+    vAR_CSLAB_df = vAR_CSLAB_df[[f"{ratio}_close", f"{ratio}_volume"]]  # ignore the other columns besides price and volume
+
+    if len(vAR_CSLAB_main_df)==0:  # if the dataframe is empty
+        vAR_CSLAB_main_df = vAR_CSLAB_df  # then it's just the current df
+    else:  # otherwise, join this data to the main one
+        vAR_CSLAB_main_df = vAR_CSLAB_main_df.join(vAR_CSLAB_df)
+        
+vAR_CSLAB_main_df.fillna(method="ffill", inplace=True)  # if there are gaps in data, use previously known values
+vAR_CSLAB_main_df.dropna(inplace=True)
+print(vAR_CSLAB_main_df.head())  # how did we do??
+
+vAR_CSLAB_SEQ_LEN = 60  # how long of a preceeding sequence to collect for RNN
+vAR_CSLAB_FUTURE_PERIOD_PREDICT = 3  # how far into the future are we trying to predict?
+vAR_CSLAB_RATIO_TO_PREDICT = "LTC-USD"
+
+def classify(current, future):
+    if float(future) > float(current):
+        return 1
+    else:
+        return 0
+    
+vAR_CSLAB_main_df['future'] = vAR_CSLAB_main_df[f'{vAR_CSLAB_RATIO_TO_PREDICT}_close'].shift(-vAR_CSLAB_FUTURE_PERIOD_PREDICT)
+
+vAR_CSLAB_main_df['target'] = list(map(classify, vAR_CSLAB_main_df[f'{vAR_CSLAB_RATIO_TO_PREDICT}_close'], vAR_CSLAB_main_df['future']))
+
+print(vAR_CSLAB_main_df.head())
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

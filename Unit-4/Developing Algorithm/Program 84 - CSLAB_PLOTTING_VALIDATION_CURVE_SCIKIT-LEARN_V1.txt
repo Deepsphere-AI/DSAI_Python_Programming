@@ -1,0 +1,90 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_PLOTTING_VALIDATION_CURVE_SCIKIT-LEARN_V1
+  Purpose 	:   A Program in Python for Plotting Validation Curve using SCIKIT-LEARN
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 14:42 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+  
+## Program Description : Program for Plotting Validation Curve in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import matplotlib.pyplot as plt
+
+import numpy as np
+
+from sklearn.datasets import load_digits
+
+from sklearn.svm import SVC
+
+from sklearn.learning_curve import validation_curve
+
+vAR_CSLAB_digits = load_digits()
+
+vAR_CSLAB_X, vAR_CSLAB_y = vAR_CSLAB_digits.data, vAR_CSLAB_digits.target
+
+vAR_CSLAB_param_range = vAR_np.logspace(-6, -1, 5)
+
+vAR_CSLAB_train_scores, vAR_CSLAB_test_scores = validation_curve(
+    
+  SVC(), vAR_CSLAB_X, vAR_CSLAB_y, param_name="gamma", param_range=vAR_CSLAB_param_range,
+    
+  cv=10, scoring="accuracy", n_jobs=1)
+
+vAR_CSLAB_train_scores_mean = vAR_np.mean(vAR_CSLAB_train_scores, axis=1)
+
+vAR_CSLAB_train_scores_std = vAR_np.std(vAR_CSLAB_train_scores, axis=1)
+
+vAR_CSLAB_test_scores_mean = vAR_np.mean(vAR_CSLAB_test_scores, axis=1)
+
+vAR_CSLAB_test_scores_std = vAR_np.std(vAR_CSLAB_test_scores, axis=1)
+
+vAR_plt.title("Validation Curve with SVM")
+
+vAR_plt.xlabel("$\gamma$")
+ 
+vAR_plt.ylabel("Score")
+
+vAR_plt.ylim(0.0, 1.1)
+
+vAR_plt.semilogx(vAR_CSLAB_param_range, vAR_CSLAB_train_scores_mean, label="Training score", color="r")
+
+vAR_plt.fill_between(vAR_CSLAB_param_range, vAR_CSLAB_train_scores_mean - vAR_CSLAB_train_scores_std,
+                 vAR_CSLAB_train_scores_mean + vAR_CSLAB_train_scores_std, alpha=0.2, color="r")
+  
+vAR_plt.semilogx(vAR_CSLAB_param_range, vAR_CSLAB_test_scores_mean, label="Cross-validation score",
+             color="g")
+
+vAR_plt.fill_between(vAR_CSLAB_param_range, vAR_CSLAB_test_scores_mean - vAR_CSLAB_test_scores_std,
+                 vAR_CSLAB_test_scores_mean + vAR_CSLAB_test_scores_std, alpha=0.2, color="g")
+ 
+vAR_plt.legend(loc="best")
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

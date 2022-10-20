@@ -1,0 +1,105 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_TENSORFLOW_LOGISTIC_REGRESSION_V1
+  Purpose 	:   A Program in Python Tensorflow for Logistic Regression
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   24/12/2018 13:54 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Logistic Regression using Tensorflow in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+import matplotlib.pyplot as vAR_plt
+import numpy as vAR_np
+import tensorflow as vAR_tf
+import requests
+from sklearn import datasets
+from sklearn.preprocessing import normalize
+from tensorflow.python.framework import ops
+ops.reset_default_graph()
+vAR_sess = vAR_tf.Session()
+
+vAR_CSLAB_bc = datasets.load_breast_cancer()
+vAR_CSLAB_bc.data.shape
+
+vAR_CSLAB_x_vals = vAR_CSLAB_bc.data
+vAR_CSLAB_y_vals = vAR_CSLAB_bc.target
+
+vAR_CSLAB_train_indices = vAR_np.random.choice(len(vAR_CSLAB_x_vals), round(len(vAR_CSLAB_x_vals)*0.8), replace=False)
+vAR_CSLAB_test_indices = vAR_np.array(list(set(range(len(vAR_CSLAB_x_vals))) - set(vAR_CSLAB_train_indices)))
+vAR_CSLAB_x_vals_train = vAR_CSLAB_x_vals[vAR_CSLAB_train_indices]
+vAR_CSLAB_x_vals_test = vAR_CSLAB_x_vals[vAR_CSLAB_test_indices]
+vAR_CSLAB_y_vals_train = vAR_CSLAB_y_vals[vAR_CSLAB_train_indices]
+vAR_CSLAB_y_vals_test = vAR_CSLAB_y_vals[vAR_CSLAB_test_indices]
+
+vAR_CSLAB_batch_size = 25
+vAR_CSLAB_x_data = vAR_tf.placeholder(shape=[None, 30], dtype=vAR_tf.float32)
+vAR_CSLAB_y_target = vAR_tf.placeholder(shape=[None, 1], dtype=vAR_tf.float32)
+vAR_CSLAB_A = vAR_tf.Variable(vAR_tf.random_normal(shape=[30,1]))
+vAR_CSLAB_b = vAR_tf.Variable(vAR_tf.random_normal(shape=[1,1]))
+vAR_CSLAB_model_output = vAR_tf.add(vAR_tf.matmul(vAR_CSLAB_x_data, vAR_CSLAB_A), vAR_CSLAB_b)
+
+vAR_CSLAB_loss = vAR_tf.reduce_mean(vAR_tf.nn.sigmoid_cross_entropy_with_logits(logits=vAR_CSLAB_model_output, labels=vAR_CSLAB_y_target))
+
+vAR_CSLAB_init = vAR_tf.global_variables_initializer()
+vAR_sess.run(vAR_CSLAB_init)
+vAR_CSLAB_my_opt = vAR_tf.train.GradientDescentOptimizer(0.01)
+vAR_CSLAB_train_step = vAR_CSLAB_my_opt.minimize(vAR_CSLAB_loss)
+
+vAR_CSLAB_prediction = vAR_tf.round(vAR_tf.sigmoid(vAR_CSLAB_model_output))
+
+vAR_CSLAB_predictions_correct = vAR_tf.cast(vAR_tf.equal(vAR_CSLAB_prediction, vAR_CSLAB_y_target), vAR_tf.float32)
+vAR_CSLAB_accuracy = vAR_tf.reduce_mean(vAR_CSLAB_predictions_correct)
+
+vAR_CSLAB_loss_vec = []
+vAR_CSLAB_train_acc = []
+vAR_CSLAB_test_acc = []
+
+vAR_CSLAB_loss_vec = []
+vAR_CSLAB_train_acc = []
+vAR_CSLAB_test_acc = []
+
+for i in range(2000):
+    vAR_CSLAB_rand_index = vAR_np.random.choice(len(vAR_CSLAB_x_vals_train), size=vAR_CSLAB_batch_size)
+    vAR_CSLAB_rand_x = vAR_CSLAB_x_vals_train[vAR_CSLAB_rand_index]
+    vAR_CSLAB_rand_y = vAR_np.transpose([vAR_CSLAB_y_vals_train[vAR_CSLAB_rand_index]])
+    
+    vAR_sess.run(vAR_CSLAB_train_step, feed_dict={vAR_CSLAB_x_data: vAR_CSLAB_rand_x, vAR_CSLAB_y_target: vAR_CSLAB_rand_y})
+    
+    vAR_CSLAB_temp_loss = vAR_sess.run(vAR_CSLAB_loss, feed_dict={vAR_CSLAB_x_data: vAR_CSLAB_rand_x, vAR_CSLAB_y_target: vAR_CSLAB_rand_y})
+    vAR_CSLAB_loss_vec.append(vAR_CSLAB_temp_loss)
+    
+    vAR_CSLAB_temp_acc_train = vAR_sess.run(vAR_CSLAB_accuracy, feed_dict={vAR_CSLAB_x_data: vAR_CSLAB_x_vals_train, vAR_CSLAB_y_target: vAR_np.transpose([vAR_CSLAB_y_vals_train])})
+    
+    vAR_CSLAB_train_acc.append(vAR_CSLAB_temp_acc_train)
+    vAR_CSLAB_temp_acc_test = vAR_sess.run(vAR_CSLAB_accuracy, feed_dict={vAR_CSLAB_x_data: vAR_CSLAB_x_vals_test, vAR_CSLAB_y_target: vAR_np.transpose([vAR_CSLAB_y_vals_test])})
+    vAR_CSLAB_test_acc.append(int(vAR_CSLAB_temp_acc_test))
+    print((vAR_CSLAB_temp_acc_test))   
+    
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

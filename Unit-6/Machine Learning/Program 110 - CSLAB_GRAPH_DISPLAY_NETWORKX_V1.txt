@@ -1,0 +1,69 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_GRAPH_DISPLAY_NETWORKX_V1
+  Purpose 	:   A Program in Python for Displaying Graphs With Nodes & Edges using NetworkX Package
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 13:22 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Displaying Graphs With Nodes & Edges using NetworkX Package in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import networkx as vAR_nx
+
+import matplotlib as vAR_plt
+
+vAR_CSLAB_G=vAR_nx.Graph()
+
+vAR_CSLAB_G.add_node("a")
+
+vAR_CSLAB_G.add_nodes_from(["b","c"])
+
+vAR_CSLAB_G.add_edge(1,2)
+
+vAR_edge = ("d", "e")
+
+vAR_CSLAB_G.add_edge(*vAR_edge)
+
+vAR_edge = ("a", "b")
+
+vAR_CSLAB_G.add_edge(*vAR_edge)
+
+print("Nodes of graph: ")
+
+print(vAR_CSLAB_G.nodes())
+
+print("Edges of graph: ")
+
+print(vAR_CSLAB_G.edges())
+
+vAR_CSLAB_G.add_edges_from([("a","c"),("c","d"), ("a",1), (1,"d"), ("a",2)])
+
+vAR_nx.draw(vAR_CSLAB_G)
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

@@ -1,0 +1,65 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_GRAPHING_MATPLOTLIB_QUIVER_PLOT_V1
+  Purpose 	:   A Program in Python for Quiver Plot in matplotlib
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 15:00 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+   
+## Program Description : Program for Quiver Plot in matplotlib in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from pylab import *
+
+import numpy as vAR_np
+
+import matplotlib.pyplot as vAR_plt
+
+vAR_CSLAB_n = 8
+
+vAR_CSLAB_X,vAR_CSLAB_Y = vAR_np.mgrid[0:vAR_CSLAB_n,0:vAR_CSLAB_n]
+
+vAR_CSLAB_T = vAR_np.arctan2(vAR_CSLAB_Y-vAR_CSLAB_n/2.0, vAR_CSLAB_X-vAR_CSLAB_n/2.0)
+
+vAR_CSLAB_R = 10+vAR_np.sqrt((vAR_CSLAB_Y-vAR_CSLAB_n/2.0)**2+(vAR_CSLAB_X-vAR_CSLAB_n/2.0)**2)
+
+vAR_CSLAB_U,vAR_CSLAB_V = vAR_CSLAB_R*vAR_np.cos(vAR_CSLAB_T), vAR_CSLAB_R*vAR_np.sin(vAR_CSLAB_T)
+
+axes([0.025,0.025,0.95,0.95])
+
+quiver(vAR_CSLAB_X,vAR_CSLAB_Y,vAR_CSLAB_U,vAR_CSLAB_V,vAR_CSLAB_R, alpha=.5)
+
+quiver(vAR_CSLAB_X,vAR_CSLAB_Y,vAR_CSLAB_U,vAR_CSLAB_V, edgecolor='k', facecolor='None', linewidth=.5)
+
+xlim(-1,vAR_CSLAB_n), xticks([])
+
+ylim(-1,vAR_CSLAB_n), yticks([])
+
+show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

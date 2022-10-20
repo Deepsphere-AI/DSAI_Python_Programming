@@ -1,0 +1,79 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_AUTOMOBILE_CLAIMS_HANDLING_ANALYSIS_V1
+  Purpose 	:   A Program in Python For Auto Claims Handling
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 23:04 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program For Auto Claims Handling Analysis in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from mpl_toolkits.mplot3d import axes3d
+
+import matplotlib.pyplot as vAR_plt
+
+import numpy as vAR_np
+
+import time
+
+def generate(X, Y, phi):
+    
+    vAR_CSLAB_R = 1 - vAR_np.sqrt(vAR_CSLAB_X**2 + vAR_CSLAB_Y**2)
+    
+    return vAR_np.cos(2 * vAR_np.pi * vAR_CSLAB_X + phi) * vAR_CSLAB_R
+
+vAR_CSLAB_fig = vAR_plt.figure()
+
+vAR_CSLAB_ax = vAR_CSLAB_fig.add_subplot(111, projection='3d')
+
+vAR_CSLAB_xs = vAR_np.linspace(-1, 1, 50)
+ 
+vAR_CSLAB_ys = vAR_np.linspace(-1, 1, 50)
+
+vAR_CSLAB_X, vAR_CSLAB_Y = vAR_np.meshgrid(vAR_CSLAB_xs, vAR_CSLAB_ys)
+
+vAR_CSLAB_Z = generate(vAR_CSLAB_X, vAR_CSLAB_Y, 0.0)
+
+vAR_CSLAB_wframe = None
+
+vAR_CSLAB_tstart = time.time()
+
+for phi in vAR_np.linspace(0, 360 / 2 / vAR_np.pi, 100):
+    
+    vAR_CSLAB_oldcol = vAR_CSLAB_wframe
+
+vAR_CSLAB_Z = generate(vAR_CSLAB_X, vAR_CSLAB_Y, phi)
+    
+vAR_CSLAB_wframe = vAR_CSLAB_ax.plot_wireframe(vAR_CSLAB_X, vAR_CSLAB_Y, vAR_CSLAB_Z, rstride=2, cstride=2)
+
+vAR_plt.pause(.001)
+
+print('FPS: %f' % (100 / (time.time() - vAR_CSLAB_tstart)))
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

@@ -1,0 +1,73 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_TENSORFLOW_NEAREST_NEIGHBOURS_V1
+  Purpose 	:   A Program in Python Tensorflow for Nearest Neighbours
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   26/12/2018 11:47 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Nearest Neighbours using Tensorflow in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+import numpy as vAR_np
+import tensorflow as vAR_tf
+
+from tensorflow.examples.tutorials.mnist import input_data
+vAR_CSLAB_mnist = input_data.read_data_sets("mnist", one_hot=True)
+
+vAR_CSLAB_mnist.train.images.shape
+
+vAR_CSLAB_Xtr, vAR_CSLAB_Ytr = vAR_CSLAB_mnist.train.next_batch(5000) #5000 for training (nn candidates)
+vAR_CSLAB_Xte, vAR_CSLAB_Yte = vAR_CSLAB_mnist.test.next_batch(200) #200 for testing
+
+vAR_CSLAB_xtr = vAR_tf.placeholder("float", [None, 784])
+vAR_CSLAB_xte = vAR_tf.placeholder("float", [784])
+
+vAR_CSLAB_distance = vAR_tf.reduce_sum(vAR_tf.abs(vAR_tf.add(vAR_CSLAB_xtr, vAR_tf.negative(vAR_CSLAB_xte))), reduction_indices=1)
+
+vAR_CSLAB_pred = vAR_tf.arg_min(vAR_CSLAB_distance, 0)
+
+vAR_CSLAB_accuracy = 0.
+
+vAR_CSLAB_init = vAR_tf.global_variables_initializer()
+
+with vAR_tf.Session() as vAR_sess:
+    vAR_sess.run(vAR_CSLAB_init)
+    
+    for i in range(len(vAR_CSLAB_Xte)):
+        #Get nearest neighbor
+        vAR_CSLAB_nn_index = vAR_sess.run(vAR_CSLAB_pred, feed_dict={vAR_CSLAB_xtr: vAR_CSLAB_Xtr, vAR_CSLAB_xte:vAR_CSLAB_Xte[i ,:]})
+        print ("Test", i, "Prediction:", vAR_np.argmax(vAR_CSLAB_Ytr[vAR_CSLAB_nn_index]), "True Class:", vAR_np.argmax(vAR_CSLAB_Yte[i]))
+            
+        if vAR_np.argmax(vAR_CSLAB_Ytr[vAR_CSLAB_nn_index]) == vAR_np.argmax(vAR_CSLAB_Yte[i]):
+            vAR_CSLAB_accuracy += 1./len(vAR_CSLAB_Xte)
+    print ('Done')
+    print ("Accuracy : ", vAR_CSLAB_accuracy) 
+
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

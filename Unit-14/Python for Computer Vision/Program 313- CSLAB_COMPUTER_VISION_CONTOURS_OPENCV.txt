@@ -1,0 +1,66 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_COMPUTER_VISION_CONTOURS_OPENCV
+  Purpose 	:   A Program in Python using Computer Vision for Image Shape Analysis/Object Detection & Recognition by Contours
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   28/12/2018 18:13 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				28/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Image Shape Analysis/Object Detection & Recognition by Contours using Opencv in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import cv2 
+
+import numpy as vAR_np 
+
+import os
+
+vAR_INI_File_Path = os.environ.get('PYTHON_TUTORIAL')
+
+import pandas as vAR_pd
+
+import configparser
+
+import pandas as vAR_pd
+
+vAR_Config = configparser.ConfigParser(allow_no_value=True)
+
+vAR_Config.read(vAR_INI_File_Path)
+
+vAR_CSLAB_FILE_NAME = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_312_APPLE_IMAGE']
+
+vAR_CSLAB_imgray = cv2.cvtColor(vAR_CSLAB_img,cv2.COLOR_BGR2GRAY)
+
+vAR_CSLAB_ret,vAR_CSLAB_thresh = cv2.threshold(vAR_CSLAB_imgray,127,255,0)
+
+vAR_CSLAB_image, vAR_CSLAB_contours, vAR_CSLAB_hierarchy = cv2.findContours(vAR_CSLAB_thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+
+vAR_CSLAB_img = cv2.drawContours(vAR_CSLAB_img, vAR_CSLAB_contours, -1, (0,255,0), 3)
+
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

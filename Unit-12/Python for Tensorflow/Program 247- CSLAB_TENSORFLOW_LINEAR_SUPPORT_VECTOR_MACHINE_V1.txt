@@ -1,0 +1,149 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_TENSORFLOW_LINEAR_SUPPORT_VECTOR_MACHINE_V1
+  Purpose 	:   A Program in Python Tensorflow for Linear Support Vector Machine
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   24/12/2018 17:54 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Linear Support Vector Machine using Tensorflow in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+import matplotlib.pyplot as vAR_plt
+%matplotlib inline
+
+import numpy as vAR_np
+import tensorflow as vAR_tf
+from sklearn import datasets
+
+vAR_sess = vAR_tf.Session()
+
+vAR_CSLAB_iris = datasets.load_iris()
+vAR_CSLAB_x_vals = vAR_np.array([[x[0], x[3]] for x in vAR_CSLAB_iris.data])
+vAR_CSLAB_y_vals = vAR_np.array([1 if y==0 else -1 for y in vAR_CSLAB_iris.target])
+
+vAR_CSLAB_train_indices = vAR_np.random.choice(len(vAR_CSLAB_x_vals), round(len(vAR_CSLAB_x_vals)*0.8), replace=False)
+
+vAR_CSLAB_test_indices = vAR_np.array(list(set(range(len(vAR_CSLAB_x_vals))) - set(vAR_CSLAB_train_indices)))
+vAR_CSLAB_x_vals_train = vAR_CSLAB_x_vals[vAR_CSLAB_train_indices]
+vAR_CSLAB_x_vals_test = vAR_CSLAB_x_vals[vAR_CSLAB_test_indices]
+vAR_CSLAB_y_vals_train = vAR_CSLAB_y_vals[vAR_CSLAB_train_indices]
+vAR_CSLAB_y_vals_test = vAR_CSLAB_y_vals[vAR_CSLAB_test_indices]
+
+vAR_CSLAB_batch_size = 100
+
+vAR_CSLAB_x_data = vAR_tf.placeholder(shape=[None, 2], dtype=vAR_tf.float32)
+vAR_CSLAB_y_target = vAR_tf.placeholder(shape=[None, 1], dtype=vAR_tf.float32)
+
+vAR_CSLAB_A = vAR_tf.Variable(vAR_tf.random_normal(shape=[2,1]))
+vAR_CSLAB_b = vAR_tf.Variable(vAR_tf.random_normal(shape=[1,1]))
+
+vAR_CSLAB_model_output = vAR_tf.subtract(vAR_tf.matmul(vAR_CSLAB_x_data, vAR_CSLAB_A), vAR_CSLAB_b)
+
+vAR_CSLAB_l2_norm = vAR_tf.reduce_sum(vAR_tf.square(vAR_CSLAB_A))
+
+vAR_CSLAB_alpha = vAR_tf.constant([0.1])
+
+vAR_CSLAB_classification_term = vAR_tf.reduce_mean(vAR_tf.maximum(0., vAR_tf.subtract(1., vAR_tf.multiply(vAR_CSLAB_model_output, vAR_CSLAB_y_target))))
+
+vAR_CSLAB_loss = vAR_tf.add(vAR_CSLAB_classification_term, vAR_tf.multiply(vAR_CSLAB_alpha, vAR_CSLAB_l2_norm))
+
+vAR_CSLAB_prediction = vAR_tf.sign(vAR_CSLAB_model_output)
+vAR_CSLAB_accuracy = vAR_tf.reduce_mean(vAR_tf.cast(vAR_tf.equal(vAR_CSLAB_prediction, vAR_CSLAB_y_target), vAR_tf.float32))
+
+vAR_CSLAB_my_opt = vAR_tf.train.GradientDescentOptimizer(0.01)
+vAR_CSLAB_train_step = vAR_CSLAB_my_opt.minimize(vAR_CSLAB_loss)
+
+vAR_CSLAB_init = vAR_tf.global_variables_initializer()
+vAR_sess.run(vAR_CSLAB_init)
+
+vAR_CSLAB_loss_vec = []
+vAR_CSLAB_train_accuracy = []
+vAR_CSLAB_test_accuracy = []
+vAR_CSLAB_batch_size=25
+
+for i in range(5000):
+    vAR_CSLAB_rand_index = vAR_np.random.choice(len(vAR_CSLAB_x_vals_train), size=vAR_CSLAB_batch_size)
+    vAR_CSLAB_rand_x = vAR_CSLAB_x_vals_train[vAR_CSLAB_rand_index]
+    vAR_CSLAB_rand_y = vAR_np.transpose([vAR_CSLAB_y_vals_train[vAR_CSLAB_rand_index]])
+    vAR_sess.run(vAR_CSLAB_train_step, feed_dict={vAR_CSLAB_x_data: vAR_CSLAB_rand_x, vAR_CSLAB_y_target: vAR_CSLAB_rand_y})
+    
+    vAR_CSLAB_temp_loss = vAR_sess.run(vAR_CSLAB_loss, feed_dict={vAR_CSLAB_x_data: vAR_CSLAB_rand_x, vAR_CSLAB_y_target: vAR_CSLAB_rand_y})
+    vAR_CSLAB_loss_vec.append(vAR_CSLAB_temp_loss)
+    
+    vAR_CSLAB_train_acc_temp = vAR_sess.run(vAR_CSLAB_accuracy, feed_dict={vAR_CSLAB_x_data: vAR_CSLAB_x_vals_train, vAR_CSLAB_y_target: vAR_np.transpose([vAR_CSLAB_y_vals_train])})
+    vAR_CSLAB_train_accuracy.append(vAR_CSLAB_train_acc_temp)
+    
+    vAR_CSLAB_test_acc_temp = vAR_sess.run(vAR_CSLAB_accuracy, feed_dict={vAR_CSLAB_x_data: vAR_CSLAB_x_vals_test, vAR_CSLAB_y_target: vAR_np.transpose([vAR_CSLAB_y_vals_test])})
+    vAR_CSLAB_test_accuracy.append(vAR_CSLAB_test_acc_temp)
+    
+    if (i+1)%100==0:
+        print('Step #' + str(i+1) + ' A = ' + str(vAR_sess.run(vAR_CSLAB_A)) + ' b = ' + str(vAR_sess.run(vAR_CSLAB_b)))
+        print('Loss = ' + str(vAR_CSLAB_temp_loss))
+
+[[vAR_CSLAB_a1], [vAR_CSLAB_a2]] = vAR_sess.run(vAR_CSLAB_A)
+[[vAR_CSLAB_b]] = vAR_sess.run(vAR_CSLAB_b)
+vAR_CSLAB_slope = -vAR_CSLAB_a2/vAR_CSLAB_a1
+vAR_CSLAB_y_intercept = vAR_CSLAB_b/vAR_CSLAB_a1
+
+vAR_CSLAB_x1_vals = [d[1] for d in x_vals]
+
+vAR_CSLAB_best_fit = []
+for i in vAR_CSLAB_x1_vals:
+    vAR_CSLAB_best_fit.append(vAR_CSLAB_slope*i+vAR_CSLAB_y_intercept)
+
+vAR_CSLAB_setosa_x = [d[1] for i,d in enumerate(vAR_CSLAB_x_vals) if vAR_CSLAB_y_vals[i]==1]
+vAR_CSLAB_setosa_y = [d[0] for i,d in enumerate(vAR_CSLAB_x_vals) if vAR_CSLAB_y_vals[i]==1]
+vAR_CSLAB_not_setosa_x = [d[1] for i,d in enumerate(vAR_CSLAB_x_vals) if vAR_CSLAB_y_vals[i]==-1]
+vAR_CSLAB_not_setosa_y = [d[0] for i,d in enumerate(vAR_CSLAB_x_vals) if vAR_CSLAB_y_vals[i]==-1]
+
+vAR_plt.plot(vAR_CSLAB_setosa_x, vAR_CSLAB_setosa_y, 'o', label='I. setosa')
+vAR_plt.plot(vAR_CSLAB_not_setosa_x, vAR_CSLAB_not_setosa_y, 'x', label='Non-setosa')
+vAR_plt.plot(vAR_CSLAB_x1_vals, vAR_CSLAB_best_fit, 'r-', label='Linear Separator', linewidth=3)
+vAR_plt.ylim([0, 10])
+vAR_plt.legend(loc='lower right')
+vAR_plt.title('Sepal Length vs Pedal Width')
+vAR_plt.xlabel('Pedal Width')
+vAR_plt.ylabel('Sepal Length')
+vAR_plt.show()
+
+vAR_plt.plot(vAR_CSLAB_train_accuracy, 'k-', label='Training Accuracy')
+vAR_plt.plot(vAR_CSLAB_test_accuracy, 'r--', label='Test Accuracy')
+vAR_plt.title('Train and Test Set Accuracies')
+vAR_plt.xlabel('Generation')
+vAR_plt.ylabel('Accuracy')
+vAR_plt.legend(loc='lower right')
+vAR_plt.show()
+
+vAR_plt.plot(vAR_CSLAB_loss_vec, 'k-')
+vAR_plt.title('Loss per Generation')
+vAR_plt.xlabel('Generation')
+vAR_plt.ylabel('Loss')
+vAR_plt.show()
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

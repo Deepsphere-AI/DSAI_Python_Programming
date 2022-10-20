@@ -1,0 +1,74 @@
+
+/**************************************************************************************************
+  
+  File Name 	:   CSLAB_DATA_ANALYSIS_PANDAS_V1
+  Purpose 	:   A Program in Python for Data Analysis
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 10:52 hrs
+  Version	:   1.0	
+  Change History: 
+___________________________________________________________________________________________________
+
+   Who				   When 			        Why
+___________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+___________________________________________________________________________________________________
+
+
+/**************************************************************************************************
+ 
+## Program Description : Program for Data Analysis in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import os
+
+vAR_INI_File_Path = os.environ.get('PYTHON_TUTORIAL')
+
+import pandas as vAR_pd
+
+import configparser
+
+import matplotlib.pyplot as vAR_plt
+
+vAR_Config = configparser.ConfigParser(allow_no_value=True)
+
+vAR_Config.read(vAR_INI_File_Path)
+
+vAR_CSLAB_Customer = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_106_CUSTOMER']  
+
+vAR_CSLAB_Customer = vAR_pd.read_excel(vAR_CSLAB_Customer)
+
+vAR_CSLAB_Customer
+
+vAR_CSLAB_FIGURE = plt.pyplot.figure() 
+
+vAR_CSLAB_FIGURE = plt.pyplot.figure()
+
+vAR_CSLAB_AX = vAR_CSLAB_FIGURE.add_subplot(111)
+
+vAR_CSLAB_AX.hist(vAR_CSLAB_Customer['Customer_ID'], bins = 10, range = (vAR_CSLAB_Customer['Customer_ID'].min(),vAR_CSLAB_Customer['Customer_ID'].max()))
+
+vAR_plt.title('Sales Analysis')
+
+vAR_plt.xlabel('Customer_ID')
+
+vAR_plt.ylabel('Sales_Amount')
+
+vAR_plt.show()
+
+
+/**************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/**************************************************************************************************
+  

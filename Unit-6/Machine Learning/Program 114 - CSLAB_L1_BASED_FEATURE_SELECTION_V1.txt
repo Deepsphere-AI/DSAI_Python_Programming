@@ -1,0 +1,57 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_L1_BASED_FEATURE_SELECTION_V1
+  Purpose 	:   A Program in Python for L1 Based Feature Selection
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 18:07 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for L1 Based Feature Selection in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from sklearn.svm import LinearSVC
+
+from sklearn.datasets import load_iris
+
+from sklearn.feature_selection import SelectFromModel
+
+vAR_CSLAB_iris = load_iris()
+
+vAR_CSLAB_X, vAR_CSLAB_y = vAR_CSLAB_iris.data, vAR_CSLAB_iris.target
+
+vAR_CSLAB_X.shape
+
+vAR_CSLAB_lsvc = LinearSVC(C=0.01, penalty="l1", dual=False).fit(vAR_CSLAB_X, vAR_CSLAB_y)
+
+vAR_CSLAB_model = SelectFromModel(vAR_CSLAB_lsvc, prefit=True)
+
+vAR_CSLAB_X_new = model.transform(vAR_CSLAB_X)
+
+vAR_CSLAB_X_new.shape
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

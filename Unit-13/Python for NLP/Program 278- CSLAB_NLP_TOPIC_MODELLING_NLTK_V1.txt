@@ -1,0 +1,54 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NLP_TOPIC_MODELLING_NLTK_V1
+  Purpose 	:   A Program in Python using NLP for Topic Modelling
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   27/12/2018 19:18 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				27/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Topic Modelling using NLP in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+vAR_CSLAB_doc1 = "Sugar is bad to consume. My sister likes to have sugar, but not my father." 
+
+vAR_CSLAB_doc2 = "My father spends a lot of time driving my sister around to dance practice."
+
+vAR_CSLAB_doc3 = "Doctors suggest that driving may cause increased stress and blood pressure."
+
+vAR_CSLAB_doc_complete = [vAR_CSLAB_doc1, vAR_CSLAB_doc2, vAR_CSLAB_doc3]
+
+vAR_CSLAB_doc_clean = [doc.split() for doc in vAR_CSLAB_doc_complete]
+
+import gensim
+
+# Creating the object for LDA model using gensim library
+vAR_CSLAB_Lda = gensim.models.ldamodel.LdaModel
+
+vAR_CSLAB_Lda
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

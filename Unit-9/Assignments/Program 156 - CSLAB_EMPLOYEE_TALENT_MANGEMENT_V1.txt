@@ -1,0 +1,91 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_EMPLOYEE_TALENT_MANGEMENT_V1
+  Purpose 	:   A Program in Python For Employee Talent Management Analysis
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 22:07 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program For Employee Talent Management Analysis in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import matplotlib.pyplot as vAR_plt
+
+from mpl_toolkits.mplot3d import Axes3D
+
+import matplotlib.tri as vAR_tri
+
+import numpy as vAR_np
+
+import math
+
+# First create the x and y coordinates of the points.
+
+vAR_CSLAB_n_angles = 48
+
+vAR_CSLAB_n_radii = 8
+
+vAR_CSLAB_min_radius = 0.25
+
+vAR_CSLAB_radii = vAR_np.linspace(vAR_CSLAB_min_radius, 0.95, vAR_CSLAB_n_radii)
+
+vAR_CSLAB_angles = vAR_np.linspace(0, 2*math.pi, vAR_CSLAB_n_angles, endpoint=False)
+
+vAR_CSLAB_angles = vAR_np.repeat(vAR_CSLAB_angles[..., vAR_np.newaxis], vAR_CSLAB_n_radii, axis=1)
+
+vAR_CSLAB_angles[:, 1::2] += math.pi/vAR_CSLAB_n_angles
+
+vAR_CSLAB_x = (vAR_CSLAB_radii*vAR_np.cos(vAR_CSLAB_angles)).flatten()
+
+vAR_CSLAB_y = (vAR_CSLAB_radii*vAR_np.sin(vAR_CSLAB_angles)).flatten()
+
+vAR_CSLAB_z = (vAR_np.cos(vAR_CSLAB_radii)*vAR_np.cos(vAR_CSLAB_angles*3.0)).flatten()
+
+# Create a custom triangulation
+ 
+vAR_CSLAB_triang = vAR_tri.Triangulation(vAR_CSLAB_x, vAR_CSLAB_y)
+
+# Mask off unwanted triangles.
+
+vAR_CSLAB_xmid = vAR_CSLAB_x[vAR_CSLAB_triang.triangles].mean(axis=1)
+ 
+vAR_CSLAB_ymid = vAR_CSLAB_y[vAR_CSLAB_triang.triangles].mean(axis=1)
+
+vAR_CSLAB_mask = vAR_np.where(vAR_CSLAB_xmid*vAR_CSLAB_xmid + vAR_CSLAB_ymid*vAR_CSLAB_ymid < vAR_CSLAB_min_radius*vAR_CSLAB_min_radius, 1, 0)
+
+vAR_CSLAB_triang.set_mask(vAR_CSLAB_mask)
+
+vAR_plt.figure()
+
+vAR_plt.gca(projection='3d')
+
+vAR_plt.tricontourf(vAR_CSLAB_triang, vAR_CSLAB_z)
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

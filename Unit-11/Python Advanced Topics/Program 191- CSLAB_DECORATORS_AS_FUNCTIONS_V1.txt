@@ -1,0 +1,59 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DECORATORS_AS_FUNCTIONS_V1
+  Purpose 	:   A Program in Python for Decorators Implemented as Functions
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   18/12/2018 12:28 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				18/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Decorators Implemented as Functions in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+def vAR_replacing_decorator_with_args(arg):
+    
+  print("defining the decorator")
+
+  def vAR_decorator(function):
+      # in this inner function, arg is available too
+      print("doing decoration, %r" % arg)
+      def vAR_wrapper(*args, **kwargs):
+          print("inside wrapper, %r %r" % (args, kwargs))
+          return function(*args, **kwargs)
+      return vAR_wrapper
+  return vAR_decorator
+
+#@replacing_decorator_with_args("abc")
+def vAR_function(*args, **kwargs):
+    print("inside function, %r %r" % (args, kwargs))
+    return 14
+
+vAR_replacing_decorator_with_args(10)
+
+vAR_function(11, 12)
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

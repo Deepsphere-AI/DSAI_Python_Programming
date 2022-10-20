@@ -1,0 +1,42 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DATA_MAPPING_DICTIONARY_STATMENTS_V1
+  Purpose 	:   A Program in Python for Mapping Data using Dictionary Statements
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   18/12/2018 9:59 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				18/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Mapping Data using Dictionary Dictionary Statements in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+vAR_CSLAB_colors = { "blue": (0x30,0x30,0xff), "green": (0x30,0xff,0x97),"red": (0xff,0x30,0x97), "yellow": (0xff,0xff,0x30) }
+
+for c in vAR_CSLAB_colors:
+    print (c, vAR_CSLAB_colors[c])
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

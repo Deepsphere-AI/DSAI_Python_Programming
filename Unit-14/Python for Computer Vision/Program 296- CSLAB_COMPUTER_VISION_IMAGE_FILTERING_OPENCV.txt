@@ -1,0 +1,87 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_COMPUTER_VISION_IMAGE_FILTERING_OPENCV
+  Purpose 	:   A Program in Python using Computer Vision for Image Filtering (2D Convolution)
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   28/12/2018 13:07 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				28/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Image Filtering using Opencv in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import cv2 
+
+import numpy as vAR_np 
+
+import os
+
+vAR_INI_File_Path = os.environ.get('PYTHON_TUTORIAL')
+
+import pandas as vAR_pd
+
+import configparser
+
+import pandas as vAR_pd
+
+vAR_Config = configparser.ConfigParser(allow_no_value=True)
+
+vAR_Config.read(vAR_INI_File_Path)
+
+vAR_CSLAB_FILE_NAME = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_286_BIRDS_IMAGE']
+
+from matplotlib import pyplot as vAR_plt
+
+vAR_CSLAB_img = cv2.imread(vAR_CSLAB_FILE_NAME)
+
+vAR_CSLAB_kernel = np.ones((5,5),np.float32)/25
+
+vAR_CSLAB_dst = cv2.filter2D(vAR_CSLAB_img,-1,vAR_CSLAB_kernel)
+
+vAR_plt.subplot(121)
+
+vAR_plt.imshow(vAR_CSLAB_img)
+
+vAR_plt.title('Original')
+
+vAR_plt.xticks([])
+
+vAR_plt.yticks([])
+
+vAR_plt.subplot(122)
+
+vAR_plt.imshow(vAR_CSLAB_dst)
+
+vAR_plt.title('Averaging')
+
+vAR_plt.xticks([])
+
+vAR_plt.yticks([])
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

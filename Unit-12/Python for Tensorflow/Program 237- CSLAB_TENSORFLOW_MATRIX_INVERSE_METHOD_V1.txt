@@ -1,0 +1,63 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_TENSORFLOW_MATRIX_INVERSE_METHOD_V1
+  Purpose 	:   A Program in Python Tensorflow for Matrix Inverse Method
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   21/12/2018 12:44 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Matrix Inverse Method using Tensorflow in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+import matplotlib.pyplot as vAR_plt
+
+import numpy as vAR_np
+
+import tensorflow as vAR_tf
+
+vAR_CSLAB_x_vals = vAR_np.linspace(0, 10, 100)
+
+vAR_CSLAB_y_vals = vAR_CSLAB_x_vals + vAR_np.random.normal(0, 1, 100)
+
+vAR_CSLAB_x_vals_column = vAR_CSLAB_x_vals[:,vAR_np.newaxis]
+
+vAR_CSLAB_ones_column  = vAR_np.repeat(1, 100)[:,vAR_np.newaxis]
+
+vAR_CSLAB_A_tensor = vAR_tf.constant([[1.0, 2.0], [3.0, 4.0]])
+
+vAR_CSLAB_b_tensor = vAR_tf.constant([[1.0, 1.0], [0.0, 1.0]])
+
+vAR_CSLAB_tA_A = vAR_tf.matmul(vAR_tf.transpose(vAR_CSLAB_A_tensor), vAR_CSLAB_A_tensor)
+                               
+vAR_CSLAB_tA_A_inv = vAR_tf.matrix_inverse(vAR_CSLAB_tA_A)
+
+vAR_CSLAB_product = vAR_tf.matmul(vAR_CSLAB_tA_A_inv, vAR_tf.transpose(vAR_CSLAB_A_tensor))
+
+print(vAR_CSLAB_sess.run(vAR_CSLAB_product))
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

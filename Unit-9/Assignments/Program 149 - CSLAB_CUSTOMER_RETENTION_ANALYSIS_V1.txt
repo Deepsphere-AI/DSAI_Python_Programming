@@ -1,0 +1,85 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_CUSTOMER_RETENTION_ANALYSIS_V1
+  Purpose 	:   A Program in Python For Customer Retention Analysis
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 19:45 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program For Customer Retention Analysis in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from mpl_toolkits.mplot3d import Axes3D
+
+from matplotlib.collections import PolyCollection
+
+from matplotlib.colors import colorConverter
+
+import matplotlib.pyplot as vAR_plt
+
+import numpy as vAR_np
+
+vAR_CSLAB_fig = vAR_plt.figure()
+
+vAR_CSLAB_ax = vAR_CSLAB_fig.gca(projection='3d')
+
+def cc(arg):
+    
+    return colorConverter.to_rgba(arg, alpha=0.6)
+
+vAR_CSLAB_xs = vAR_np.arange(0, 10, 0.4)
+
+vAR_CSLAB_verts = []
+
+vAR_CSLAB_zs = [0.0, 1.0, 2.0, 3.0]
+
+for z in vAR_CSLAB_zs:
+    
+    vAR_CSLAB_ys = vAR_np.random.rand(len(vAR_CSLAB_xs))
+    
+    vAR_CSLAB_ys[0], vAR_CSLAB_ys[-1] = 0, 0
+    
+    vAR_CSLAB_verts.append(list(zip(vAR_CSLAB_xs, ys)))
+
+vAR_CSLAB_poly = PolyCollection(vAR_CSLAB_verts, facecolors=[cc('r'), cc('g'), cc('b'),
+                                         cc('y')])
+vAR_CSLAB_poly.set_alpha(0.7)
+
+vAR_CSLAB_ax.add_collection3d(vAR_CSLAB_poly, zs=zs, zdir='y')
+
+vAR_CSLAB_ax.set_xlim3d(0, 10)
+
+vAR_CSLAB_ax.set_ylim3d(-1, 4)
+
+vAR_CSLAB_ax.set_zlabel('Z')
+
+vAR_CSLAB_ax.set_zlim3d(0, 1)
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

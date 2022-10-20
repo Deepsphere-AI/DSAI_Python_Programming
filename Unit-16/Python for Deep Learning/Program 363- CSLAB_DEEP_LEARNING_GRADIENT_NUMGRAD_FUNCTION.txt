@@ -1,0 +1,60 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DEEP_LEARNING_GRADIENT_NUMGRAD_FUNCTION
+  Purpose 	:   A Program in Python for Numgrad Function in Deep Learning
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   08/01/2019 15:42 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				08/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program in Python for Numgrad Function in Deep Learning
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+def vAR_CSLAB_eval_numerical_gradient(f, vAR_CSLAB_x, verbose=False, h=1e-5):
+    
+    vAR_CSLAB_grad = vAR_np.zeros_like(vAR_CSLAB_x)
+
+    vAR_CSLAB_it = vAR_np.nditer(vAR_CSLAB_x, flags=['multi_index'], op_flags=['readwrite'])
+    while not vAR_CSLAB_it.finished:
+        vAR_CSLAB_ix = vAR_CSLAB_it.multi_index
+        vAR_CSLAB_oldval = vAR_CSLAB_x[vAR_CSLAB_ix]
+        vAR_CSLAB_x[vAR_CSLAB_ix] = vAR_CSLAB_oldval + h
+        vAR_CSLAB_fxph = f(vAR_CSLAB_x) # evalute f(x + h)
+        vAR_CSLAB_x[vAR_CSLAB_ix] = vAR_CSLAB_oldval - h
+        vAR_CSLAB_fxmh = f(vAR_CSLAB_x) # evaluate f(x - h)
+        vAR_CSLAB_x[vAR_CSLAB_ix] = vAR_CSLAB_oldval # restore
+
+        # compute the partial derivative with centered formula
+        vAR_CSLAB_grad[vAR_CSLAB_ix] = (vAR_CSLAB_fxph - vAR_CSLAB_fxmh) / (2 * h)
+        if verbose:
+            print(vAR_CSLAB_ix, vAR_CSLAB_grad[vAR_CSLAB_ix])
+        vAR_CSLAB_it.iternext()
+    return vAR_CSLAB_grad
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+                     

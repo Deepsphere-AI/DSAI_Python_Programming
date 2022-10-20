@@ -1,0 +1,62 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NLP_SCIKIT-LEARN_ALGORITHMS_NLTK_V1
+  Purpose 	:   A Program in Python using NLP for Scikit Learn Algorithms
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   27/12/2018 17:02 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				27/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Scikit Learn Algorithms using NLP in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from nltk.classify.scikitlearn import SklearnClassifier
+
+from sklearn.naive_bayes import MultinomialNB,BernoulliNB
+
+vAR_CSLAB_MNB_classifier = SklearnClassifier(MultinomialNB())
+vAR_CSLAB_MNB_classifier.train(vAR_CSLAB_train)
+
+vAR_CSLAB_BNB_classifier = SklearnClassifier(BernoulliNB())
+vAR_CSLAB_BNB_classifier.train(vAR_CSLAB_train)
+
+from sklearn.linear_model import LogisticRegression,SGDClassifier
+from sklearn.svm import SVC, LinearSVC, NuSVC
+
+vAR_CSLAB_classifier.show_most_informative_features(15)
+
+vAR_CSLAB_MNB_classifier = SklearnClassifier(MultinomialNB())
+vAR_CSLAB_MNB_classifier.train(vAR_CSLAB_train)
+
+vAR_CSLAB_BernoulliNB_classifier = SklearnClassifier(BernoulliNB())
+vAR_CSLAB_BernoulliNB_classifier.train(vAR_CSLAB_train)
+
+vAR_CSLAB_LogisticRegression_classifier = SklearnClassifier(LogisticRegression())
+vAR_CSLAB_LogisticRegression_classifier.train(vAR_CSLAB_train)
+
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

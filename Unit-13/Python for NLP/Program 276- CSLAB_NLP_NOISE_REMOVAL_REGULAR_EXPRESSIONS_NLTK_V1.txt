@@ -1,0 +1,49 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NLP_NOISE_REMOVAL_REGULAR_EXPRESSIONS_NLTK_V1
+  Purpose 	:   A Program in Python using NLP for Noise Removal by Regular Expressions
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   27/12/2018 18:37 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				27/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Noise Removal by Regular Expressions using NLP in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import re 
+
+def vAR_CSLAB_remove_regex(input_text, regex_pattern):
+    vAR_CSLAB_urls = re.finditer(regex_pattern, input_text) 
+    for i in vAR_CSLAB_urls: 
+        vAR_CSLAB_input_text = re.sub(i.group().strip(), '', input_text)
+    return input_text
+
+vAR_CSLAB_regex_pattern = "#[\w]*"  
+
+vAR_CSLAB_remove_regex("remove this #hashtag from my text", vAR_CSLAB_regex_pattern)
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

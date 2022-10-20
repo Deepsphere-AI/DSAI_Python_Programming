@@ -1,0 +1,73 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_BED_OCCUPANCY_OPTIMIZATION_V1
+  Purpose 	:   A Program in Python Bed Occupancy Optimization Usecase
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 9:42 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Bed Occupancy Optimization Usecase in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+  
+from mpl_toolkits.mplot3d import Axes3D
+
+import numpy as vAR_np
+
+import matplotlib.pyplot as vAR_plt
+
+vAR_CSLAB_fig = vAR_plt.figure()
+
+vAR_CSLAB_ax = vAR_CSLAB_fig.gca(projection='3d')
+
+vAR_CSLAB_x = vAR_np.linspace(0, 1, 100)
+
+vAR_CSLAB_y = vAR_np.sin(vAR_CSLAB_x * 2 * vAR_np.pi) / 2 + 0.5
+
+vAR_CSLAB_ax.plot(vAR_CSLAB_x, vAR_CSLAB_y, zs=0, zdir='z')
+
+vAR_CSLAB_colors = ('r', 'g', 'b', 'k')
+
+for vAR_CSLAB_c in vAR_CSLAB_colors:
+    
+    vAR_CSLAB_x = vAR_np.random.sample(20)
+    
+    vAR_CSLAB_y = vAR_np.random.sample(20)
+    
+    vAR_CSLAB_ax.scatter(vAR_CSLAB_x, vAR_CSLAB_y, 0, zdir='y', c=c)
+
+vAR_CSLAB_ax.legend()
+
+vAR_CSLAB_ax.set_xlim3d(0, 1)
+
+vAR_CSLAB_ax.set_ylim3d(0, 1)
+
+vAR_CSLAB_ax.set_zlim3d(0, 1)
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

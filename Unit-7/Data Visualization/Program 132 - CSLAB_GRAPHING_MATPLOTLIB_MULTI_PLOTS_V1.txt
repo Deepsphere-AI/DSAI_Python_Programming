@@ -1,0 +1,61 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_GRAPHING_MATPLOTLIB_MULTI_PLOTS_V1
+  Purpose 	:   A Program in Python for Multi Plots in matplotlib
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 15:49 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+   
+## Program Description : Program for Multi Plots in matplotlib in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from pylab import *
+
+vAR_CSLAB_fig =figure()
+
+vAR_CSLAB_fig.subplots_adjust(bottom=0.025, left=0.025, top = 0.975, right=0.975)
+
+subplot(2,1,1)
+
+xticks([]), yticks([])
+
+subplot(2,3,4)
+
+xticks([]), yticks([])
+
+subplot(2,3,5)
+
+xticks([]), yticks([])
+
+subplot(2,3,6)
+  
+xticks([]), yticks([])
+
+show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

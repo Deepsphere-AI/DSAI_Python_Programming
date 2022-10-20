@@ -1,0 +1,52 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_TENSORFLOW_GRAPHS_V1
+  Purpose 	:   A Program in Python Tensorflow for Graphs
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   21/12/2018 11:14 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Graphs using Tensorflow in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+import tensorflow as vAR_tf
+
+vAR_CSLAB_g = vAR_tf.Graph()
+
+with vAR_CSLAB_g.as_default():
+    VAR_CSLAB_A = vAR_tf.constant(15, name="input_a")
+    VAR_CSLAB_B = vAR_tf.constant(13, name="input_b")
+    VAR_CSLAB_C = vAR_tf.add(VAR_CSLAB_A,VAR_CSLAB_B)
+    
+vAR_CSLAB_sess = vAR_tf.Session(graph=vAR_CSLAB_g)
+
+vAR_CSLAB_sess
+
+print(vAR_CSLAB_C)
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

@@ -1,0 +1,53 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NDARRAY_INDEXING_SCHEME_STRIDES_V1
+  Purpose 	:   A Program in Python for Indexing Scheme Strides of ndarray
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   18/12/2018 17:05 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				18/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Indexing Scheme Strides of ndarray in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+vAR_CSLAB_X = vAR_np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]], dtype=vAR_np.int8)
+
+str(vAR_CSLAB_X.data) 
+
+vAR_CSLAB_X.strides
+
+vAR_CSLAB_byte_offset = 3*1 + 1*2
+
+vAR_CSLAB_X.flat[vAR_CSLAB_byte_offset]
+
+vAR_CSLAB_X[1, 2]
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

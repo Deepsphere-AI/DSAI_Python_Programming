@@ -1,0 +1,128 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_TENSORFLOW_CONVOLUTIONAL_NEURAL_NETWORKS_V1
+  Purpose 	:   A Program in Python Tensorflow for Convolutional Neural Networks
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   26/12/2018 13:57 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Convolutional Neural Networks using Tensorflow in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+import matplotlib.pyplot as vAR_plt
+import numpy as vAR_np
+import tensorflow as vAR_tf
+from tensorflow.contrib.learn.python.learn.datasets.mnist import read_data_sets
+from tensorflow.examples.tutorials.mnist import input_data
+from tensorflow.python.framework import ops
+ops.reset_default_graph()
+
+vAR_sess = vAR_tf.Session()
+vAR_CSLAB_mnist = input_data.read_data_sets("mnist", one_hot=True)
+
+vAR_CSLAB_train_xdata = vAR_np.array([vAR_np.reshape(x, (28,28)) for x in vAR_CSLAB_mnist.train.images])
+vAR_CSLAB_test_xdata = vAR_np.array([vAR_np.reshape(x, (28,28)) for x in vAR_CSLAB_mnist.test.images])
+
+vAR_CSLAB_train_labels = vAR_CSLAB_mnist.train.labels
+vAR_CSLAB_vAR_CSLAB_test_labels = vAR_CSLAB_mnist.test.labels
+
+vAR_CSLAB_batch_size = 100
+vAR_CSLAB_learning_rate = 0.005
+vAR_CSLAB_evaluation_size = 500
+vAR_CSLAB_image_width = vAR_CSLAB_train_xdata[0].shape[0] # 28
+vAR_CSLAB_image_height = vAR_CSLAB_train_xdata[0].shape[1] # 28
+vAR_CSLAB_target_size = vAR_CSLAB_train_labels + 1
+vAR_CSLAB_num_channels = 1 # greyscale = 1 channel
+vAR_CSLAB_generations = 500 #total num of iterations
+vAR_CSLAB_eval_every = 5 #show status after every 5 iteration
+vAR_CSLAB_conv1_features = 25
+vAR_CSLAB_conv2_features = 50
+vAR_CSLAB_max_pool_size1 = 2 # NxN window for 1st max pool layer
+vAR_CSLAB_max_pool_size2 = 2 # NxN window for 2nd max pool layer
+vAR_CSLAB_fully_connected_size1 = 100
+
+vAR_CSLAB_x_input_shape = (vAR_CSLAB_batch_size, vAR_CSLAB_image_width, vAR_CSLAB_image_height, vAR_CSLAB_num_channels)
+vAR_CSLAB_x_input = vAR_tf.placeholder(vAR_tf.float32, shape=vAR_CSLAB_x_input_shape)
+vAR_CSLAB_y_target = vAR_tf.placeholder(vAR_tf.int32, shape=(vAR_CSLAB_batch_size))
+
+vAR_CSLAB_eval_input_shape = (vAR_CSLAB_evaluation_size, vAR_CSLAB_image_width, vAR_CSLAB_image_height, vAR_CSLAB_num_channels)
+vAR_CSLAB_eval_input = vAR_tf.placeholder(vAR_tf.float32, shape=vAR_CSLAB_eval_input_shape)
+vAR_CSLAB_eval_target = vAR_tf.placeholder(vAR_tf.int32, shape=(vAR_CSLAB_evaluation_size))
+
+vAR_CSLAB_conv1_weight = vAR_tf.Variable(vAR_tf.truncated_normal([4, 4, vAR_CSLAB_num_channels, vAR_CSLAB_conv1_features],stddev=0.1, dtype=vAR_tf.float32))
+vAR_CSLAB_conv1_bias = vAR_tf.Variable(vAR_tf.zeros([vAR_CSLAB_conv1_features], dtype=vAR_tf.float32))
+
+vAR_CSLAB_conv2_weight = vAR_tf.Variable(vAR_tf.truncated_normal([4, 4, vAR_CSLAB_conv1_features, vAR_CSLAB_conv2_features],stddev=0.1, dtype=vAR_tf.float32))
+vAR_CSLAB_conv2_bias = vAR_tf.Variable(vAR_tf.zeros([vAR_CSLAB_conv2_features], dtype=vAR_tf.float32))
+
+vAR_CSLAB_resulting_width = vAR_CSLAB_image_width // (vAR_CSLAB_max_pool_size1 * vAR_CSLAB_max_pool_size2)
+vAR_CSLAB_resulting_height = vAR_CSLAB_image_height // (vAR_CSLAB_max_pool_size1 * vAR_CSLAB_max_pool_size2)
+vAR_CSLAB_full1_input_size = vAR_CSLAB_resulting_width * vAR_CSLAB_resulting_height * vAR_CSLAB_conv2_features
+
+vAR_CSLAB_full1_weight = vAR_tf.Variable(vAR_tf.truncated_normal([vAR_CSLAB_full1_input_size, vAR_CSLAB_fully_connected_size1],stddev=0.1, dtype=vAR_tf.float32))
+
+vAR_CSLAB_full1_bias = vAR_tf.Variable(vAR_tf.truncated_normal([vAR_CSLAB_fully_connected_size1], stddev=0.1, dtype=vAR_tf.float32))
+
+vAR_CSLAB_full2_weight = vAR_tf.Variable(vAR_tf.truncated_normal([vAR_CSLAB_full1_input_size, vAR_CSLAB_fully_connected_size1],stddev=0.1, dtype=vAR_tf.float32))
+
+vAR_CSLAB_full2_bias = vAR_tf.Variable(vAR_tf.truncated_normal([vAR_CSLAB_fully_connected_size1], stddev=0.1, dtype=vAR_tf.float32))
+
+def vAR_CSLAB_my_conv_net(vAR_CSLAB_input_data):
+    # First Conv-ReLU-MaxPool Layer
+    vAR_CSLAB_conv1 = vAR_tf.nn.conv2d(vAR_CSLAB_input_data, vAR_CSLAB_conv1_weight, strides=[1, 1, 1, 1], padding='SAME')
+    vAR_CSLAB_relu1 = vAR_tf.nn.relu(vAR_tf.nn.bias_add(vAR_CSLAB_conv1, vAR_CSLAB_conv1_bias))
+    vAR_CSLAB_max_pool1 = vAR_tf.nn.max_pool(vAR_CSLAB_relu1, ksize=[1, vAR_CSLAB_max_pool_size1, vAR_CSLAB_max_pool_size1, 1],strides=[1, vAR_CSLAB_max_pool_size1, vAR_CSLAB_max_pool_size1, 1], padding='SAME')
+
+    # Second Conv-ReLU-MaxPool Layer
+    vAR_CSLAB_conv2 = vAR_tf.nn.conv2d(vAR_CSLAB_max_pool1, vAR_CSLAB_conv2_weight, strides=[1, 1, 1, 1], padding='SAME')
+    vAR_CSLAB_relu2 = vAR_tf.nn.relu(vAR_tf.nn.bias_add(vAR_CSLAB_conv2, vAR_CSLAB_conv2_bias))
+    vAR_CSLAB_max_pool2 = vAR_tf.nn.max_pool(vAR_CSLAB_relu2, ksize=[1, vAR_CSLAB_max_pool_size2, vAR_CSLAB_max_pool_size2, 1],strides=[1, vAR_CSLAB_max_pool_size2, vAR_CSLAB_max_pool_size2, 1], padding='SAME')
+
+    # Transform Output into a 1xN layer for next fully connected layer
+    vAR_CSLAB_final_conv_shape = vAR_CSLAB_max_pool2.get_shape().as_list()
+    print (vAR_CSLAB_final_conv_shape)
+    vAR_CSLAB_final_shape = vAR_CSLAB_final_conv_shape[1] * vAR_CSLAB_final_conv_shape[2] * vAR_CSLAB_final_conv_shape[3]
+    vAR_CSLAB_flat_output = vAR_tf.reshape(vAR_CSLAB_max_pool2, [vAR_CSLAB_final_conv_shape[0], vAR_CSLAB_final_shape])
+
+    # First Fully Connected Layer
+    vAR_CSLAB_fully_connected1 = vAR_tf.nn.relu(vAR_tf.add(vAR_tf.matmul(vAR_CSLAB_flat_output, vAR_CSLAB_full1_weight), vAR_CSLAB_full1_bias))
+
+    # Second Fully Connected Layer
+    vAR_CSLAB_final_model_output = vAR_tf.add(vAR_tf.matmul(vAR_CSLAB_fully_connected1, vAR_CSLAB_full2_weight), vAR_CSLAB_full2_bias)
+    
+    return(vAR_CSLAB_final_model_output)
+
+print(vAR_CSLAB_model_output)
+
+#vAR_CSLAB_model_output = vAR_CSLAB_my_conv_net(vAR_CSLAB_x_input)
+
+#vAR_CSLAB_test_model_output = vAR_CSLAB_my_conv_net(vAR_CSLAB_eval_input)
+
+
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

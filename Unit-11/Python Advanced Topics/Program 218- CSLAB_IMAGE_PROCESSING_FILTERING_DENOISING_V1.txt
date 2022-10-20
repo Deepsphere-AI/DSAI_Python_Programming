@@ -1,0 +1,49 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_IMAGE_PROCESSING_FILTERING_DENOISING_V1
+  Purpose 	:   A Program in Python for Image Processing - Denoising
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   19/12/2018 12:53 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Image Processing - Denoising in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+from scipy import misc
+
+vAR_CSLAB_f = misc.face(gray=True)
+
+vAR_CSLAB_f = vAR_CSLAB_f[230:290, 220:320]
+
+vAR_CSLAB_noisy = vAR_CSLAB_f + 0.4 * vAR_CSLAB_f.std() * vAR_np.random.random(vAR_CSLAB_f.shape)
+
+vAR_plt.imshow(vAR_CSLAB_noisy)
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

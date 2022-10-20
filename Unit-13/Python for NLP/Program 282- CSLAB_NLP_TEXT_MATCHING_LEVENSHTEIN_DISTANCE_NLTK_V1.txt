@@ -1,0 +1,62 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NLP_TEXT_MATCHING_LEVENSHTEIN_DISTANCE_NLTK_V1
+  Purpose 	:   A Program in Python using NLP for Levenshtein Distance
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   27/12/2018 20:31 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				27/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Levenshtein Distance using NLP in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+def vAR_CSLAB_levenshtein(vAR_CSLAB_s1,vAR_CSLAB_s2): 
+    
+    if len(vAR_CSLAB_s1) > len(vAR_CSLAB_s2):
+        
+        vAR_CSLAB_s1,vAR_CSLAB_s2 = vAR_CSLAB_s2,vAR_CSLAB_s1 
+    
+    vAR_CSLAB_distances = range(len(vAR_CSLAB_s1) + 1) 
+    
+    for vAR_CSLAB_index2,vAR_CSLAB_char2 in enumerate(vAR_CSLAB_s2):
+        
+        vAR_CSLAB_newDistances = [vAR_CSLAB_index2+1]
+        
+        for vAR_CSLAB_index1,vAR_CSLAB_char1 in enumerate(vAR_CSLAB_s1):
+            if vAR_CSLAB_char1 == vAR_CSLAB_char2:
+                vAR_CSLAB_newDistances.append(vAR_CSLAB_distances[vAR_CSLAB_index1]) 
+            
+            else:
+                 vAR_CSLAB_newDistances.append(1 + min((vAR_CSLAB_distances[vAR_CSLAB_index1], vAR_CSLAB_distances[vAR_CSLAB_index1+1], vAR_CSLAB_newDistances[-1]))) 
+        
+        vAR_CSLAB_distances = vAR_CSLAB_newDistances 
+    
+    return vAR_CSLAB_distances[-1]
+
+print(vAR_CSLAB_levenshtein("analyze","analyse"))
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

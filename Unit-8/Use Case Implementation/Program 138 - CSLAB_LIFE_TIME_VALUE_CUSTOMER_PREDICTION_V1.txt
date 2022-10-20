@@ -1,0 +1,67 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_LIFE_TIME_VALUE_CUSTOMER_PREDICTION_V1
+  Purpose 	:   A Program in Python For Predicting Life Time Value Customers Usecase
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 15:04 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program For Predicting Life Time Value Customers Usecase in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import matplotlib
+
+from numpy.random import randn
+
+import matplotlib.pyplot as vAR_plt
+
+from matplotlib.ticker import FuncFormatter
+
+def to_percent(vAR_CSLAB_y, vAR_CSLAB_position):
+    
+    vAR_CSLAB_s = str(100 * vAR_CSLAB_y)
+
+    if matplotlib.rcParams['text.usetex'] is True:
+        
+        return vAR_CSLAB_s + r'$\%$'
+    
+    else:
+        
+        return vAR_CSLAB_s + '%'
+
+vAR_CSLAB_x = randn(5000)
+
+vAR_plt.hist(vAR_CSLAB_x, bins=50, normed=True)
+
+vAR_CSLAB_formatter = FuncFormatter(to_percent)
+
+vAR_plt.gca().yaxis.set_major_formatter(vAR_CSLAB_formatter)
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

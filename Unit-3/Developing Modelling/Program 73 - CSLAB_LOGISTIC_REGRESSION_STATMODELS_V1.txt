@@ -1,0 +1,86 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_LOGISTIC_REGRESSION_V1
+  Purpose 	:   A Program in Python for Logistic Regression using statsmodels Package
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 16:54 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Logistic Regression using statsmodels Package in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from statsmodels.discrete.discrete_model import Logit
+
+import numpy as vAR_np
+
+import matplotlib.pyplot as vAR_plt
+
+vAR_CSLAB_n = 200
+
+vAR_CSLAB_p = 10
+
+vAR_CSLAB_lpred = vAR_CSLAB_exog[:,0] + 0.5*vAR_CSLAB_exog[:,1] - 0.5*vAR_CSLAB_exog[:,2]
+
+vAR_CSLAB_prob = 1 / (1 + vAR_np.exp(-vAR_CSLAB_lpred))
+
+vAR_CSLAB_mod = Logit(vAR_CSLAB_endog, vAR_CSLAB_exog)
+
+vAR_CSLAB_rslt1 = vAR_CSLAB_mod.fit()
+
+print (vAR_CSLAB_rslt1.summary())
+
+vAR_CSLAB_rslt2 = vAR_CSLAB_mod.fit_regularized(alpha=10, disp=False)
+
+print (vAR_CSLAB_rslt2.summary())
+
+vAR_CSLAB_alpha = vAR_np.linspace(0, 50, 50)
+
+vAR_CSLAB_params = []
+
+for a in vAR_CSLAB_alpha:
+    
+    vAR_CSLAB_rslt2 = vAR_CSLAB_mod.fit_regularized(alpha=a, disp=False)
+    
+vAR_CSLAB_params.append(vAR_CSLAB_rslt2.params)
+
+vAR_CSLAB_params = vAR_np.asarray(vAR_CSLAB_params)
+
+vAR_plt.clf()
+
+vAR_CSLAB_cmap = {0: "red", 1: "green", 2: "blue"}
+
+for k in range(10):
+    
+    vAR_CSLAB_color = 'grey'
+    
+if k in (0, 1, 2):
+    
+    vAR_CSLAB_color = cmap[k]
+
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

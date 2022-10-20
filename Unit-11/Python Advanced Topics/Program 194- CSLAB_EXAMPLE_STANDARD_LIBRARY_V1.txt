@@ -1,0 +1,62 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_EXAMPLE_STANDARD_LIBRARY_V1
+  Purpose 	:   A Program in Python for Example of Standard Library
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   18/12/2018 14:00 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				18/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Example of Standard Library in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import os
+import platform
+import logging
+
+if platform.platform().startswith('Windows'):
+    vAR_CSLAB_logging_file = os.path.join(os.getenv('HOMEDRIVE'),
+                                os.getenv('HOMEPATH'),
+                                'test.log')
+else:
+    vAR_CSLAB_logging_file = os.path.join(os.getenv('HOME'),
+                                'test.log')
+
+print("Logging to", vAR_CSLAB_logging_file)
+
+logging.basicConfig(
+vAR_CSLAB_level=logging.DEBUG,
+format='%(asctime)s : %(levelname)s : %(message)s',
+filename=vAR_CSLAB_logging_file,
+vAR_CSLAB_filemode='w',
+)
+
+logging.debug("Start of the program")
+logging.info("Doing something")
+logging.warning("Dying now")
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

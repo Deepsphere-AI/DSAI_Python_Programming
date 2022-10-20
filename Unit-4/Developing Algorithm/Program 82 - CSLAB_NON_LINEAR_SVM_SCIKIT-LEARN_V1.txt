@@ -1,0 +1,81 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NON_LINEAR_SVM_SCIKIT-LEARN_V1
+  Purpose 	:   A Program in Python for Non Linear SVM using SCIKIT-LEARN
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 16:22 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+  
+## Program Description : Program for Non Linear SVM in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+import matplotlib.pyplot as vAR_plt
+
+from sklearn import svm
+
+vAR_CSLAB_xx, vAR_CSLAB_yy = vAR_np.meshgrid(vAR_np.linspace(-3, 3, 500),
+                     vAR_np.linspace(-3, 3, 500))
+
+vAR_np.random.seed(0)
+
+vAR_CSLAB_X = vAR_np.random.randn(300, 2)
+
+vAR_CSLAB_Y = vAR_np.logical_xor(X[:, 0] > 0, X[:, 1] > 0)
+
+# fit the model
+
+vAR_CSLAB_clf = svm.NuSVC()
+
+vAR_CSLAB_clf.fit(X, Y)
+
+# plot the decision function for each datapoint on the grid
+
+vAR_CSLAB_Z = vAR_CSLAB_clf.decision_function(vAR_np.c_[vAR_CSLAB_xx.ravel(), vAR_CSLAB_yy.ravel()])
+
+vAR_CSLAB_Z = vAR_CSLAB_Z.reshape(vAR_CSLAB_xx.shape)
+
+vAR_plt.imshow(vAR_CSLAB_Z, interpolation='nearest',
+           extent=(vAR_CSLAB_xx.min(), vAR_CSLAB_xx.max(), vAR_CSLAB_yy.min(), vAR_CSLAB_yy.max()), aspect='auto',
+           origin='lower', cmap=plt.cm.PuOr_r)
+
+vAR_CSLAB_contours = vAR_plt.contour(vAR_CSLAB_xx, vAR_CSLAB_yy, vAR_CSLAB_Z, levels=[0], linewidths=2,
+                       linetypes='--')
+  
+vAR_plt.scatter(vAR_CSLAB_X[:, 0], vAR_CSLAB_X[:, 1], s=30, c=vAR_CSLAB_Y, cmap=vAR_plt.cm.Paired)
+
+vAR_plt.xticks(())
+
+vAR_plt.yticks(())
+
+vAR_plt.axis([-3, 3, -3, 3])
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

@@ -1,0 +1,69 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_GRAPHING_MATPLOTLIB_BAR_PLOT_V1
+  Purpose 	:   A Program in Python for Bar Plot in matplotlib
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 14:47 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+   
+## Program Description : Program for Bar Plot in matplotlib in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from pylab import *
+
+import numpy as vAR_np
+
+vAR_CSLAB_n = 12
+
+vAR_CSLAB_X = vAR_np.arange(n)
+
+vAR_CSLAB_Y1 = (1-vAR_CSLAB_X/float(vAR_CSLAB_n)) * vAR_np.random.uniform(0.5,1.0,vAR_CSLAB_n)
+
+vAR_CSLAB_Y2 = (1-vAR_CSLAB_X/float(vAR_CSLAB_n)) * vAR_np.random.uniform(0.5,1.0,vAR_CSLAB_n)
+
+axes([0.025,0.025,0.95,0.95])
+
+bar(vAR_CSLAB_X, +vAR_CSLAB_Y1, facecolor='#9999ff', edgecolor='white')
+  
+bar(vAR_CSLAB_X, -vAR_CSLAB_Y2, facecolor='#ff9999', edgecolor='white')
+
+for vAR_CSLAB_x,vAR_CSLAB_y in zip(vAR_CSLAB_X,vAR_CSLAB_Y1):
+    
+    text(vAR_CSLAB_x+0.4, vAR_CSLAB_y+0.05, '%.2f' % vAR_CSLAB_y, ha='center', va= 'bottom')
+
+for vAR_CSLAB_x,vAR_CSLAB_y in zip(vAR_CSLAB_X,vAR_CSLAB_Y2):
+    
+    text(vAR_CSLAB_x+0.4, -vAR_CSLAB_y-0.05, '%.2f' % vAR_CSLAB_y, ha='center', va= 'top')
+
+xlim(-.5,vAR_CSLAB_n), xticks([])
+  
+ylim(-1.25,+1.25), yticks([])
+
+show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

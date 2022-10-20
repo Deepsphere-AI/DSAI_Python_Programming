@@ -1,0 +1,84 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_CUSTOMER_CROSS_SELLING_ANALYSIS_V1
+  Purpose 	:   A Program in Python For Customer Cross Selling Analysis
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 21:35 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program For Customer Cross Selling Analysis in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from mpl_toolkits.mplot3d import Axes3D
+
+from matplotlib import cm
+
+from matplotlib.ticker import LinearLocator
+
+import matplotlib.pyplot as vAR_plt
+
+import numpy as vAR_np
+
+vAR_CSLAB_fig = vAR_plt.figure()
+
+vAR_CSLAB_ax = vAR_CSLAB_fig.gca(projection='3d')
+
+vAR_CSLAB_X = vAR_np.arange(-5, 5, 0.25)
+
+vAR_CSLAB_xlen = len(vAR_CSLAB_X)
+
+vAR_CSLAB_Y = vAR_np.arange(-5, 5, 0.25)
+
+vAR_CSLAB_ylen = len(vAR_CSLAB_Y)
+
+vAR_CSLAB_X, vAR_CSLAB_Y = vAR_np.meshgrid(vAR_CSLAB_X, vAR_CSLAB_Y)
+
+vAR_CSLAB_R = vAR_np.sqrt(vAR_CSLAB_X**2 + vAR_CSLAB_Y**2)
+
+vAR_CSLAB_Z = vAR_np.sin(vAR_CSLAB_R)
+
+vAR_CSLAB_colortuple = ('y', 'b')
+
+vAR_CSLAB_colors = vAR_np.empty(vAR_CSLAB_X.shape, dtype=str)
+
+for y in range(vAR_CSLAB_ylen):
+    
+    for x in range(vAR_CSLAB_xlen):
+        
+        vAR_CSLAB_colors[x, y] = vAR_CSLAB_colortuple[(x + y) % len(vAR_CSLAB_colortuple)]
+
+vAR_CSLAB_surf = vAR_CSLAB_ax.plot_surface(vAR_CSLAB_X, vAR_CSLAB_Y, vAR_CSLAB_Z, rstride=1, cstride=1, facecolors=vAR_CSLAB_colors,
+                       linewidth=0, antialiased=False)
+
+vAR_CSLAB_ax.set_zlim3d(-1, 1)
+
+vAR_CSLAB_ax.w_zaxis.set_major_locator(LinearLocator(6))
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

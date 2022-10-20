@@ -1,0 +1,96 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_COMPUTER_VISION_TEMPLATE_MATCHING_OPENCV
+  Purpose 	:   A Program in Python using Computer Vision for Templete Matching
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   28/12/2018 19:57 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				28/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Templete Matching using Opencv in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import cv2 
+
+import numpy as vAR_np 
+
+import os
+
+vAR_INI_File_Path = os.environ.get('PYTHON_TUTORIAL')
+
+import pandas as vAR_pd
+
+import configparser
+
+import pandas as vAR_pd
+
+vAR_Config = configparser.ConfigParser(allow_no_value=True)
+
+vAR_Config.read(vAR_INI_File_Path)
+
+vAR_CSLAB_FILE_NAME = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_286_BIRDS_IMAGE']
+
+vAR_CSLAB_img2 = vAR_CSLAB_img.copy()
+vAR_CSLAB_template = cv2.imread('C:/Python_Programs/Birds.jpg',0)
+vAR_CSLAB_w, vAR_CSLAB_h = vAR_CSLAB_template.shape[::-1]
+
+# All the 6 methods for comparison in a list
+vAR_CSLAB_methods = ['cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
+            'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED']
+
+for meth in vAR_CSLAB_methods:
+    vAR_CSLAB_img = vAR_CSLAB_img2.copy()
+    vAR_CSLAB_method = eval(meth)
+
+    # Apply template Matching
+    vAR_CSLAB_res = cv2.matchTemplate(vAR_CSLAB_img,vAR_CSLAB_template,vAR_CSLAB_method)
+    vAR_CSLAB_min_val, vAR_CSLAB_max_val, vAR_CSLAB_min_loc, vAR_CSLAB_max_loc = cv2.minMaxLoc(vAR_CSLAB_res)
+
+    # If the method is TM_SQDIFF or TM_SQDIFF_NORMED, take minimum
+    if vAR_CSLAB_method in [cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]:
+        vAR_CSLAB_top_left = vAR_CSLAB_min_loc
+    else:
+        vAR_CSLAB_top_left = vAR_CSLAB_max_loc
+    vAR_CSLAB_bottom_right = (vAR_CSLAB_top_left[0] + vAR_CSLAB_w, vAR_CSLAB_top_left[1] + vAR_CSLAB_h)
+
+    cv2.rectangle(vAR_CSLAB_img,vAR_CSLAB_top_left, vAR_CSLAB_bottom_right, 255, 2)
+
+    vAR_plt.subplot(121)
+    vAR_plt.imshow(vAR_CSLAB_res,cmap = 'gray')
+    vAR_plt.title('Matching Result')
+    vAR_plt.xticks([])
+    vAR_plt.yticks([])
+    vAR_plt.subplot(122),
+    vAR_plt.imshow(vAR_CSLAB_img,cmap = 'gray')
+    vAR_plt.title('Detected Point')
+    vAR_plt.xticks([])
+    vAR_plt.yticks([])
+    vAR_plt.suptitle(meth)
+
+    vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

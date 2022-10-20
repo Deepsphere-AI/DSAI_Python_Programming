@@ -1,0 +1,49 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_SVM_MODEL_V1
+  Purpose 	:   A Program in Python for SVM Model SCIKIT LEARN
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 19:01 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for SVM in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from sklearn import svm
+
+VAR_CSLAB_X = [[0, 0], [1, 1]]
+
+VAR_CSLAB_y = [0, 1]
+
+VAR_CSLAB_clf = svm.SVC()
+
+VAR_CSLAB_clf.fit(VAR_CSLAB_X, VAR_CSLAB_y)  
+
+VAR_CSLAB_clf.predict(VAR_CSLAB_X)
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

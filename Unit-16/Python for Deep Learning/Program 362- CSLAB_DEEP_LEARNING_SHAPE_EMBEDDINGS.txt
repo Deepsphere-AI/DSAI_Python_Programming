@@ -1,0 +1,62 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_DEEP_LEARNING_SHAPE_EMBEDDINGS
+  Purpose 	:   A Program in Python for Shape Embeddings in Deep Learning
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   08/01/2019 15:15 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				08/01/2019		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program in Python for Shape Embeddings in Deep Learning
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from __future__ import print_function
+import numpy as vAR_np
+import tensorflow as vAR_tf
+
+vAR_CSLAB_vocab_size = 10
+vAR_CSLAB_embedding_dim = 5
+vAR_CSLAB_batch_size = 16
+
+# The data set is an array of integer values, each being an ID in the range
+# [0, vocab_size)
+vAR_CSLAB_dataset = vAR_tf.placeholder(vAR_tf.int32, shape=[vAR_CSLAB_batch_size])
+
+# embedding is a lookup table for IDs, mapping them into
+# embedding_dim-dimensional vectors.
+vAR_CSLAB_embedding = vAR_tf.Variable(vAR_tf.random_uniform(
+    [vAR_CSLAB_vocab_size, vAR_CSLAB_embedding_dim], -1.0, 1.0))
+
+vAR_CSLAB_embed_out = vAR_tf.nn.embedding_lookup(vAR_CSLAB_embedding, vAR_CSLAB_dataset)
+
+with vAR_tf.Session() as vAR_sess:
+    vAR_tf.initialize_all_variables().run()
+
+    print('dataset shape:', vAR_CSLAB_dataset.get_shape())
+    print('embedding shape:', vAR_CSLAB_embedding.get_shape())
+    print('embed_out shape:', vAR_CSLAB_embed_out.get_shape())
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************                          

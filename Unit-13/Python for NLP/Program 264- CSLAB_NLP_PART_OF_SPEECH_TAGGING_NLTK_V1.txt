@@ -1,0 +1,60 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NLP_PART_OF_SPEECH_TAGGING_NLTK_V1
+  Purpose 	:   A Program in Python using NLP for Part of Speech Tagging
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   27/12/2018 12:37 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				27/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Part of Speech Tagging using NLP in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import nltk
+from nltk.corpus import state_union
+from nltk.tokenize import PunktSentenceTokenizer
+
+vAR_CSLAB_train_text = state_union.raw("2005-GWBush.txt")
+vAR_CSLAB_sample_text = state_union.raw("2006-GWBush.txt")
+
+vAR_CSLAB_custom_sent_tokenizer = PunktSentenceTokenizer(vAR_CSLAB_train_text)
+
+vAR_CSLAB_tokenized = vAR_CSLAB_custom_sent_tokenizer.tokenize(vAR_CSLAB_sample_text)
+
+def vAR_CSLAB_process_content():
+    try:
+        for i in vAR_CSLAB_tokenized[:5]:
+            vAR_CSLAB_words = nltk.word_tokenize(i)
+            vAR_CSLAB_tagged = nltk.pos_tag(vAR_CSLAB_words)
+            print(vAR_CSLAB_tagged)
+
+    except Exception as vAR_CSLAB_e:
+        print(str(vAR_CSLAB_e))
+
+vAR_CSLAB_process_content()
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

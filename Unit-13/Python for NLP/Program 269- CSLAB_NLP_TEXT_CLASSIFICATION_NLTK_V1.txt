@@ -1,0 +1,65 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NLP_TEXT_CLASSIFICATION_NLTK_V1
+  Purpose 	:   A Program in Python using NLP for Text Classification
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   27/12/2018 15:07 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				27/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Text Classification using NLP in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import nltk
+import random
+from nltk.corpus import movie_reviews
+
+vAR_CSLAB_documents = [(list(movie_reviews.words(fileid)), category)
+             for category in movie_reviews.categories()
+             for fileid in movie_reviews.fileids(category)]
+
+random.shuffle(vAR_CSLAB_documents)
+
+print(vAR_CSLAB_documents[1])
+
+vAR_CSLAB_all_words = []
+for w in movie_reviews.words():
+    vAR_CSLAB_all_words.append(w.lower())
+
+vAR_CSLAB_all_words = nltk.FreqDist(vAR_CSLAB_all_words)
+#print(vAR_CSLAB_all_words.most_common(15))
+#print(vAR_CSLAB_all_words["stupid"])
+
+vAR_CSLAB_documents = [(list(movie_reviews.words(fileid)), category)
+             for category in movie_reviews.categories()
+             for fileid in movie_reviews.fileids(category)]
+
+print(vAR_CSLAB_all_words.most_common(15))
+
+print(vAR_CSLAB_all_words["stupid"])
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

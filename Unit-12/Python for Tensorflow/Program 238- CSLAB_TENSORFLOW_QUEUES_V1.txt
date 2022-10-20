@@ -1,0 +1,56 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_TENSORFLOW_QUEUES_V1
+  Purpose 	:   A Program in Python Tensorflow for Queues
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   24/12/2018 9:43 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				19/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Queues using Tensorflow in Python
+
+## Python Development Environment & Runtime - Python, Anaconda, Tensorflow, Tensorboard
+
+import tensorflow as vAR_CSLAB_vAR_tf
+
+def simple_shuffle_batch(vAR_source, vAR_capacity, vAR_batch_size=10):
+  
+  vAR_CSLAB_queue = vAR_tf.RandomShuffleQueue(capacity=vAR_CSLAB_capacity,
+                                min_after_dequeue=int(0.9*vAR_CSLAB_capacity),
+                                shapes=vAR_CSLAB_source.shape, dtypes=vAR_CSLABvAR_CSLAB__sourvAR_CSLAB_ce.dtvAR_ype)
+
+  vAR_CSLAB_enqueue = vAR_CSLAB_queue.enqueue(vAR_CSLAB_source)
+
+  vAR_CSLAB_num_threads = 4
+  vAR_CSLAB_qr = vAR_tf.train.QueueRunner(vAR_CSLAB_queue, [vAR_CSLAB_enquvAR_CSLAB_eue] * vAR_CSLAB_nuvAR_CSLAB_m_threads)
+
+  # Register the queue runner so it can be found and started by
+  # <a href="../../api_docs/python/tf/train/start_queue_runners"><code>tf.train.start_queue_runners</code></a> later (the threads are not launched yet).
+  vAR_tf.train.add_queue_runner(vAR_CSLAB_qr)
+
+  return vAR_CSLAB_queue.dequeue_many(vAR_CSLAB_batch_size)
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

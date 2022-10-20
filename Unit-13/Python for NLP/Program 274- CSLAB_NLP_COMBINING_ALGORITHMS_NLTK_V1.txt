@@ -1,0 +1,142 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_NLP_COMBINING_ALGORITHMS_NLTK_V1
+  Purpose 	:   A Program in Python using NLP for Combining Algorithms
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   27/12/2018 17:47 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				27/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Combining Algorithms using NLP in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import nltk
+import random
+from nltk.corpus import movie_reviews
+from nltk.classify.scikitlearn import SklearnClassifier
+import pickle
+
+from sklearn.naive_bayes import MultinomialNB, BernoulliNB
+from sklearn.linear_model import LogisticRegression, SGDClassifier
+from sklearn.svm import SVC, LinearSVC, NuSVC
+
+from nltk.classify import ClassifierI
+from statistics import mode
+
+class vAR_CSLAB_VoteClassifier(ClassifierI):
+    def __init__(self, *classifiers):
+        self._classifiers = classifiers
+        
+        def classify(self, features):
+            vAR_CSLAB_votes = []
+            for c in self._classifiers:
+                vAR_CSLAB_v = c.classify(vAR_CSLAB_features)
+                vAR_CSLAB_votes.append(vAR_CSLAB_v)
+        return mode(vAR_CSLAB_votes)
+
+class vAR_CSLAB_VoteClassifier(ClassifierI):
+    def __init__(self, *classifiers):
+        self._classifiers = classifiers
+
+    def vAR_CSLAB_classify(self, features):
+        vAR_CSLAB_votes = []
+        for c in self._classifiers:
+            vAR_CSLAB_v = c.classify(features)
+            vAR_CSLAB_votes.append(vAR_CSLAB_v)
+        return mode(vAR_CSLAB_votes)
+
+    def vAR_CSLAB_confidence(self, features):
+        vAR_CSLAB_votes = []
+        for c in self._classifiers:
+            vAR_CSLAB_v = c.classify(features)
+            vAR_CSLAB_votes.append(vAR_CSLAB_v)
+
+        vAR_CSLAB_choice_votes = vAR_CSLAB_votes.count(mode(vAR_CSLAB_votes))
+        vAR_CSLAB_conf = vAR_CSLAB_choice_votes / len(vAR_CSLAB_votes)
+        return vAR_CSLAB_conf
+
+vAR_CSLAB_documents = [(list(movie_reviews.words(fileid)), category)
+             for category in movie_reviews.categories()
+             for fileid in movie_reviews.fileids(category)]
+
+random.shuffle(vAR_CSLAB_documents)
+
+vAR_CSLAB_all_words = []
+
+for w in movie_reviews.words():
+    vAR_CSLAB_all_words.append(w.lower())
+
+vAR_CSLAB_all_words = nltk.FreqDist(vAR_CSLAB_all_words)
+
+vAR_CSLAB_word_features = list(vAR_CSLAB_all_words.keys())[:3000]
+
+def vAR_CSLAB_find_features(vAR_CSLAB_document):
+    vAR_CSLAB_words = set(vAR_CSLAB_document)
+    vAR_CSLAB_features = {}
+    for w in vAR_CSLAB_word_features:
+        vAR_CSLAB_features[w] = (w in vAR_CSLAB_words)
+
+    return vAR_CSLAB_features
+
+#print((find_features(movie_reviews.words('neg/cv000_29416.txt'))))
+
+vAR_CSLAB_featuresets = [(vAR_CSLAB_find_features(rev), category) for (rev, category) in vAR_CSLAB_documents]
+        
+vAR_CSLAB_training_set = vAR_CSLAB_featuresets[:1900]
+vAR_CSLAB_testing_set =  vAR_CSLAB_featuresets[1900:]
+
+#classifier = nltk.NaiveBayesClassifier.train(training_set)
+
+vAR_CSLAB_classifier_f = open("naivebayes.pickle","rb")
+vAR_CSLAB_classifier = pickle.load(vAR_CSLAB_classifier_f)
+vAR_CSLAB_classifier_f.close()
+
+vAR_CSLAB_MNB_classifier = SklearnClassifier(MultinomialNB())
+vAR_CSLAB_MNB_classifier.train(vAR_CSLAB_training_set)
+
+vAR_CSLAB_BNB_classifier = SklearnClassifier(BernoulliNB())
+vAR_CSLAB_BNB_classifier.train(vAR_CSLAB_training_set)
+
+from sklearn.linear_model import LogisticRegression,SGDClassifier
+from sklearn.svm import SVC, LinearSVC, NuSVC
+
+vAR_CSLAB_classifier.show_most_informative_features(15)
+
+vAR_CSLAB_MNB_classifier = SklearnClassifier(MultinomialNB())
+vAR_CSLAB_MNB_classifier.train(vAR_CSLAB_training_set)
+
+vAR_CSLAB_BernoulliNB_classifier = SklearnClassifier(BernoulliNB())
+vAR_CSLAB_BernoulliNB_classifier.train(vAR_CSLAB_training_set)
+
+vAR_CSLAB_LogisticRegression_classifier = SklearnClassifier(LogisticRegression())
+vAR_CSLAB_LogisticRegression_classifier.train(vAR_CSLAB_training_set)
+    
+vAR_CSLAB_voted_classifier = vAR_CSLAB_VoteClassifier(vAR_CSLAB_MNB_classifier,
+                                  vAR_CSLAB_BernoulliNB_classifier,
+                                  vAR_CSLAB_LogisticRegression_classifier)
+    
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

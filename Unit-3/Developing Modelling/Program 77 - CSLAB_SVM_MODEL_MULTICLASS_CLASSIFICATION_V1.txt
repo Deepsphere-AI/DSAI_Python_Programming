@@ -1,0 +1,55 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_SVM_MODEL_MULTICLASS_CLASSIFICATION_V1
+  Purpose 	:   A Program in Python for SVM Multiclass Classification Using SCIKIT LEARN
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 19:23 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for SVM Multiclass Classification in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+vAR_CSLAB_X = [[0], [1], [2], [3]]
+
+vAR_CSLAB_Y = [0, 1, 2, 3]
+
+vAR_CSLAB_clf = svm.SVC(decision_function_shape='ovo')
+
+vAR_CSLAB_clf.fit(vAR_CSLAB_X, vAR_CSLAB_Y)
+
+vAR_CSLAB_dec = vAR_CSLAB_clf.decision_function([[1]])
+
+vAR_CSLAB_dec.shape[1] # 4 classes: 4*3/2 = 6
+
+vAR_CSLAB_clf.decision_function_shape = "ovr"
+
+vAR_CSLAB_dec = vAR_CSLAB_clf.decision_function([[1]])
+
+vAR_CSLAB_dec.shape[1] # 4 classes
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

@@ -1,0 +1,81 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_SALES_LEAD_PRIORTIZATION_V1
+  Purpose 	:   A Program in Python For Lead Priortization Usecase
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 16:17 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program For Lead Priortization Usecase in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+from __future__ import print_function
+
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+import matplotlib.cbook as cbook
+
+import matplotlib.dates as mdates
+
+from matplotlib.dates import bytespdate2num
+
+import os
+
+vAR_INI_File_Path = os.environ.get('PYTHON_TUTORIAL')
+
+import pandas as vAR_pd
+
+import configparser
+
+import matplotlib.pyplot as vAR_plt
+
+vAR_Config = configparser.ConfigParser(allow_no_value=True)
+
+vAR_Config.read(vAR_INI_File_Path)
+
+vAR_CSLAB_MSFT = vAR_Config['Data File Path']['vAR_CSLAB_PROGRAM_140_MSFT']
+
+vAR_CSLAB_MSFT = vAR_pd.read_csv(vAR_CSLAB_MSFT)
+
+vAR_CSLAB_dates = vAR_CSLAB_MSFT.iloc[:10,0]
+
+vAR_CSLAB_volume = vAR_CSLAB_MSFT.iloc[:10,5]
+
+vAR_CSLAB_fig = vAR_plt.figure()
+
+vAR_CSLAB_ax = vAR_CSLAB_fig.add_subplot(111)
+
+vAR_CSLAB_ax.plot_date(vAR_CSLAB_dates, vAR_CSLAB_volume, '-')
+
+vAR_CSLAB_fig.autofmt_xdate()
+
+vAR_plt.show()
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

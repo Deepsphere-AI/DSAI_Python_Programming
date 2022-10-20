@@ -1,0 +1,51 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_GENERATOR_EXPRESSIONS_V1
+  Purpose 	:   A Program in Python for Generator Expressions
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   18/12/2018 11:33 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				18/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for Generator Expressions in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+vAR_CSLAB_nums = [1, 2, 3]
+
+iter(vAR_CSLAB_nums)
+
+vAR_CSLAB_it = iter(vAR_CSLAB_nums)
+
+next(vAR_CSLAB_it)
+
+(i for i in vAR_CSLAB_nums)
+
+[i for i in vAR_CSLAB_nums]
+
+{i for i in range(3)} 
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  

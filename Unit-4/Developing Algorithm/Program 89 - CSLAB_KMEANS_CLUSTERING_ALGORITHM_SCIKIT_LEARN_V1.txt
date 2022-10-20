@@ -1,0 +1,135 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_KMEANS_CLUSTERING_ALGORITHM_SCIKIT_LEARN_V1
+  Purpose 	:   A Program in Python for KMEANS Clustering Algorithm Using SCIKIT LEARN
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 16:41 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : Program for KMEANS Clustering Algorithm in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+import matplotlib.pyplot as vAR_plt
+
+from mpl_toolkits.mplot3d import Axes3D
+
+from sklearn.cluster import KMeans
+
+from sklearn import datasets
+
+vAR_np.random.seed(5)
+
+vAR_CSLAB_centers = [[1, 1], [-1, -1], [1, -1]]
+
+vAR_CSLAB_iris = datasets.load_iris()
+
+vAR_CSLAB_X = vAR_CSLAB_iris.data
+
+vAR_CSLAB_y = vAR_CSLAB_iris.target
+
+vAR_CSLAB_estimators = {'k_means_iris_3': KMeans(n_clusters=3),
+              'k_means_iris_8': KMeans(n_clusters=8),
+              'k_means_iris_bad_init': KMeans(n_clusters=3, n_init=1,
+                                              init='random')}
+
+
+vAR_CSLAB_fignum = 1
+
+for name, est in estimators.items():
+    
+    vAR_CSLAB_fig = vAR_plt.figure(vAR_CSLAB_fignum, figsize=(4, 3))
+    
+    vAR_plt.clf()
+    
+    vAR_CSLAB_ax = Axes3D(vAR_CSLAB_fig, rect=[0, 0, .95, 1], elev=48, azim=134)
+
+    vAR_plt.cla()
+    
+    est.fit(vAR_CSLAB_X)
+    
+    vAR_CSLAB_labels = est.labels_
+
+    vAR_CSLAB_ax.scatter(vAR_CSLAB_X[:, 3], vAR_CSLAB_X[:, 0], vAR_CSLAB_X[:, 2], c=vAR_CSLAB_labels.astype(vAR_np.float))
+
+    vAR_CSLAB_ax.w_xaxis.set_ticklabels([])
+    
+    vAR_CSLAB_ax.w_yaxis.set_ticklabels([])
+    
+    vAR_CSLAB_ax.w_zaxis.set_ticklabels([])
+    
+    vAR_CSLAB_ax.set_xlabel('Petal width')
+    
+    vAR_CSLAB_ax.set_ylabel('Sepal length')
+    
+    vAR_CSLAB_ax.set_zlabel('Petal length')
+    
+    vAR_CSLAB_fignum = vAR_CSLAB_fignum + 1
+
+# Plot the ground truth
+
+vAR_CSLAB_fig = vAR_plt.figure(vAR_CSLAB_fignum, figsize=(4, 3))
+
+vAR_plt.clf()
+
+vAR_CSLAB_ax = Axes3D(vAR_CSLAB_fig, rect=[0, 0, .95, 1], elev=48, azim=134)
+
+vAR_plt.cla()
+
+for name, label in [('Setosa', 0),
+                    ('Versicolour', 1),
+                    ('Virginica', 2)]:
+    vAR_CSLAB_ax.text3D(vAR_CSLAB_X[vAR_CSLAB_y == label, 3].mean(),
+              vAR_CSLAB_X[vAR_CSLAB_y == label, 0].mean() + 1.5,
+              vAR_CSLAB_X[vAR_CSLAB_y == label, 2].mean(), name,
+              horizontalalignment='center',
+              bbox=dict(alpha=.5, edgecolor='w', facecolor='w'))
+
+  # Reorder the labels to have colors matching the cluster results
+
+vAR_CSLAB_y = vAR_np.choose(vAR_CSLAB_y, [1, 2, 0]).astype(vAR_np.float)
+
+vAR_CSLAB_ax.scatter(vAR_CSLAB_X[:, 3], vAR_CSLAB_X[:, 0], vAR_CSLAB_X[:, 2], c=vAR_CSLAB_y)
+
+vAR_CSLAB_ax.w_xaxis.set_ticklabels([])
+
+vAR_CSLAB_ax.w_yaxis.set_ticklabels([])
+
+vAR_CSLAB_ax.w_zaxis.set_ticklabels([])
+
+vAR_CSLAB_ax.set_xlabel('Petal width')
+
+vAR_CSLAB_ax.set_ylabel('Sepal length')
+
+vAR_CSLAB_ax.set_zlabel('Petal length')
+
+vAR_plt.show()
+
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+   

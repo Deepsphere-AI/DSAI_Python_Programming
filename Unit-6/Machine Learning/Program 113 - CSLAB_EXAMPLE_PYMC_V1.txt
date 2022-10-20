@@ -1,0 +1,65 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_EXAMPLE_PYMC_V1
+  Purpose 	:   A Program in Python PYMC Package
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   14/12/2018 15:31 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				14/12/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+  
+## Program Description : Program for PYMC Package in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+import matplotlib.pyplot as vAR_plt
+vAR_plt.style.use('seaborn-darkgrid')
+
+# Initialize random number generator
+vAR_np.random.seed(123)
+
+# True parameter values
+vAR_CSLAB_alpha, vAR_CSLAB_sigma = 1, 1
+vAR_CSLAB_beta = [1, 2.5]
+
+# Size of dataset
+vAR_CSLAB_size = 100
+
+# Predictor variable
+vAR_CSLAB_X1 = vAR_np.random.randn(vAR_CSLAB_size)
+vAR_CSLAB_X2 = vAR_np.random.randn(vAR_CSLAB_size) * 0.2
+
+# Simulate outcome variable
+vAR_CSLAB_Y = vAR_CSLAB_alpha + vAR_CSLAB_beta[0]*vAR_CSLAB_X1 + vAR_CSLAB_beta[1]*vAR_CSLAB_X2 + np.random.randn(vAR_CSLAB_size)*vAR_CSLAB_sigma
+
+%matplotlib inline
+
+fig, axes = vAR_plt.subplots(1, 2, sharex=True, figsize=(10,4))
+axes[0].scatter(vAR_CSLAB_X1, vAR_CSLAB_Y)
+axes[1].scatter(vAR_CSLAB_X2, vAR_CSLAB_Y)
+axes[0].set_ylabel('Y'); axes[0].set_xlabel('vAR_CSLAB_X1'); axes[1].set_xlabel('vAR_CSLAB_X2');
+
+/****************************************************************************************************************************
+  Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production
+ready code. We have no liability on this particular code under any circumstances; users should use
+this code on their own risk. All software, hardware and othr products that are referenced in these 
+materials belong to the respective vendor who developed or who owns this product.
+
+/****************************************************************************************************************************
+  
