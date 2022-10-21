@@ -1,0 +1,46 @@
+
+/*********************************************************************************************************************
+  
+  File Name 	:   CSLAB_N_DIMENSIONAL_ARRAY_V1
+  Purpose 	:   A Program in Python for N Dimensionsional Arrays
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   12/13/2018 12:34 hrs
+  Version	:   1.0	
+  Change History: 
+_______________________________________________________________________________________________________________________
+
+   Who				   When 			        Why
+_______________________________________________________________________________________________________________________
+
+
+    DP				12/13/2018		           Initital Release 
+
+________________________________________________________________________________________________________________________
+
+
+/***********************************************************************************************************************
+
+## Program Description : A Program for N Dimensional Arrays in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+import numpy as vAR_np
+
+vAR_CSLAB_X = vAR_np.array([[1, 2, 3], [4, 5, 6]], vAR_np.int32)
+
+type(vAR_CSLAB_X)
+
+print(vAR_CSLAB_X.shape[0])
+
+print(vAR_CSLAB_X.dtype)
+
+/**************************************************************************************
+Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production ready code. We have no liability on this particular code under any circumstances; users should use this code on their own risk. 
+
+All software, hardware and othr products that are referenced in these materials belong to the respective vendor who developed or who owns this product.
+
+/**************************************************************************************
+   

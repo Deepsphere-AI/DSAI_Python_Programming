@@ -1,0 +1,66 @@
+
+/**************************************************************************************************
+  
+  File Name 	:   CSLAB_INHERITANCE_V1
+  Purpose 	:   A Program in Python for Inheritance
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   12/13/2018 12:15 hrs
+  Version	:   1.0	
+  Change History: 
+___________________________________________________________________________________________________
+
+   Who				   When 			        Why
+___________________________________________________________________________________________________
+
+
+    DP				12/13/2018		           Initital Release 
+
+___________________________________________________________________________________________________
+
+
+/**************************************************************************************************
+
+## Program Description : A Program for Inheritance in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+class vAR_CSLAB_Person(object): 
+       
+    # Constructor 
+    def __init__(self, name): 
+        self.name = name 
+   
+    # To get name 
+    def getName(self): 
+        return self.name 
+   
+    # To check if this person is employee 
+    def isEmployee(self): 
+        return False
+   
+   
+# Inherited or Sub class (Note Person in bracket) 
+class vAR_CSLAB_Employee(vAR_CSLAB_Person): 
+   
+    # Here we return true 
+    def isEmployee(self): 
+        return True
+   
+# Driver code 
+vAR_CSLAB_emp = vAR_CSLAB_Person("aaa1")  # An Object of Person 
+print(vAR_CSLAB_emp.getName(), vAR_CSLAB_emp.isEmployee()) 
+   
+vAR_CSLAB_emp = Employee("bbb2") # An Object of Employee 
+print(vAR_CSLAB_emp.getName(), vAR_CSLAB_emp.isEmployee())
+         
+   
+/**************************************************************************************
+Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production ready code. We have no liability on this particular code under any circumstances; users should use this code on their own risk. 
+
+All software, hardware and othr products that are referenced in these materials belong to the respective vendor who developed or who owns this product.
+
+/**************************************************************************************
+  

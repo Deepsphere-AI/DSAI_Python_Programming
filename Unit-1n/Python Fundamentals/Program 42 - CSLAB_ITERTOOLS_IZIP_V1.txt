@@ -1,0 +1,46 @@
+
+/**************************************************************************************
+  
+  File Name 	:   CSLAB_ITERTOOLS_IZIP_V1
+  Purpose 	:   A Program in Python for Iter Tools - Izip()
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   12/13/2018 16:29 hrs
+  Version	:   1.0	
+  Change History: 
+_________________________________________________________________________________
+
+   Who				   When 			        Why
+_________________________________________________________________________________
+
+
+    DP				12/13/2018		  Initital Release 
+
+_________________________________________________________________________________
+
+
+/**************************************************************************************
+
+## Program Description : A Program for Iter Tools - IZIP in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+vAR_CSLAB_name = ['Jimmy', 'Robert', 'John Paul', 'John']
+
+vAR_CSLAB_instruments = ['Guitar', 'Vocals', 'Bass', 'Drums']
+
+vAR_CSLAB_zepp = zip(vAR_CSLAB_name, vAR_CSLAB_instruments)
+
+vAR_CSLAB_zepp
+
+[vAR_CSLAB_musician for vAR_CSLAB_musician in vAR_CSLAB_zepp]
+
+/**************************************************************************************
+Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production ready code. We have no liability on this particular code under any circumstances; users should use this code on their own risk. 
+
+All software, hardware and othr products that are referenced in these materials belong to the respective vendor who developed or who owns this product.
+
+/**************************************************************************************
+  

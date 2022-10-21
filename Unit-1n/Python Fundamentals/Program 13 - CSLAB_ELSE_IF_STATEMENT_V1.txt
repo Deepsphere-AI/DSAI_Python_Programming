@@ -1,0 +1,63 @@
+
+/**************************************************************************************
+  
+  File Name 	:   CSLAB_ELSE_IF_STATEMENT
+  Purpose 	:   A Program in Python for Else If Statement
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   12/13/2018 16:49 hrs
+  Version	:   1.0	
+  Change History: 
+_________________________________________________________________________________
+
+   Who				   When 			        Why
+_________________________________________________________________________________
+
+
+    DP				12/13/2018		  Initital Release 
+
+_________________________________________________________________________________
+
+
+/**************************************************************************************
+
+## Program Description : A Program for Else if Statement in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+vAR_CSLAB1 = 100
+
+if vAR_CSLAB1 == 200:
+    
+    print ("1 - Got a true expression value")
+   
+    print (vAR_CSLAB1)
+    
+elif vAR_CSLAB1 == 150:
+    
+    print ("2 - Got a true expression value")
+   
+    print(vAR_CSLAB1)
+
+elif vAR_CSLAB1 == 100:
+
+    print ("3 - Got a true expression value")
+   
+    print(vAR_CSLAB1)
+
+else:
+   
+    print ("4 - Got a false expression value")
+   
+    print (vAR_CSLAB1)
+
+    print ("Good bye!")
+   
+/**************************************************************************************
+Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production ready code. We have no liability on this particular code under any circumstances; users should use this code on their own risk. 
+
+All software, hardware and othr products that are referenced in these materials belong to the respective vendor who developed or who owns this product.
+
+/************************************************************************************

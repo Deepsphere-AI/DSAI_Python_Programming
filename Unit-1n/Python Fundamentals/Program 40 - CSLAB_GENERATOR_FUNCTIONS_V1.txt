@@ -1,0 +1,62 @@
+
+/**************************************************************************************
+  
+  File Name 	:   CSLAB_GENERATOR_FUNCTIONS_V1
+  Purpose 	:   A Program in Python for Generator Functions
+  Author	:   Durga Prasad
+  Reviewer 	:   Jothi Periasamy
+  Date and Time	:   12/13/2018 14:23 hrs
+  Version	:   1.0	
+  Change History: 
+_________________________________________________________________________________
+
+   Who				   When 			        Why
+_________________________________________________________________________________
+
+
+    DP				12/13/2018		  Initital Release 
+
+_________________________________________________________________________________
+
+
+/**************************************************************************************
+
+## Program Description : A Program for Generator Functions in Python
+
+## Python Development Environment & Runtime - Python, Anaconda
+
+def vAR_CSLAB_fib(vAR_CSLAB_limit): 
+      
+    # Initialize first two Fibonacci Numbers  
+    vAR_CSLAB_a, vAR_CSLAB_b = 0, 1
+  
+    # One by one yield next Fibonacci Number 
+    while vAR_CSLAB_a < vAR_CSLAB_limit: 
+        yield vAR_CSLAB_a 
+        vAR_CSLAB_a, vAR_CSLAB_b = vAR_CSLAB_b, vAR_CSLAB_a + vAR_CSLAB_b 
+  
+# Create a generator object 
+vAR_CSLAB_x = vAR_CSLAB_fib(5) 
+  
+# Iterating over the generator object using next 
+print(vAR_CSLAB_x. __next__() ); # In Python 3, __next__() 
+print(vAR_CSLAB_x. __next__() ); 
+print(vAR_CSLAB_x. __next__() ); 
+print(vAR_CSLAB_x. __next__() ); 
+print(vAR_CSLAB_x. __next__() ); 
+  
+# Iterating over the generator object using for 
+# in loop. 
+print("\nUsing for in loop") 
+for i in fib(5):  
+    print(i) 
+
+/**************************************************************************************
+Disclaimer.
+
+We are providing this code block strictly for learning and researching, this is not a production ready code. We have no liability on this particular code under any circumstances; users should use this code on their own risk. 
+
+All software, hardware and othr products that are referenced in these materials belong to the respective vendor who developed or who owns this product.
+
+/**************************************************************************************
+  
