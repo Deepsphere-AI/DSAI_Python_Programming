@@ -1,0 +1,13 @@
+Company,Company_Code_Country,Posting_Date,Document_Date,Currency ,Trading_Partner,Trading_Partner_Country,Transaction_Type,Data_Source,Data_Category,Account ,Transaction_Amount,Inter_Company_Transaction
+1000,USA,01-01-2018,1000,Local Currency,1000,Canada ,1000,SAP,ACTUAL,100999,"1,00,000.00",Y
+4000,China,01-01-2018,4000,USD,4000,India,4000,SAP,ACTUAL,1110999,"2,00,000.00",Y
+3000,Canada ,01-01-2018,3000,Local Currency,3000,USA,3000,Oracle,ACTUAL,100999,"1,00,000.00",Y
+5000,USA,01-01-2018,5000,Local Currency,5000,China,5000,SAP,ACTUAL,100999,"2,00,000.00",Y
+2000,Canada ,01-01-2018,2000,Local Currency,2000,India,2000,SAP,ACTUAL,100999,"3,00,000.00",Y
+6000,India,01-01-2018,6000,Local Currency,6000,Canada ,6000,Oracle,ACTUAL,1110999,"1,00,000.00",Y
+6000,China,01-01-2018,6000,Local Currency,6000,USA,6000,SAP,ACTUAL,100999,"1,00,000.00",Y
+2000,India,01-01-2018,2000,Local Currency,2000,Canada ,2000,Micrsoft Access,ACTUAL,100999,"2,00,000.00",Y
+4000,USA,01-01-2018,4000,Local Currency,4000,Canada ,4000,Oracle,ACTUAL,100999,"1,00,000.00",Y
+6000,Canada ,01-01-2018,6000,Local Currency,6000,India,6000,Oracle,ACTUAL,1110999,"1,00,000.00",Y
+4000,India,01-01-2018,4000,USD,4000,China,4000,File,ACTUAL,1110999,"10,000.00",Y
+2000,Canada ,01-01-2018,2000,Local Currency,2000,USA,2000,SAP,ACTUAL,100999,"3,00,000.00",Y

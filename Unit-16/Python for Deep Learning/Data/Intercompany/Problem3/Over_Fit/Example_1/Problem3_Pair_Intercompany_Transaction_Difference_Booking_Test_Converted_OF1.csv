@@ -1,0 +1,13 @@
+Company,Company_Code_Country,Posting_Date,Document_Date,Currency ,Trading_Partner,Trading_Partner_Country,Transaction_Type,Data_Source,Data_Category,Account ,Transaction_Amount,Inter_Company_Transaction
+1,USA,01/01/2018,1,Local Currency,1,Canada ,1,SAP,ACTUAL,100999,1,Y
+2,China,01/01/2018,2,USD,2,India,2,SAP,ACTUAL,1110999,2,Y
+1,Canada ,01/01/2018,1,Local Currency,1,USA,1,Oracle,ACTUAL,100999,1,Y
+5,USA,01/01/2018,5,Local Currency,5,China,5,SAP,ACTUAL,100999,5,Y
+2,Canada ,01/01/2018,2,Local Currency,2,India,2,SAP,ACTUAL,100999,2,Y
+2,India,01/01/2018,2,Local Currency,2,Canada ,2,Oracle,ACTUAL,1110999,2,Y
+5,USA,01/01/2018,5,Local Currency,5,Canada ,5,SAP,ACTUAL,100999,5,Y
+2,China,01/01/2018,2,Local Currency,2,USA,2,Micrsoft Access,ACTUAL,100999,2,Y
+1,Canada ,01/01/2018,1,Local Currency,1,USA,1,Oracle,ACTUAL,100999,1,Y
+0,India,01/01/2018,0,Local Currency,0,Canada ,0,Oracle,ACTUAL,1110999,0,Y
+0,India,01/01/2018,0,USD,0,China,0,File,ACTUAL,1110999,0,Y
+1,Canada ,01/01/2018,1,Local Currency,1,India,1,SAP,ACTUAL,100999,1,Y
